@@ -1,4 +1,4 @@
-# minishell
+<h1 align="center">minishell</h1>
 
 ## TODO
 
@@ -7,6 +7,10 @@
 - [ ] Install readline library
 - [ ] Resume the articles
 - [ ] Resume the function
+- [ ] Parsing
+- [ ] Execution
+- [ ] Builtin at the end
+- [ ] Faire un tester avec bash et voir la dif entre ton shell et bash avec un fichier history   
 
 ## Lire sur le projet
 
@@ -36,30 +40,31 @@
 
 - readline
 - rl_clear_history
-- rl_on_new_line
+- rl_on_new_line ??
 - rl_replace_line 
-- rl_redisplay
+- rl_redisplay ??
 - add_history
 - printf, malloc, free, write, access, open, read
-- close, fork, wait, waitpid, wait3, wait4, signal
+- close, fork, wait, waitpid, wait3 ??, wait4 ??
+- signal
 - sigaction
-- sigemptyset
-- sigaddset
-- kill
-- exit
+- sigemptyset ??
+- sigaddset ??
+- ioctl
+- kill ??
+- exit 
 - getcwd
 - chdir
-- stat
-- lstat
-- fstat
+- stat ??
+- lstat ??
+- fstat ??
 - unlink, execve, dup, dup2, pipe, 
-- opendir, readdir, closedir,
+- [opendir, readdir, closedir,]
 - strerror, perror, 
-- isatty, ttyname, ttyslot
-- ioctl,
-- getenv
-- tcsetattr, tcgetattr, tgetent, tgetflag,
-- tgetnum, tgetstr, tgoto, tputs 
+- [isatty, ttyname, ttyslot] ??
+- getenv ?
+- [tcsetattr, tcgetattr, tgetent, tgetflag,]??
+- [tgetnum, tgetstr, tgoto, tputs] ??
 
 ## Résumé du projet
 
