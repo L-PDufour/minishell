@@ -8,29 +8,63 @@
 - [ ] Resume the articles
 - [ ] Resume the function
 - [ ] Parsing
+    - [ ] Choose an algo for parsing
+    - [ ] Create a small demo
+    - [ ] Present the demo
 - [ ] Execution
 - [ ] Builtin at the end
 - [ ] Faire un tester avec bash et voir la dif entre ton shell et bash avec un fichier history   
 
 ## Lire sur le projet
 
+- Lire sur xv6 mit shell
 - [Article medium](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
+    <p> 
+    Articles intéressant avec du pseudocode.
+    Two parts frontend(User input and user interaction) and backend(execution).
+    Front end you have to take care of command(user input as a line/string) or a signal(ctrl + c).
+    I did the signals at the end. Parsing a command goes through two phases, the lexical analysis (lexing)
+    which produces “lexems” and then the syntax analysis (parsing the lexems). Lexical analysis / tokenization: 
+    taking the input from the user and processing it char by char into “tokens”. 
+    Lexical analysis / tokenization: taking the input from the user and processing it char by char into “tokens”. 
+    </p>
 - [Here-Documents](https://www.gnu.org/software/bash/manual/bash.html#Here-Documents)
 - [Signal Actions](https://www.gnu.org/software/libc/manual/html_node/Initial-Signal-Actions.html)
 - [Env](https://www.shell-tips.com/bash/environment-variables/#gsc.tab=0)
 - [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html)
 - [Write a shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
-
+    <p> Explique comment faire un exemple de shell avec C et read open write</p>
 - [xcu](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
+    <p>
+    Single-Quotes
+    Enclosing characters in single-quotes ( '' ) shall preserve the literal value of each character within the single-quotes.  
+    A single-quote cannot occur within single-quotes.
+    </p>
 - [Write youtr own shell](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)
+    <p>
+    A parser is divided into two parts: a Lexical Analyzer or Lexer takes the input characters and
+    puts the characters together into words called tokens, and a Parser that processes the
+    tokens according to a grammar and build the command table. À relire à partir de la page 5.
+    </p>
 - [Minishell](https://adrienblanc.com/projects/42/minishell)
 - [Simple shell in C](https://medium.com/swlh/tutorial-to-code-a-simple-shell-in-c-9405b2d3533e)
 - [Story of shell](https://medium.com/@romalms10/this-is-the-story-of-a-shell-73686729a650)
 - [Shell in C](https://www.geeksforgeeks.org/making-linux-shell-c/)
 - [Shell](https://www.cs.cornell.edu/courses/cs414/2004su/homework/shell/shell.html)
 - [CodeQuoi](https://www.codequoi.com/en/why-i-no-longer-write-articles-about-42-school-projects/)
-- [Medium](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
 - [Harm-smits](https://harm-smits.github.io/42docs/projects/minishell)
+
+## Liens sur parsing
+
+- [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
+- [Recursive descent parser](https://en.wikipedia.org/wiki/Recursive_descent_parser)
+- [Theory of computation](https://en.wikipedia.org/wiki/Theory_of_computation)
+- [Precedence climbing](https://eli.thegreenplace.net/2012/08/02/parsing-expressions-by-precedence-climbing)
+
+
+<p>Le parsing dout nous amener a un Arbre de la syntaxe abstraite. Le parsing se retrouve dans une liste 
+chainée. </p>
+
 
 ## Videos
 
