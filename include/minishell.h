@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:39:58 by ldufour           #+#    #+#             */
-/*   Updated: 2023/11/30 11:00:01 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/04 10:55:27 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/wait.h>
 
 // TODO enum et norminette
 // Penser à la gestion des processus
@@ -46,5 +47,7 @@ typedef struct t_cmd{
 	char *infile;
 	int pipe[2];
 } s_cmd;
+
+bool	ft_iswhitespace(int c);
 
 #endif

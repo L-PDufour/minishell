@@ -6,11 +6,12 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/11/30 13:04:21 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/04 17:01:50 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include <readline/readline.h>
 #include <unistd.h>
 
 bool	ft_iswhitespace(int c)
@@ -48,27 +49,40 @@ char	**parsing_arguments(char *argv)
 // 	exit_pipex(-1, "Can't execute child process 1", pipex);
 // }
 //
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
-	int pipe[2];
+	int		pipe[2];
+	int		childPid;
+	char	*cmd_line;
+	char	**cmd_table;
+	pid_t	Pid;
 
-	argc = 0;
+	// argc = 0;
 	// https://www.cs.cornell.edu/courses/cs414/2004su/homework/shell/shell.html
 	while (1)
 	{
-		int childPid;
-		char *cmdline;
 		printf("test>");
-		cmdline = readline("");
-		cmdline = *parsing_arguments(*argv);
-		if (cmdline)
+		cmd_line = readline("");
+		// cmd_line = *parsing_arguments(*argv);
+		if (cmd_line)
 		{
-		childPid = fork();
+			// add_history(cmd_line);
+			cmd_table = ft_split(cmd_line, ' ');
+			// get token
+			// scan token
+			// next token
+			Pid = fork();
 			if (childPid == 0)
 			{
-
+				// execve("/usr/bin/df", , envp);
 			}
 		}
 	}
+	wait(NULL);
 }
-
+// https://www.youtube.com/watch?v=SToUyjAsaFk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=19
+// Regarder pour la creation d'un recursive descent parser
+//
+// Creer des regles 
+// cmd_table[0] doit etre une commande
+// si < ou > ca foit etre un filename qui suit
