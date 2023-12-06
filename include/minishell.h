@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:39:58 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/06 13:11:03 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/06 15:09:43 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define PIPE 124        // |
 # define REDIR_I 60      // <
 # define REDIR_O 62      // >
+# define APPEND
+# define HEREDOC
 // # define SPACE 32        // ' '
 // # define TAB 9           // '\t'
 // # define NEWLINE 10      // '\n'

@@ -27,8 +27,8 @@
 - [x] Do a makefile
 - [x] Choose between or libft
 - [x] Install readline library
-- [\] Read the articles
-- [\] Read the function
+- [w] Read the articles
+- [w] Read the function
 - [ ] Parsing
 - [L] Grammar and lexical rules of bash
 - [ ] Execution

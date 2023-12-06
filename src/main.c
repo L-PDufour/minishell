@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/06 13:34:30 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/06 15:14:25 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,79 @@ char	**parsing_arguments(char *argv)
 // void ft_isspecial(char c)
 // {
 //     const char *special_chars = "|<>\"'";
-//     
+//
 //     if (ft_strchr(special_chars, c) != NULL)
 //         printf("%c is a special character\n", c);
 // }
 //
-void ft_isspecial(int c)
+int	ft_isspecial(char *str, int i)
 {
-	if (c == PIPE)
-		printf("PIPE");
-	else if (c == REDIR_I)
-		printf("REDIR_I");
-	else if (c == REDIR_O)
-		printf("REDIR_O");
-	else if (c == SPACE)
-		printf("SPACE");
-	else if (c == TAB)
-		printf("TAB");
-	else if (c == NEWLINE)
-		printf("NEWLINE");
-	else if (c == SINGLE_QUOTE)
-		printf("SINGLE_QUOTE");
-	else if (c == DOUBLE_QUOTE)
-		printf("DOUBLE_QUOTE");
-	else if (c == BACKSLASH)
-		printf("BACKSLASH");
-	else if (ft_isalpha(c))
-		printf("STRING");
-	// Add more conditions for other defines as needed
+	int	j;
+
+	j = i;
+	if (str[j] == PIPE)
+		printf("PIPE ");
+	else if (str[j] == REDIR_I)
+	{
+		if (str[j + 1] == REDIR_I)
+		{
+			printf("HEREDOC ");
+		j++;
+			return (j);
+		}
+		else
+			printf("REDIR_I ");
+		if (str[j + 1] == ' ')
+			j++;
+		else
+			printf("Invalid filename");
+		while (str[j] != '\0')
+		{
+			if (str[j] == SINGLE_QUOTE || str[j] == DOUBLE_QUOTE)
+				j++;
+			else if (str[j] == SPACE || str[j] == '\t' || str[j] == '\n')
+				j++;
+			while (isalpha(str[j]))
+				j++;
+			j++;
+		}
+	}
+	else if (str[j] == REDIR_O)
+	{
+		if (str[j + 1] == REDIR_O)
+		{
+			printf("APPEND ");
+			j++;
+			return (j);
+		}
+		else
+			printf("REDIR_O ");
+	}
+	else if (str[j] == ' ')
+		printf("SPACE ");
+	else if (str[j] == '\t') // Use '\t' for tab
+		printf("TAB ");
+	else if (str[j] == '\n') // Use '\n' for newline
+		printf("NEWLINE ");
+	else if (str[j] == SINGLE_QUOTE)
+		printf("SINGLE_QUOTE ");
+	else if (str[j] == DOUBLE_QUOTE)
+		printf("DOUBLE_QUOTE ");
+	else if (str[j] == '\\')
+		printf("BACKSLASH ");
+	else if (isalpha(str[j]))
+	{
+		printf("STRING ");
+		while (isalpha(str[j]))
+		{
+			j++;
+		}
+		return (j);
+	}
+	// Add more conditions for other characters as needed
 	// else
-		// printf("Not a special character");
+	// printf("Not a special character");
+	return (i);
 }
 
 int	getToken(char *str)
@@ -95,8 +138,8 @@ int	getToken(char *str)
 	{
 		if (ft_iswhitespace(str[i])) // avancer la str en cas d'espace
 			i++;
-		ft_isspecial(str[i]);
-		i++;	
+		i = ft_isspecial(str, i);
+		i++;
 	}
 	return (type);
 }
