@@ -6,7 +6,7 @@
 #    By: ldufour <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/11/30 12:11:22 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/06 08:25:26 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,18 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) 
 
 $(NAME): $(OBJS)
-		cd libft && make all
-		$(CC) $(OBJS) $(LIBFT) $(HEADERS) -o $(NAME)
+		@cd libft && make all
+		@$(CC) $(OBJS) $(LIBFT) $(HEADERS) -o $(NAME)
 clean:	
 		@cd libft && make clean
 		@rm -rf $(OBJS) 
 
 fclean:	clean
 		@cd libft && make fclean
-		rm -f $(NAME) 
+		@rm -f $(NAME) 
 
+run: all 
+	@./minishell
 re:		fclean all
 
 .PHONY: all, clean, fclean, re, libmlx

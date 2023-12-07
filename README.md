@@ -25,14 +25,12 @@
 ## TODO
 
 - [x] Do a makefile
-- [ ] Choose between or libft
+- [x] Choose between or libft
 - [x] Install readline library
-- [ ] Resume the articles
-- [ ] Resume the function
+- [w] Read the articles
+- [w] Read the function
 - [ ] Parsing
-    - [ ] Choose an algo for parsing
-    - [ ] Create a small demo
-    - [ ] Present the demo
+- [L] Grammar and lexical rules of bash
 - [ ] Execution
 - [ ] Builtin at the end
 - [ ] Faire un tester avec bash et voir la dif entre ton shell et bash avec un fichier history   
