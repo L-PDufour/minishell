@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42quebec.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 08:34:45 by ldufour           #+#    #+#             */
-/*   Updated: 2023/10/31 08:40:47 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/07 16:19:45 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 typedef struct s_list
 {
 	void			*content;
-	char			*str;
 	struct s_list	*next;
 }					t_list;
 int					ft_atoi(const char *str);

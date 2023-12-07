@@ -6,7 +6,7 @@
 #    By: ldufour <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/06 08:25:26 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/07 08:08:01 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJS)
 clean:	
 		@cd libft && make clean
 		@rm -rf $(OBJS) 
-
+		@rm *.txt
 fclean:	clean
 		@cd libft && make fclean
 		@rm -f $(NAME) 

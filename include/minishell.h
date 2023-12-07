@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:39:58 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/07 07:59:09 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/07 14:59:19 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,29 @@
 // Commencer par executer une commande
 // Developpper l'intelligence ensuite
 
-// typedef enum TokenType
-// {
-//
-// 	COMMAND,
-// 	REDIR_INPUT,
-// 	REDIR_OUTPUT,
-// 	REDIR_AMEND,
-// 	PIPE,
-// 	HERE_DOC,
-//
-// }				TokenType;
-//
-typedef struct t_cmd
+typedef enum TokenType
 {
-	// TokenType	token_type;
+
+	COMMAND_T,
+	REDIR_INPUT_T,
+	REDIR_OUTPUT_T,
+	REDIR_AMEND_T,
+	PIPE_T,
+	HERE_DOC_T,
+
+}				TokenType;
+
+typedef struct s_cmd
+{
+	TokenType	token_type;
 	char		**cmd_table;
 	int			fd_input;
 	int			fd_output;
 	char		*outfile;
 	char		*infile;
 	int			pipe[2];
-}				s_cmd;
-
+}	t_cmd;
+// struct t_list chat = {};
 bool			ft_iswhitespace(int c);
 
 bool	ft_iswhitespace(int c);
