@@ -37,7 +37,7 @@
 - [ ] Builtin at the end
 - [ ] Faire un tester avec bash et voir la dif entre ton shell et bash avec un fichier history   
 
-## Lire sur le projet
+## [Lire sur le projet](https://github.com/L-PDufour/minishell/wiki)
 
 - Lire sur xv6 mit shell
 - [Article medium](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
