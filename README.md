@@ -38,7 +38,7 @@
 - [ ] Faire un tester avec bash et voir la dif entre ton shell et bash avec un fichier history   
 
 ## [Lire sur le projet](https://github.com/L-PDufour/minishell/wiki)
-## Fonctions autorisées
+## [Fonctions autorisées](https://github.com/L-PDufour/minishell/wiki/Fonctions-autoris%C3%A9es)
 
 
 
