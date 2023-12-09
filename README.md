@@ -1,6 +1,6 @@
 <h1 align="center">minishell</h1>
 
-## [Lire sur le projet](https://github.com/L-PDufour/minishell/wiki)
+## [Lire sur le projet](https://github.com/L-PDufour/minishell/wiki/Liens)
 ## [Fonctions autorisées](https://github.com/L-PDufour/minishell/wiki/Fonctions-autoris%C3%A9es)
 
 ## Résumé du projet
