@@ -31,7 +31,7 @@ $(NAME): $(OBJS)
 clean:	
 		@cd libft && make clean
 		@rm -rf $(OBJS) 
-		@rm *.txt
+		# @rm *.txt
 fclean:	clean
 		@cd libft && make fclean
 		@rm -f $(NAME) 
