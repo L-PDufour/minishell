@@ -6,11 +6,11 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:56:45 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/09 23:36:47 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:07:20 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char *get_pwd()
 {
