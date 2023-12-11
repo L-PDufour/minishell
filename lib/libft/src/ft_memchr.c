@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 15:22:46 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/09 20:32:56 by yothmani         ###   ########.fr       */
+/*   Created: 2023/02/16 13:20:58 by yothmani          #+#    #+#             */
+/*   Updated: 2023/12/09 01:48:25 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/libft.h"
 
-int	main(int argc, char **argv, char **envp)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_command	cmd;
-	char		*cmd_str;
+	const char	*str;
+	size_t		i;
 
-	(void)argc;
-	(void)argv;
-	while (true)
+	if (!s)
+		return (NULL);
+	str = s;
+	i = 0;
+	while (n > i)
 	{
-		cmd_str = display_prompt();
-		cmd_str = trim_str(cmd_str);
-		if (strcmp(cmd_str, ""))
-		{
-			parse_cmd(cmd_str, &cmd);
-			// printf("name: %s\n", cmd.name);
-			// printf("opt: %s\n", cmd.option);
-			// printf("opt2: %s\n", cmd.option2);
-			exec_cmd(cmd, envp);
-		}
+		if (str[i] == (char)c)
+			return (&((char *)s)[i]);
+		i++;
 	}
-	free(cmd_str);
 	return (0);
 }
