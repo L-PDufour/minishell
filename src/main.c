@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Updated: 2023/12/08 16:12:08 by ldufour          ###   ########.fr       */
-/*   Updated: 2023/12/11 08:47:42 by ldufour          ###   ########.fr       */
+/*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
+/*   Updated: 2023/12/11 14:58:03 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includes/minishell.h"
 
 void	exit_prg_at_error(char *str)
 {
@@ -63,21 +63,25 @@ t_list	**init_struct(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char		*cmd_line;
-	t_list		**head;
-	static int	i;
+	t_command	cmd;
+	char		*cmd_str;
 
-	cmd_line = "";
-	i = 0;
-	if (argc == 2)
-		cmd_line = argv[1]; // Use argv[1] for the first command-line argument
-	else
-		cmd_line = readline("");
-	head = init_struct();
-	printf("%s\n", cmd_line);
-	recursive_tokenizer(cmd_line, i, head);
-	// ((t_cmd *)head->content)->infile = strdup("test");
-	// printf("%s\n", ((t_cmd *)head->content)->infile);
+	(void)argc;
+	(void)argv;
+	while (true)
+	{
+		cmd_str = display_prompt();
+		cmd_str = trim_str(cmd_str);
+		if (strcmp(cmd_str, ""))
+		{
+			parse_cmd(cmd_str, &cmd);
+			// printf("name: %s\n", cmd.name);
+			// printf("opt: %s\n", cmd.option);
+			// printf("opt2: %s\n", cmd.option2);
+			exec_cmd(cmd, envp);
+		}
+	}
+	free(cmd_str);
 	return (0);
 }
 
