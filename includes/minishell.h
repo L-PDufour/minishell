@@ -6,26 +6,52 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/09 23:39:02 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:37:38 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../lib/libft/includes/libft.h"
+# include "../libft/libft.h"
+# include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/wait.h>
+# include <unistd.h>
+# include <sys/wait.h>
 # include <ctype.h>
 # include <errno.h>
 # include <limits.h>
 # include <math.h>
-# include <readline/readline.h>
-# include <stdbool.h>
 # include <stdint.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
 
+# define PIPE 124        // |
+# define REDIR_I 60      // <
+# define REDIR_O 62      // >
+# define APPEND
+# define HEREDOC
+// # define SPACE 32        // ' '
+// # define TAB 9           // '\t'
+// # define NEWLINE 10      // '\n'
+# define SINGLE_QUOTE 39 // '
+# define DOUBLE_QUOTE 34 // "
+# define BACKSLASH 92    // \
+# define DOLLAR      36  // $
+
+// TODO enum et norminette
+// Penser à la gestion des processus
+// Travailler sur de quoi qui marche pour ne pas attendre vs diviser le travail
+// Commencer par executer une commande
+// Developpper l'intelligence ensuite
+
+//Couleurs
 # define RED "1;31"
 # define GREEN "1;32"
 # define YELLOW "1;33"
@@ -41,6 +67,30 @@
 # define BOLD_CYAN "1;96"
 # define BOLD_WHITE "1;97"
 
+
+typedef enum TokenType
+{
+
+	COMMAND_T,
+	REDIR_INPUT_T,
+	REDIR_OUTPUT_T,
+	REDIR_AMEND_T,
+	PIPE_T,
+	HERE_DOC_T,
+
+}				TokenType;
+
+typedef struct s_cmd
+{
+	TokenType	token_type;
+	char		**cmd_table;
+	int			fd_input;
+	int			fd_output;
+	char		*outfile;
+	char		*infile;
+	int			pipe[2];
+}	t_cmd;
+
 typedef struct s_command
 {
 	char	*name;
@@ -48,6 +98,7 @@ typedef struct s_command
 	char	*option2;
 }			t_command;
 
+bool			ft_iswhitespace(int c);
 void		print_in_color(char *color, char *msg);
 void		exec_cmd(t_command cmd, char **envp);
 char		*display_prompt(void);

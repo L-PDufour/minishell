@@ -3,78 +3,49 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yothmani <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ldufour <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/01 15:11:03 by yothmani          #+#    #+#              #
-#    Updated: 2023/12/09 02:35:12 by yothmani         ###   ########.fr        #
+#    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
+#    Updated: 2023/12/11 14:53:44 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 				= minishell
 
-CC 					= gcc
-CFLAGS 				= -g 
-# -Wall -Wextra -Werror 
+NAME = minishell
+CC = gcc
+CFLAGS	:= -g # -Wall -Wextra -Werror 
 
-RM					= rm -rf
-
-LIBFT 				= $(LIBFT_DIR)/libft.a
-
-SRC_DIR 			= src
-INC_DIR 			= includes 
-LIBFT_DIR 			= lib/libft
-
-INC 				= -I$(INC_DIR) -I$(LIBFT_DIR) -lreadline
-
-
-
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
-$(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c\
-
-
-OBJ 				= $(SRC:.c=.o)
-
-
+HEADERS	:= -I ./include -lreadline  
+SRCS	:= $(wildcard(src/*.c) $(wildcard(src/builtin/*.c)  
+OBJS	= ${SRCS:.c=.o}
+LIBFT	= libft/libft.a
+VALGRIND = valgrind
 all: $(NAME)
-
-
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ $(INC) 
-	@printf $(CUT)$(CUT)$(CUT)$(CUT)
-	@echo $(BOLD)$(L_PURPLE) "Notre minishell est plus mignon qu’un vrai shell  💪💥" $(RESET)
 	
-
-	
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $< $(INC)
-	@echo "Compiled $<"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) 
+
+$(NAME): $(OBJS)
+		@cd libft && make all
+		@$(CC) $(OBJS) $(LIBFT) $(HEADERS) -o $(NAME)
+clean:	
+		@cd libft && make clean
+		@rm -rf $(OBJS) 
+		# @rm *.txt
+fclean:	clean
+		@cd libft && make fclean
+		@rm -f $(NAME) 
+
+run: all 
+	@./minishell
 
 norm :
 	@echo $(BOLD)$(PINK)" Mandatory part!"$(MINT)
-	@norminette $(SRC) $(INC_DIR)
+	@norminette $(SRCS) $(INC_DIR)
 	@echo $(BOLD)$(PINK)" Bonus part!"$(MINT)
-	@norminette $(BONUS_SRC)
-
 
 leaks:
 	leaks --atExit -- ./minishell | cat -e
-
-
-
-clean :
-	@make -C $(LIBFT_DIR) clean
-	@printf $(CUT)$(CUT)
-	@echo $(BOLD)$(L_PURPLE)"Cleaned objects and executables!" ... 🧹🗑️$(RESET)
-
-fclean : clean
-	@make -C $(LIBFT_DIR) fclean
-	@$(RM) $(NAME)
-	@printf $(CUT)$(CUT)
-	@echo $(BOLD)$(L_PURPLE) ✨minishell✨ $(PINK)All cleaned up! ....🧹🗑️$(RESET)
 
 re: fclean all 
 
@@ -97,3 +68,4 @@ CUT = "\033[K"
 SAVE = "\033[s"
 RESTORE = "\033[u"
 
+.PHONY: all, clean, fclean, re, libmlx
