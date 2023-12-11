@@ -6,83 +6,81 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/04 17:01:50 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/08 16:12:08 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-#include <readline/readline.h>
-#include <unistd.h>
 
-bool	ft_iswhitespace(int c)
+void	exit_prg_at_error(char *str)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (true);
-	return (false);
+	printf("Error\n");
+	if (str)
+		printf("%s\n", str);
+	exit(EXIT_FAILURE);
 }
 
-char	**parsing_arguments(char *argv)
+void	*safe_calloc(size_t nmemb, size_t size)
 {
-	char	**argument;
-	int		i;
+	void	*ret;
 
-	i = -1;
-	argument = NULL;
-	while (argv[++i] != '\0')
-	{
-		if (argv[i] != 32 && ft_iswhitespace(argv[i]) == 1)
-			argv[i] = ' ';
-	}
-	argument = ft_split(argv, ' ');
-	return (argument);
+	ret = ft_calloc(nmemb, size);
+	if (!ret)
+		exit_prg_at_error("Malloc failure");
+	return (ret);
 }
 
-// void	child_process_1(char **argv, char **envp, t_pipex *pipex)
-// {
-// 	exit_pipex(dup2(pipex->infile, STDIN_FILENO), "dup2 error", pipex);
-// 	exit_pipex(dup2(pipex->fd[1], STDOUT_FILENO), "dup2 error", pipex);
-// 	close(pipex->fd[0]);
-// 	close(pipex->infile);
-// 	pipex->cmd_args = parsing_arguments(argv[2]);
-// 	path_verification(pipex);
-// 	execve(pipex->cmd_path, pipex->cmd_args, envp);
-// 	exit_pipex(-1, "Can't execute child process 1", pipex);
-// }
-//
+
+void	getToken(char *str,int i, t_list *head)
+{
+}
+//TODO Je passe ma cmd, je la remplis et apres je la rajoute a ma linked list
+//Dois penser a proteger si NULL pour ne pas derefencer un pointer NULL
+void	recursive_tokenizer(char *str, int i, t_list **head)
+{
+	t_cmd *cmd;
+	t_list *node;
+	if (!str || str[i] == '\0')
+		return ;
+	node = ft_lstnew(cmd);
+	getToken(str, i, *head);
+	ft_lstadd_front(head, (void *)cmd);
+
+	recursive_tokenizer(str, i, head);
+	return ;
+}
+
+//TODO Je crois que cette fonction sert à rien
+t_list	**init_struct(void)
+{
+	// static t_cmd	*command;
+	static t_list	**head;
+
+	// command = safe_calloc(1, sizeof(t_cmd));
+	head = safe_calloc(1, sizeof(t_list *));
+	// head = ft_lstnew(command);
+	return (head);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-	int		pipe[2];
-	int		childPid;
-	char	*cmd_line;
-	char	**cmd_table;
-	pid_t	Pid;
+	char		*cmd_line;
+	t_list		**head;
+	static int	i;
 
-	// argc = 0;
-	// https://www.cs.cornell.edu/courses/cs414/2004su/homework/shell/shell.html
-	while (1)
-	{
-		printf("test>");
-		cmd_line = readline("");
-		// cmd_line = *parsing_arguments(*argv);
-		if (cmd_line)
-		{
-			// add_history(cmd_line);
-			cmd_table = ft_split(cmd_line, ' ');
-			// get token
-			// scan token
-			// next token
-			Pid = fork();
-			if (childPid == 0)
-			{
-				// execve("/usr/bin/df", , envp);
-			}
-		}
-	}
-	wait(NULL);
+	cmd_line = "";
+	i = 0;
+	head = init_struct();
+	recursive_tokenizer(cmd_line, i, head);
+	// ((t_cmd *)head->content)->infile = strdup("test");
+	// printf("%s\n", ((t_cmd *)head->content)->infile);
+	return (0);
 }
-// https://www.youtube.com/watch?v=SToUyjAsaFk&list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW&index=19
-// Regarder pour la creation d'un recursive descent parser
-//
-// Creer des regles 
-// cmd_table[0] doit etre une commande
-// si < ou > ca foit etre un filename qui suit
+
+// Pseudo code
+// cmd_line = readline
+// while cmd_line
+// malloc struct node
+// struct.type = getToken(cmd_line)
+// getGrammar(struct, cmd_line)
+// cmd_line++
