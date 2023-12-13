@@ -6,7 +6,7 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:39:58 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/13 11:11:56 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:43:20 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <math.h>
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <regex>
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -66,7 +67,7 @@
 #define BOLD_CYAN "1;96"
 #define BOLD_WHITE "1;97"
 
-typedef enum TokenType {
+typedef enum e_tokentype {
 
   COMMAND_T,
   REDIR_INPUT_T,
@@ -75,7 +76,14 @@ typedef enum TokenType {
   PIPE_T,
   HERE_DOC_T,
 
-} TokenType;
+} t_tokentype;
+
+tydedef s_token
+{
+  t_tokentype type;
+  char *value;
+  int len;
+}
 
 typedef struct s_cmd {
   TokenType token_type;
@@ -97,7 +105,7 @@ typedef struct s_command {
 void *safe_calloc(size_t nmemb, size_t size); 
 
 // Lexer.c
-int	getToken(char *str, int i, t_cmd *cmd);
+int	getToken(char *str, int i, t_list *token);
 void tokenizer(char *str, t_list **head);
 int	quotes_parser(char *str, int c, int i);
 int	ft_isspecial(char *str, int i);

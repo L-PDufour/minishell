@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/13 11:14:56 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:10:49 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 int	quotes_parser(char *str, int c, int i)
 {
 	int	j;
-  int k;
+	int	k;
 
-  j = i;
-  k = i;
+	j = i;
+	k = i;
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)
 		{
 			j = i + 1;
-			while (str[j] != '\0' && (!ft_iswhitespace(str[j]) && !ft_strchr("<>|", str[j])))
+			while (str[j] != '\0' && (!ft_iswhitespace(str[j])
+					&& !ft_strchr("<>|", str[j])))
 			{
 				j++;
 			}
@@ -38,13 +39,13 @@ int	quotes_parser(char *str, int c, int i)
 		i++;
 	}
 	log_printf("%s", ft_substr(str, k, j));
-  return (i);
+	return (i);
 }
 
 int	ft_isspecial(char *str, int i)
 {
 	if (str[i] == '\0')
-		return (i); // Base case: end of string reached
+		return (i);
 	else if (str[i] == PIPE)
 	{
 		log_printf("PIPE ");
@@ -63,18 +64,44 @@ int	ft_isspecial(char *str, int i)
 	return (i);
 }
 
-int	getToken(char *str, int i, t_cmd *cmd)
+void	printTokenType(t_list *token)
+{
+	enum TokenType	type;
+
+	if (token->content != NULL)
+	{
+		type = (enum TokenType)(uintptr_t)(token->content);
+		switch (type)
+		{
+		case COMMAND_T:
+			printf("COMMAND_T\n");
+			break ;
+		// Add cases for other enum values as needed
+		default:
+			printf("Unknown TokenType\n");
+		}
+	}
+	else
+	{
+		printf("Token content is NULL\n");
+	}
+}
+
+int	getToken(char *str, int i, t_list *token)
 {
 	if (ft_iswhitespace(str[i]))
 		i++;
-	if (ft_isalpha(str[i]))
+	if (ft_isalpha(str[i]) || str[i] == '-')
 	{
-		while (str[i] != '\0' && ft_isalpha(str[i]))
+		while (str[i] != '\0' && ft_isalpha(str[i]) || str[i] == '-')
 			i++;
-		log_printf("COMMAND ");
+		token->content = (void *)TokenType;
+		// ((TokenType)token)->content = COMMAND_T;
+		printTokenType(token);
+		log_printf("WORD ");
 	}
-	else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
-		i = quotes_parser(str, str[i], i);
+	// else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
+	// i = quotes_parser(str, str[i], i);
 	else if (ft_strchr("<>|", str[i]))
 		i = ft_isspecial(str, i);
 	else
@@ -87,15 +114,18 @@ int	getToken(char *str, int i, t_cmd *cmd)
 // si NULL pour ne pas derefencer un pointer NULL
 void	tokenizer(char *str, t_list **head)
 {
-	t_cmd		*cmd;
-	t_list		*node;
-	static int	i;
+	t_cmd			*cmd;
+	t_list			*node;
+	static int		i;
+	static t_list	*token;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		cmd = (t_cmd *)safe_calloc(1, sizeof(t_cmd));
-		i = getToken(str, i, cmd);
+		ft_lstnew(token);
+		token = safe_calloc(1, sizeof(t_list));
+		i = getToken(str, i, token);
+		ft_lstadd_front(head, token);
 		// log_printf("%d ", i);
 		// i++;
 	}

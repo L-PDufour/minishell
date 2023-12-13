@@ -6,7 +6,7 @@
 #    By: ldufour <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/11 15:05:48 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/13 12:13:38 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = minishell
 CC = gcc
 CFLAGS	:= -g # -Wall -Wextra -Werror 
-
+# TODO: à refaire 
 HEADERS	:= -I ./include -lreadline  
 SRCS	:= $(wildcard src/*.c) $(wildcard src/builtin/*.c)  
 OBJS	= ${SRCS:.c=.o}
