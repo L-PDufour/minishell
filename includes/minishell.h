@@ -6,7 +6,7 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:39:58 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/12 09:14:54 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/12 14:41:50 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <math.h>
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -91,11 +92,15 @@ typedef struct s_command {
   char *option;
   char *option2;
 } t_command;
+// Utils
+
+void *safe_calloc(size_t nmemb, size_t size); 
 
 // Lexer.c
-void getToken(char *str, int i, t_list *head);
-void recursive_tokenizer(char *str, int i, t_list **head);
+void	*getToken(char *str, int *i, t_cmd *cmd);
+void tokenizer(char *str, t_list **head);
 void quotes_parser(char *str, int c);
+char	*ft_isspecial(char *str, int c);
 
 bool ft_iswhitespace(int c);
 void print_in_color(char *color, char *msg);
@@ -110,5 +115,7 @@ char *parse_env(char *str);
 void exec_pwd(char *cmd);
 void clean_table(char **tab);
 char **split_with_delimiter(char *s, char c);
+// Debug.c
+void	log_printf(const char *format, ...);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Updated: 2023/12/08 16:12:08 by ldufour          ###   ########.fr       */
-/*   Updated: 2023/12/12 09:16:04 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/12 14:46:11 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,31 @@ t_list **init_struct(void) {
 
 int main(int argc, char **argv, char **envp) {
   t_command cmd;
-  char *cmd_str;
+  t_list **head = NULL;
+  static char *cmd_str;
+  
 
-  (void)argc;
-  (void)argv;
-  while (true) {
-    cmd_str = display_prompt();
-    cmd_str = trim_str(cmd_str);
-    if (strcmp(cmd_str, "")) {
-      parse_cmd(cmd_str, &cmd);
-      // printf("name: %s\n", cmd.name);
-      // printf("opt: %s\n", cmd.option);
-      // printf("opt2: %s\n", cmd.option2);
-      exec_cmd(cmd, envp);
-    }
+  if (argc == 2)
+  {
+    cmd_str = argv[1];
+    log_printf("%s\n", argv[1]);
+    tokenizer(cmd_str, head);
+    return (0); 
   }
-  free(cmd_str);
+  // while (true) {
+  //   cmd_str = display_prompt();
+  //   //HACK: for debugging 
+  //   log_printf("123\n", cmd_str);
+  //   cmd_str = trim_str(cmd_str);
+  //   if (strcmp(cmd_str, "")) {
+  //     parse_cmd(cmd_str, &cmd);
+  //     // printf("name: %s\n", cmd.name);
+  //     // printf("opt: %s\n", cmd.option);
+  //     // printf("opt2: %s\n", cmd.option2);
+  //     exec_cmd(cmd, envp);
+  //   }
+  // }
+  // free(cmd_str);
   return (0);
 }
 
