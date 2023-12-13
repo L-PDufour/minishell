@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:59:55 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/09 21:36:22 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:51:43 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,24 @@ char	**split_with_delimiter(char *s, char c)
 	return (result);
 }
 
-
-
-
-
-
 void print_in_color(char *color, char *msg) 
 {
     printf("\033[%sm%s\033[0m", color, msg );
+}
+
+void	exit_prg_at_error(char *str)
+{
+	printf("Error\n");
+	if (str)
+		printf("%s\n", str);
+	exit(EXIT_FAILURE);
+}
+void	*safe_calloc(size_t nmemb, size_t size)
+{
+	void	*ret;
+
+	ret = ft_calloc(nmemb, size);
+	if (!ret)
+		exit_prg_at_error("Malloc failure");
+	return (ret);
 }

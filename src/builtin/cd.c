@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/11 15:07:09 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/13 12:46:17 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,6 @@ char	*parse_env(char *str)
 	i = 0;
 	while (tmp[i])
 	{
-		/**
- * str
- * if doesnt start with $  return str
- * if start with $ 
- * ****** if length str =1  return str
- * ******* substring(1, len)  return getenv(substring)
-*/
 		if (tmp[i][0] != '$')
 			result = ft_strjoin(result, tmp[i]);
 		else

@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/13 11:37:34 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:27:42 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ char	*display_prompt(void)
 	print_in_color(BOLD_YELLOW, " \n│");
 	print_in_color(BOLD_YELLOW, "\n└──────────> ");
 	print_in_color(BOLD_BLUE, "🔥Ready... 🔥 ");
-	// PRINTCOLOR(BOLD_YELLOW, "┌─[%s]",getenv("USER"));
-	// PRINTCOLOR(GREEN, " - %s", path);
-	// PRINTCOLOR(BOLD_YELLOW, " \n%s", "│");
-	// PRINTCOLOR(BOLD_YELLOW, "%s", "\n└──────────> ");
-	// PRINTCOLOR(BOLD_BLUE, "%s", "🔥Ready... 🔥 ");
 	read_cmd = readline("");
 	return (read_cmd);
 }
@@ -46,13 +41,13 @@ void	parse_cmd(char *str_cmd, t_command *cmd)
 	cmd->name = tab_cmd[0];
 	cmd->option = "";
 	cmd->option2 = "";
-	cmd->str_cmd = str_cmd;
-	if (tab_cmd[1])
+	cmd->cmd_str = str_cmd;
+	if (!tab_cmd[1])
 		return ;
 	cmd->option = tab_cmd[1];
 	i = 2;
 	tmp = "";
-	if (tab_cmd[2])
+	if (!tab_cmd[2])
 		return ;
 	while (tab_cmd[i])
 	{
@@ -62,18 +57,13 @@ void	parse_cmd(char *str_cmd, t_command *cmd)
 		i++;
 	}
 	cmd->option2 = tmp;
-	//  printf("%s\n%s\n", tab_cmd[0], tab_cmd[1]);
-	// ft_strjoin( tab_cmd[1],"");
-	// printf("==============%s\n%s\n", tab_cmd[0], tab_cmd[1]);
-	// free(tab_cmd[0]);
-	// free(tab_cmd[1]);
 }
 
 void	exec_cmd(t_command cmd, char **envp)
 {
 	int		i;
 	char	*tmp;
-
+	// char	**env_copy;
 	i = 0;
 	if (!strcmp(cmd.name, "pwd"))
 		exec_pwd(cmd.option);
@@ -84,9 +74,7 @@ void	exec_cmd(t_command cmd, char **envp)
 	else if (!strcmp(cmd.name, "echo"))
 	{
 		if (!strcmp(cmd.option, "-n"))
-		{
 			printf("%s", parse_env(cmd.option2));
-		}
 		else
 		{
 			tmp = ft_strjoin(parse_env(cmd.option), parse_env(cmd.option2));

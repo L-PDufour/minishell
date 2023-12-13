@@ -6,14 +6,14 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/13 11:32:20 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:20:32 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "../lib/libft/includes/libft.h"
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -93,10 +93,11 @@ typedef struct s_cmd
 
 typedef struct s_command
 {
-	char	*name;
+	char	*name;                                                                  
 	char	*option;
 	char	*option2;
-	char	*str_cmd;
+	char	*cmd_str;
+	char	**env_copy;
 }			t_command;
 
 bool			ft_iswhitespace(int c);
