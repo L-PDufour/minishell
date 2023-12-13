@@ -6,7 +6,7 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:39:58 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/12 14:41:50 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/13 11:11:56 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,10 @@ typedef struct s_command {
 void *safe_calloc(size_t nmemb, size_t size); 
 
 // Lexer.c
-void	*getToken(char *str, int *i, t_cmd *cmd);
+int	getToken(char *str, int i, t_cmd *cmd);
 void tokenizer(char *str, t_list **head);
-void quotes_parser(char *str, int c);
-char	*ft_isspecial(char *str, int c);
-
+int	quotes_parser(char *str, int c, int i);
+int	ft_isspecial(char *str, int i);
 bool ft_iswhitespace(int c);
 void print_in_color(char *color, char *msg);
 void exec_cmd(t_command cmd, char **envp);

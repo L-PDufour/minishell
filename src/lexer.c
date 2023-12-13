@@ -6,26 +6,26 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/12 14:47:42 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/13 11:14:56 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // TODO: need more testing
-void	quotes_parser(char *str, int c)
+int	quotes_parser(char *str, int c, int i)
 {
-	int	i;
 	int	j;
+  int k;
 
-	i = 0;
+  j = i;
+  k = i;
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)
 		{
 			j = i + 1;
-			while (c != '\0' &&
-					(!ft_iswhitespace(c) && !ft_strchr("<>|", c)))
+			while (str[j] != '\0' && (!ft_iswhitespace(str[j]) && !ft_strchr("<>|", str[j])))
 			{
 				j++;
 			}
@@ -37,91 +37,54 @@ void	quotes_parser(char *str, int c)
 		}
 		i++;
 	}
-	log_printf("%s", ft_substr(str, 0, i));
+	log_printf("%s", ft_substr(str, k, j));
+  return (i);
 }
 
-char	*ft_isspecial(char *str, int c)
+int	ft_isspecial(char *str, int i)
 {
-	if (*str == '\0')
-	{
-		return (str); // Base case: end of string reached
-	}
-	if (c == PIPE)
+	if (str[i] == '\0')
+		return (i); // Base case: end of string reached
+	else if (str[i] == PIPE)
 	{
 		log_printf("PIPE ");
-		return (str);
+		i++;
 	}
-	// else if (c == REDIR_I)
-	// {
-	// 	if (*(str + 1) == REDIR_I)
-	// 	{
-	// 		log_printf("HEREDOC ");
-	// 		return (&(*(str +1)));
-	// 	}
-	// 	else
-	// 		log_printf("REDIR_I ");
-	// 	if (str[j + 1] == ' ')
-	// 		j++;
-	// 	else
-	// 		log_printf("Invalid filename");
-	// 	while (c != '\0')
-	// 	{
-	// 		if (c == SINGLE_QUOTE || c == DOUBLE_QUOTE)
-	// 			j++;
-	// 		else if (c == SPACE || c == '\t' || c == '\n')
-	// 			j++;
-	// 		while (isalpha(c))
-	// 			j++;
-	// 		j++;
-	// 	}
-	// }
-	// else if (c == REDIR_O)
-	// {
-	// 	if (str[j + 1] == REDIR_O)
-	// 	{
-	// 		log_printf("APPEND ");
-	// 		j++;
-	// 		return (j);
-	// 	}
-	// 	else
-	// 		log_printf("REDIR_O ");
-	// }
-	// else if (c == ' ')
-	// 	log_printf("SPACE ");
-	// else if (c == '\t') // Use '\t' for tab
-	// 	log_printf("TAB ");
-	// else if (c == '\n') // Use '\n' for newline
-	// 	log_printf("NEWLINE ");
-	// else if (c == SINGLE_QUOTE)
-	// 	log_printf("SINGLE_QUOTE ");
-	// else if (c == DOUBLE_QUOTE)
-	// 	log_printf("DOUBLE_QUOTE ");
-	return (ft_isspecial(str + 1, c));
+	else if (str[i] == REDIR_I)
+	{
+		log_printf("REDIR_I ");
+		i++;
+	}
+	else if (str[i] == REDIR_O)
+	{
+		log_printf("REDIR_O ");
+		i++;
+	}
+	return (i);
 }
 
-void	*getToken(char *str, int *i, t_cmd *cmd)
+int	getToken(char *str, int i, t_cmd *cmd)
 {
-  if (*i == 0)
-  {
-    while (ft_isalpha((unsigned char)str[*i]))
-     (*i)++;
-    cmd->token_type = COMMAND_T;
-    log_printf("COMMAND");
-
-  }
-	// if (*str == DOUBLE_QUOTE || *str == SINGLE_QUOTE)
-	// {
-	// 	quotes_parser(str, *str);
-	// }
-	// else if (ft_strchr("<>|", *str))
-	// {
-	// 	ft_isspecial(str, *str);
-	// }
-	return (NULL);
+	if (ft_iswhitespace(str[i]))
+		i++;
+	if (ft_isalpha(str[i]))
+	{
+		while (str[i] != '\0' && ft_isalpha(str[i]))
+			i++;
+		log_printf("COMMAND ");
+	}
+	else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
+		i = quotes_parser(str, str[i], i);
+	else if (ft_strchr("<>|", str[i]))
+		i = ft_isspecial(str, i);
+	else
+		i++;
+	return (i);
 }
 
 // TODO: Je passe ma cmd,
-// je la remplis et apres je la rajoute a ma linked list Dois penser a proteger si NULL pour ne pas derefencer un pointer NULL
+// je la remplis et apres je la rajoute a ma linked list Dois penser a proteger
+// si NULL pour ne pas derefencer un pointer NULL
 void	tokenizer(char *str, t_list **head)
 {
 	t_cmd		*cmd;
@@ -132,8 +95,9 @@ void	tokenizer(char *str, t_list **head)
 	while (str[i] != '\0')
 	{
 		cmd = (t_cmd *)safe_calloc(1, sizeof(t_cmd));
-		cmd = getToken(str, &i, cmd);
-    i++;
+		i = getToken(str, i, cmd);
+		// log_printf("%d ", i);
+		// i++;
 	}
 	return ;
 }
