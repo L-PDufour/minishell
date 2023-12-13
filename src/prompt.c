@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/11 15:07:39 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/13 11:37:34 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ char	*display_prompt(void)
 	char	*read_cmd;
 
 	path = get_pwd();
-	
-print_in_color(BOLD_YELLOW,"┌─[");
-print_in_color(BOLD_YELLOW,getenv("USER"));
-print_in_color(BOLD_YELLOW,"] - ");
-print_in_color(GREEN,  path);
-print_in_color(BOLD_YELLOW, " \n│");
-print_in_color(BOLD_YELLOW,  "\n└──────────> ");
-print_in_color(BOLD_BLUE,  "🔥Ready... 🔥 ");	
+	print_in_color(BOLD_YELLOW, "┌─[");
+	print_in_color(BOLD_YELLOW, getenv("USER"));
+	print_in_color(BOLD_YELLOW, "] - ");
+	print_in_color(GREEN, path);
+	print_in_color(BOLD_YELLOW, " \n│");
+	print_in_color(BOLD_YELLOW, "\n└──────────> ");
+	print_in_color(BOLD_BLUE, "🔥Ready... 🔥 ");
 	// PRINTCOLOR(BOLD_YELLOW, "┌─[%s]",getenv("USER"));
 	// PRINTCOLOR(GREEN, " - %s", path);
 	// PRINTCOLOR(BOLD_YELLOW, " \n%s", "│");
@@ -38,6 +37,8 @@ print_in_color(BOLD_BLUE,  "🔥Ready... 🔥 ");
 void	parse_cmd(char *str_cmd, t_command *cmd)
 {
 	char	**tab_cmd;
+	int		i;
+	char	*tmp;
 
 	tab_cmd = ft_split(str_cmd, ' ');
 	if (!tab_cmd)
@@ -45,10 +46,22 @@ void	parse_cmd(char *str_cmd, t_command *cmd)
 	cmd->name = tab_cmd[0];
 	cmd->option = "";
 	cmd->option2 = "";
+	cmd->str_cmd = str_cmd;
 	if (tab_cmd[1])
-		cmd->option = tab_cmd[1];
+		return ;
+	cmd->option = tab_cmd[1];
+	i = 2;
+	tmp = "";
 	if (tab_cmd[2])
-		cmd->option2 = tab_cmd[2];
+		return ;
+	while (tab_cmd[i])
+	{
+		if (tab_cmd[i])
+			tmp = ft_strjoin(tmp, " ");
+		tmp = ft_strjoin(tmp, tab_cmd[i]);
+		i++;
+	}
+	cmd->option2 = tmp;
 	//  printf("%s\n%s\n", tab_cmd[0], tab_cmd[1]);
 	// ft_strjoin( tab_cmd[1],"");
 	// printf("==============%s\n%s\n", tab_cmd[0], tab_cmd[1]);
@@ -58,7 +71,8 @@ void	parse_cmd(char *str_cmd, t_command *cmd)
 
 void	exec_cmd(t_command cmd, char **envp)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	if (!strcmp(cmd.name, "pwd"))
@@ -74,7 +88,10 @@ void	exec_cmd(t_command cmd, char **envp)
 			printf("%s", parse_env(cmd.option2));
 		}
 		else
-			printf("%s\n", parse_env(cmd.option));
+		{
+			tmp = ft_strjoin(parse_env(cmd.option), parse_env(cmd.option2));
+			printf("%s\n", tmp);
+		}
 	}
 	else if (!strcmp(cmd.name, "env"))
 		while (envp[i])
@@ -84,10 +101,8 @@ void	exec_cmd(t_command cmd, char **envp)
 		}
 	else
 	{
-		
-		// PRINTCOLOR(RED, "🚨%s %s\n", "command not found:", cmd.name);
-		print_in_color(RED , "🚨command not found: ");
-		print_in_color(RED ,cmd.name);
+		print_in_color(RED, "🚨command not found: ");
+		print_in_color(RED, cmd.name);
 		printf("\n");
 	}
 }
