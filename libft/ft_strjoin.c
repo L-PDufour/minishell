@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42quebec.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 08:33:17 by ldufour           #+#    #+#             */
-/*   Updated: 2023/03/06 08:33:20 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:17:31 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j])
 		str[i + j] = s2[j];
 	str[i + j] = 0;
-	free(s1);
+	// free(s1);
 	return (str);
 }
