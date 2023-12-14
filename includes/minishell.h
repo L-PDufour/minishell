@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 12:28:18 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:35:12 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ char *get_pwd(void);
 void parse_cmd(char *str_cmd, t_command *cmd);
 bool is_white_space(char c);
 char *trim_str(char *str);
-void change_dir(char *str);
 char *parse_env(char *str);
 void exec_pwd(char *cmd);
 void clean_table(char **tab);

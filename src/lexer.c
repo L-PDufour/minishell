@@ -6,11 +6,17 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/14 11:52:32 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:42:34 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+bool ft_iswhitespace(int c) {
+  if (c == 32 || (c >= 9 && c <= 13))
+    return (true);
+  return (false);
+}
 
 // TODO: not working
 // int	quotes_parser(const char *str, int c, int i)
