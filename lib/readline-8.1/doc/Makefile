@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /home/ldufour/Documents/minishell/lib/readline-8.1
+BUILD_DIR = /Users/JOE_JAM/Desktop/mini_duo/lib/readline-8.1
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo
