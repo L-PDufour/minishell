@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/14 12:35:49 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/18 14:49:41 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,28 +26,31 @@ READLINE_URL		= ftp://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 INC					= -I$(INC_DIR) -I$(LIBFT_DIR) $(READLINE_INC)
 LIBS				= -lncurses
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/l_free.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
 $(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c\
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: install $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(READLINE_LIB)
 	@$(CC) $(CFLAGS) -o $@ $^ $(LIBS) $(INC)
 	@echo $(CUT) $(CUT) 
-	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)
-
+	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)	
 
 $(READLINE_LIB): $(READLINE_DIR)
-	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
-	cd $(READLINE_DIR) && ./configure && make
-	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(BOLD)$(GREEN)$(RESET)
+	@if [ ! -f "$@" ]; then \
+		echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT); \
+		cd $(READLINE_DIR) && ./configure && make; \
+		echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET); \
+	else \
+		echo $(BOLD)$(PINK)"Readline 8.1 library already exists, skipping build."$(RESET); \
+	fi
+
 
 $(READLINE_DIR):
-	@echo $(BOLD)$(L_PURPLE) Downloading and extracting Readline 8.1...   💪💥 $(RESET)
 	@mkdir -p $(READLINE_DIR)
-	@curl -L $(READLINE_URL) | tar xz -C $(READLINE_DIR) --strip-components=1
+	@test -f $(READLINE_DIR)/libreadline.a || { curl -L $(READLINE_URL) | tar xz -C $(READLINE_DIR) --strip-components=1; }
 	@echo $(BOLD)$(GREEN) ✨ Readline 8.1 ✨ downloaded and extracted successfully. 💪💥 $(RESET)
 
 $(LIBFT):
@@ -57,6 +60,10 @@ $(LIBFT):
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INC)
 	@echo "Compiled $<"
 
+readline-8.1_EXISTS := $(wildcard lib/readline-8.1)
+
+install: $(READLINE_LIB)
+	
 norm:
 	@echo $(BOLD)$(PINK)" Mandatory part!"$(MINT)
 	@norminette $(SRC) $(INC_DIR)

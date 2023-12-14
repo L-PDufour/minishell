@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/15 15:22:49 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:55:02 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,12 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define PIPE 124   // |
-# define REDIR_I 60 // <
-# define REDIR_O 62 // >
-# define APPEND
-# define HEREDOC
-// # define SPACE 32        // ' '
-// # define TAB 9           // '\t'
-// # define NEWLINE 10      // '\n'
+// Characters
+# define PIPE 124        // |
+# define REDIR_I 60      // <
+# define REDIR_O 62      // >
 # define SINGLE_QUOTE 39 // '
 # define DOUBLE_QUOTE 34 // "
-/* # define BACKSLASH 92 // \ */
-/* # define DOLLAR      36  // $ */
-
-// TODO enum et norminette
-// Penser à la gestion des processus
-// Travailler sur de quoi qui marche pour ne pas attendre vs diviser le travail
-// Commencer par executer une commande
-// Developpper l'intelligence ensuite
 
 // Couleurs
 # define RED "1;31"
@@ -65,15 +53,15 @@
 # define BOLD_CYAN "1;96"
 # define BOLD_WHITE "1;97"
 
+// Structures and tokens
 typedef enum e_tokentype
 {
-	ALPHA_T,
-	REDIR_IN_T,
-	REDIR_OUT_T,
-	REDIR_AM_T,
-	PIPE_T,
-	HERE_DOC_T,
-
+	ALPHA_T = 97,
+	REDIR_IN_T = 60,
+	REDIR_OUT_T = 62,
+	REDIR_AP_T = 43,
+	PIPE_T = 124,
+	HERE_DOC_T = 45,
 }				t_tokentype;
 
 typedef struct s_token
@@ -86,6 +74,7 @@ typedef struct s_token
 typedef struct s_cmd
 {
 	char		**cmd_table;
+	int			expandable;
 	int			fd_input;
 	int			fd_output;
 	char		*outfile;
@@ -105,45 +94,36 @@ typedef struct s_command
 	char		*old_pwd;
 	char		*pwd;
 }				t_command;
-
-void			*safe_calloc(size_t nmemb, size_t size);
-
 // Lexer.c
-int				getToken(const char *str, int i, t_token *token);
 t_list			*tokenizer(const char *str, t_list *token_list);
-int				quotes_parser(const char *str, int c, int i);
-int				ft_isspecial(const char *str, int i, t_token *token);
-bool			ft_iswhitespace(int c);
-
-void			print_in_color(char *color, char *msg);
-void			exec_cmd(t_command cmd, char **envp);
-char			*display_prompt(void);
-char			*get_pwd(void);
-void			parse_cmd(char *str_cmd, t_command *cmd);
-bool			is_white_space(char c);
-char			*trim_str(char *str);
-char			*parse_env(char *str);
-void			exec_pwd(char *cmd);
-void			clean_table(char **tab);
+// Parser.c
+t_list			*parser(t_list *cmd_list, const t_list *token_list);
+// Utils.c
 char			**split_with_delimiter(char *s, char c);
+char			*display_prompt(void);
+void			parse_cmd(char *str_cmd, t_command *cmd);
+char			*trim_str(char *str);
+void			update_env(t_command *cmd, char **envp);
+char			**copy_env(char **envp, t_command *cmd);
+void			*safe_calloc(size_t nmemb, size_t size);
+void			clean_table(char **tab);
+void			print_in_color(char *color, char *msg);
+int	find_in_env(char *key, char **envp);
+void	open_and_handle_new_terminal(t_command cmd);
+// Prompt.c
+void			exec_cmd(t_command cmd, char **envp);
+// cd.c
+void			change_dir(char *str, t_command *cmd);
+char			*parse_env(char *str);
 // Debug.c
 void			log_printf(const char *format, ...);
-const char		*token_type_to_str(t_tokentype type);
-void			print_token_list(t_list *head);
-
-bool			ft_iswhitespace(int c);
-void			print_in_color(char *color, char *msg);
-void			exec_cmd(t_command cmd, char **envp);
-char			*display_prompt(void);
+void	tester_ms(char *str, t_list *token_list, t_list *cmd_list);
+void			print_cmd(void *content);
+void			print_token(void *content);
+// Pwd.c
 char			*get_pwd(void);
-void			parse_cmd(char *str_cmd, t_command *cmd);
-bool			is_white_space(char c);
-char			*trim_str(char *str);
-void			change_dir(char *str, t_command *cmd);
 void			exec_pwd(char *cmd);
-void			clean_table(char **tab);
-char			**split_with_delimiter(char *s, char c);
-int				find_in_env(char *key, char **envp);
-void			open_and_handle_new_terminal(t_command cmd);
-
+//l_free.c
+void	free_token(void *token_ptr);
+void	free_cmd(void *cmd);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/15 16:48:44 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:46:18 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,18 @@ static bool	ft_iswhitespace(int c)
 static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 {
 	int	j;
-	delimiter == DOUBLE_QUOTE;
+
 	i++;
 	j = i;
-	while (str[i])
-	{
-		if(str[i] == delimiter)
-			break;
+	while (str[i] != '\0' && str[i] != delimiter)
 		i++;
-	}
-		// increment until delimiter is found
-		// extract the string  
-		// parse_env;
-		// log_printf("the expandables");
-	if (str[i] != DOUBLE_QUOTE)
-	{
-		print_in_color(RED, "🚨Error: Double quote opened but not closed\n");
-		return(-1);
-	}
+	if (str[i] == '\0') // TODO: ERROR
+		log_printf("quotes_parser: quotes not found");
 	token->type = ALPHA_T;
-	token->value = parse_env(ft_substr(str, j, ((i - 1) - j)));
+	if (delimiter == DOUBLE_QUOTE)
+		token->value = parse_env(ft_substr(str, j, i  - j));
+	else
+		token->value = ft_substr(str, j, i - j);
 	token->len = i - j;
 	return (i);
 }
@@ -94,44 +86,37 @@ static int	getToken(const char *str, int i, t_token *token)
 		while (str[i] != '\0' && !ft_iswhitespace(str[i]) &&
 				!ft_strchr("<>|", str[i]))
 		{
-			if (str[i] == '$') // TODO: EXPANDER
-				log_printf("the expandables");
 			i++;
 		}
-		token->value = ft_substr(str, j, i - j);
+		token->value = parse_env(ft_substr(str, j, i - j));
 		token->type = ALPHA_T;
 		token->len = i - j;
 	}
 	return (i++);
 }
 
-// TODO: Je passe ma cmd, Boucle a tester
 t_list	*tokenizer(const char *str, t_list *token_list)
 {
 	int		i;
-	t_list	*tok_node;
-	t_token	*token;
 	int		len;
+	t_token	*token;
 
 	i = 0;
 	len = ft_strlen(str);
+	token = NULL;
 	while (i < len)
 	{
 		token = safe_calloc(1, sizeof(t_token));
-		if (str[i] <= 32)
+		if (str[i] <= 32) // TODO: whitespace
 			i++;
 		i = getToken(str, i, token);
 		if (token)
 		{
-			tok_node = ft_lstnew((t_token *)token);
-			ft_lstadd_back(&token_list, tok_node);
+			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
 		}
 		i++;
 	}
-	// HACK: TO TEST LINKED LIST
-	log_printf("tokenizer : ");
-	print_token_list(token_list);
-	log_printf("\n");
+	log_printf("tokenizer : \n"); // HACK: DEBUG
 	return (token_list);
 }
     //TODO:
