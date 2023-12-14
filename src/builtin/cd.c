@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/13 12:46:17 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/14 01:28:10 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	change_dir(char *str)
+void	change_dir(char *str, t_command *cmd)
 {
 	char	*home;
+	char **envp;
 
 	home = getenv("HOME");
 	if (!str || !strcmp(str, "") || !strcmp(str, "~"))
@@ -45,6 +46,8 @@ void	change_dir(char *str)
 		print_in_color(RED, str);
 		printf("\n");
 	}
+	else
+		update_env(cmd, envp);
 }
 
 char	*parse_env(char *str)
@@ -60,7 +63,7 @@ char	*parse_env(char *str)
 	tmp = split_with_delimiter(str, '$');
 	if (!tmp)
 		return (str);
-	//renconstruire tmp (2eme validation du contenu du tableau tmp)
+	// renconstruire tmp (2eme validation du contenu du tableau tmp)
 	i = 0;
 	while (tmp[i])
 	{

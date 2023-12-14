@@ -3,29 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/13 18:27:42 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/14 02:09:08 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+static char	*print_colored_message(const char *user, const char *path)
+{
+	char	*message;
+
+	message = (char *)malloc(1024);
+	if (message == NULL)
+		return (NULL);
+	strcpy(message, "\033[1;33m┌─[\033[1;33m");
+	strcat(message, user);
+	strcat(message, "\033[1;33m]- \033[1;32m");
+	strcat(message, path);
+	strcat(message, " \n│\n└──────────> \033[1;34m🔥Ready... 🔥 \033[0m");
+	return (message);
+}
+
+/**
+ * in case i want to use the old prompt
+		// print_in_color(BOLD_YELLOW, "┌─[");
+	// print_in_color(BOLD_YELLOW, getenv("USER"));
+	// print_in_color(BOLD_YELLOW, "] - ");
+	// print_in_color(GREEN, path);
+	// print_in_color(BOLD_YELLOW, " \n│");
+	// print_in_color(BOLD_YELLOW, "\n└──────────> ");
+	// print_in_color(BOLD_BLUE, "🔥Ready... 🔥 ");
+*/
+
 char	*display_prompt(void)
 {
 	char	*path;
 	char	*read_cmd;
+	char	*msg;
 
 	path = get_pwd();
-	print_in_color(BOLD_YELLOW, "┌─[");
-	print_in_color(BOLD_YELLOW, getenv("USER"));
-	print_in_color(BOLD_YELLOW, "] - ");
-	print_in_color(GREEN, path);
-	print_in_color(BOLD_YELLOW, " \n│");
-	print_in_color(BOLD_YELLOW, "\n└──────────> ");
-	print_in_color(BOLD_BLUE, "🔥Ready... 🔥 ");
-	read_cmd = readline("");
+	msg = print_colored_message(getenv("USER"), path);
+	read_cmd = readline(msg);
 	return (read_cmd);
 }
 
@@ -63,12 +84,12 @@ void	exec_cmd(t_command cmd, char **envp)
 {
 	int		i;
 	char	*tmp;
-	// char	**env_copy;
+
 	i = 0;
 	if (!strcmp(cmd.name, "pwd"))
 		exec_pwd(cmd.option);
 	else if (!strcmp(cmd.name, "cd"))
-		change_dir(cmd.option);
+		change_dir(cmd.option, &cmd);
 	else if (!strcmp(cmd.name, "exit"))
 		exit(0);
 	else if (!strcmp(cmd.name, "echo"))
@@ -82,11 +103,16 @@ void	exec_cmd(t_command cmd, char **envp)
 		}
 	}
 	else if (!strcmp(cmd.name, "env"))
-		while (envp[i])
+	{
+		update_env(&cmd, envp);
+		cmd.env_copy = copy_env(envp, &cmd);
+		while (cmd.env_copy[i])
 		{
-			printf("%s\n", envp[i]);
+			printf("%s\n", cmd.env_copy[i]);
 			i++;
 		}
+		clean_table(cmd.env_copy);
+	}
 	else
 	{
 		print_in_color(RED, "🚨command not found: ");

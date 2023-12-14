@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/13 18:24:37 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:35:37 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	while (true)
 	{
-		int i = 0;
-		while(cmd.env_copy[i])
-			printf("==>%s", cmd.env_copy[i]);
 		cmd_str = display_prompt();
 		cmd_str = trim_str(cmd_str);
 		add_history(cmd_str);

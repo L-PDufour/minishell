@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/13 18:20:32 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/14 02:11:56 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,14 @@ typedef struct s_command
 	char	*option2;
 	char	*cmd_str;
 	char	**env_copy;
+	char	*old_pwd;
+	char	*pwd;
 }			t_command;
 
-bool			ft_iswhitespace(int c);
+void 		init_env(t_command *cmd);
+// void		update_env(t_command *cmd, char *old_pwd);
+void		update_env(t_command *cmd, char **envp);
+bool		ft_iswhitespace(int c);
 void		print_in_color(char *color, char *msg);
 void		exec_cmd(t_command cmd, char **envp);
 char		*display_prompt(void);
@@ -108,9 +113,10 @@ char		*get_pwd(void);
 void		parse_cmd(char *str_cmd, t_command *cmd);
 bool		is_white_space(char c);
 char		*trim_str(char *str);
-void		change_dir(char *str);
+void		change_dir(char *str, t_command *cmd);
 char		*parse_env(char *str);
 void		exec_pwd(char *cmd);
 void		clean_table(char **tab);
 char		**split_with_delimiter(char *s, char c);
+char 		**copy_env(char **envp, t_command *cmd);
 #endif
