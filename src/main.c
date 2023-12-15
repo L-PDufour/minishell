@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/15 11:10:28 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 13:31:14 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **envp)
 			cmd_str = argv[1];
 			log_printf("%s\n", argv[1]);
 			token_list = tokenizer(cmd_str, token_list);
-			// cmd_list = parser(cmd_list, token_list);
+			cmd_list = parser(cmd_list, token_list);
 			return (0);
 		}
 		// cmd_str = display_prompt();

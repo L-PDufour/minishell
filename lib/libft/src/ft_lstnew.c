@@ -6,7 +6,7 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 01:35:10 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/09 01:48:13 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:06:20 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	new->content = content;
 	new->next = NULL;
+  new->previous = NULL;
 	return (new);
 }

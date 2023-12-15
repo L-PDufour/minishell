@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 13:11:55 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 12:37:57 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 13:03:17 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 typedef struct s_list {
   void *content;
   struct s_list *next;
+  struct s_list *previous;
 } t_list;
 int ft_atoi(const char *str);
 void ft_bzero(void *s, size_t n);

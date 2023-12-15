@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/14 20:24:50 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 13:38:45 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,23 @@
 // cmd_creation(token_list);
 // create the number of struct given by the number of pipes
 
-void	check_syntax_error(const t_list *tmp)
+void	check_syntax_error(const t_list *tmp, int identifier)
 {
-	if (tmp->next && ((t_token *)tmp->next->content)->type != ALPHA_T)
+	if (identifier == REDIR_I)
 	{
-		printf("%s\n", "syntax error");
+		if (tmp->next && ((t_token *)tmp->next->content)->type != ALPHA_T)
+		{
+			log_printf("syntax error\n");
+		}
+	}
+	else if (identifier == PIPE)
+	{
+		if ((tmp->next && ((t_token *)tmp->next->content)->type != ALPHA_T)
+			|| (tmp->previous
+				&& ((t_token *)tmp->next->content)->type != ALPHA_T))
+		{
+			log_printf("syntax error\n");
+		}
 	}
 }
 
@@ -45,7 +57,11 @@ void	token_parser(const t_list *token_list)
 		if (current_type == REDIR_IN_T || current_type == REDIR_OUT_T
 			|| current_type == REDIR_AP_T)
 		{
-			check_syntax_error(tmp);
+			check_syntax_error(tmp, REDIR_I);
+		}
+		else if (current_type == PIPE_T)
+		{
+			check_syntax_error(tmp, PIPE);
 		}
 		tmp = tmp->next;
 	}
@@ -56,6 +72,7 @@ void	token_parser(const t_list *token_list)
 // 	printf("%s\n", ((t_token *)token_list->content)->value);
 t_list	*parser(t_list *cmd_list, const t_list *token_list)
 {
+	log_printf("%s\n", "Parser : ");
 	token_parser(token_list);
 	// cmd_creation(token_list);
 	return (cmd_list);
