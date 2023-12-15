@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/22 21:01:45 by ldufour          ###   ########.fr       */
+=======
+/*   Updated: 2023/12/21 21:00:52 by joe_jam          ###   ########.fr       */
+>>>>>>> 56a5d96 (Testing double quotes handler)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +61,11 @@
 # define BOLD_CYAN "1;96"
 # define BOLD_WHITE "1;97"
 
+<<<<<<< HEAD
 /*#############|| Structures and tokens ||################*/
+=======
+/*#############################|| Structures and tokens ||#####################*/
+>>>>>>> 56a5d96 (Testing double quotes handler)
 typedef enum e_tokentype
 {
 	ALPHA_T = 97,

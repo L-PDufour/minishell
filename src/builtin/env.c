@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 15:17:38 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:07:02 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,41 +77,6 @@ int	find_in_env(char *key, char **envp)
 	return (-1);
 }
 
-char	*parse_env(char *str)
-{
-	char	**tmp;
-	char	*result;
-	int		i;
-	char	*env_value;
-	int		idx;
-
-	idx = 0;
-	result = "";
-	tmp = split_with_delimiter(str, '$');
-	if (!tmp)
-		return (str);
-	i = 0;
-	while (tmp[i])
-	{
-		if (tmp[i][0] != '$')
-			result = ft_strjoin(result, tmp[i]);
-		else
-		{
-			if (ft_strlen(tmp[i]) == 1)
-				result = ft_strjoin(result, tmp[i]);
-			else
-			{
-				env_value = getenv(ft_substr(tmp[i], 1, ft_strlen(tmp[i])));
-				if (env_value)
-					result = ft_strjoin(result, env_value);
-			}
-		}
-		i++;
-	}
-	clean_table(tmp);
-	return (result);
-}
-
 void	open_and_handle_new_terminal(t_command cmd)
 {
 	int		idx;
@@ -121,4 +86,17 @@ void	open_and_handle_new_terminal(t_command cmd)
 	old = ft_substr(cmd.env[idx], 6, ft_strlen(cmd.env[idx]));
 	cmd.env[idx] = ft_strjoin("SHLVL=", ft_itoa(ft_atoi(old) + 1));
 	execve("minishell", NULL, cmd.env);
+}
+
+int	exec_env(t_command cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd.env[i])
+	{
+		printf("%s\n", cmd.env[i]);
+		i++;
+	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:43:37 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 16:22:13 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:00:43 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define BUILTIN_H
 # include "../lib/libft/includes/libft.h"
 # include "minishell.h"
+#include <signal.h>
+#include <curses.h>
+#include <term.h>
 
 typedef struct s_command
 {
@@ -26,11 +29,11 @@ typedef struct s_command
 	char	**builtin;
 	char	*old_pwd;
 	char	*pwd;
+	pid_t	pid;
 }			t_command;
 
+int    exec_exit(t_command cmd);
 void		parse_cmd(char *str_cmd, t_command *cmd);
-void		init_builtin(t_command *cmd);
-bool		is_builtin(char *cmd_name, char **builtin_table);
 void		change_dir(char *str, t_command *cmd);
 char		*get_pwd(void);
 char		**split_with_delimiter(char *s, char c);
