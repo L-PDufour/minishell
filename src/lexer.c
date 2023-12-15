@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/15 14:22:20 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 14:56:42 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	quotes_parser(const char *str, int i, t_token *token, int quotes)
 	{
 		if (quotes == DOUBLE_QUOTE && str[i] == '$') // TODO: EXPANDER
     {
-      // parse_env((char *)str);
       log_printf("the expandables");
     }
 		i++;
@@ -91,7 +90,9 @@ static int	getToken(const char *str, int i, t_token *token)
 				str[i]))
 		{
 			if (str[i] == '$') // TODO: EXPANDER
+    {
 				log_printf("the expandables");
+    }
 			i++;
 		}
 		token->value = ft_substr(str, j, i - j);

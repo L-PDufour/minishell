@@ -24,8 +24,7 @@ test_command "Hello, World!" 'Some text with a single quote' "123.45" '3.14' "An
 test_command "Hello, 'nested single quotes', World!" 'Some text with "nested double quotes"' "123.45" '3.14' "Another string with 'both' types of quotes"
 test_command '"Hello, World!" '\''Some text with a single quote'\'' "123.45" '\''3.14'\'' "Another string"'
 test_command '"Hello, '\''nested single quotes'\'', World!" '\''Some text with "nested double quotes"'\'' "123.45" '\''3.14'\'' "Another string with '\''both'\'' types of quotes"'
-test_command '"Hello, '\''nested s$ngle quotes'\'', World!" '\''Some text with "$ested double quotes"'\'' "123.45" '\''3.14'\'' "Another string with '\''both'\'' types of quotes"'
-
+test_command "test || test < > << >>" 
 # Additional test commands
 # test_command "your_custom_command_here"
 

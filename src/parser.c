@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/15 13:38:45 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 15:06:09 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ void	check_syntax_error(const t_list *tmp, int identifier)
 	{
 		if (tmp->next && ((t_token *)tmp->next->content)->type != ALPHA_T)
 		{
-			log_printf("syntax error\n");
+			log_printf("syntax error: %c", (int)((t_token *)tmp->next->content)->type);
 		}
 	}
 	else if (identifier == PIPE)
 	{
 		if ((tmp->next && ((t_token *)tmp->next->content)->type != ALPHA_T)
 			|| (tmp->previous
-				&& ((t_token *)tmp->next->content)->type != ALPHA_T))
+				&& ((t_token *)tmp->previous->content)->type != ALPHA_T))
 		{
-			log_printf("syntax error\n");
+			log_printf("syntax error: %c", (int)((t_token *)tmp->next->content)->type);
 		}
 	}
 }
@@ -67,9 +67,6 @@ void	token_parser(const t_list *token_list)
 	}
 }
 
-// check if the syntax rules are ok
-
-// 	printf("%s\n", ((t_token *)token_list->content)->value);
 t_list	*parser(t_list *cmd_list, const t_list *token_list)
 {
 	log_printf("%s\n", "Parser : ");
