@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/15 09:49:25 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 12:41:06 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,12 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define PIPE 124   // |
-# define REDIR_I 60 // <
-# define REDIR_O 62 // >
-# define APPEND
-# define HEREDOC
-// # define SPACE 32        // ' '
-// # define TAB 9           // '\t'
-// # define NEWLINE 10      // '\n'
+// Characters
+# define PIPE 124        // |
+# define REDIR_I 60      // <
+# define REDIR_O 62      // >
 # define SINGLE_QUOTE 39 // '
 # define DOUBLE_QUOTE 34 // "
-/* # define BACKSLASH 92 // \ */
-/* # define DOLLAR      36  // $ */
-
-// TODO enum et norminette
-// Penser à la gestion des processus
-// Travailler sur de quoi qui marche pour ne pas attendre vs diviser le travail
-// Commencer par executer une commande
-// Developpper l'intelligence ensuite
 
 // Couleurs
 # define RED "1;31"
@@ -65,6 +53,7 @@
 # define BOLD_CYAN "1;96"
 # define BOLD_WHITE "1;97"
 
+// Structures and tokens
 typedef enum e_tokentype
 {
 	ALPHA_T = 97,
@@ -103,52 +92,27 @@ typedef struct s_command
 	char		*old_pwd;
 	char		*pwd;
 }				t_command;
-
-void			*safe_calloc(size_t nmemb, size_t size);
-
 // Lexer.c
-int				getToken(const char *str, int i, t_token *token);
 t_list			*tokenizer(const char *str, t_list *token_list);
-int				quotes_parser(const char *str, int i, t_token *token,
-					int quotes);
-int				meta_token(const char *str, int i, t_token *token);
-bool			ft_iswhitespace(int c);
-
 // Parser.c
 t_list			*parser(t_list *cmd_list, const t_list *token_list);
-
-void			print_in_color(char *color, char *msg);
-void			exec_cmd(t_command cmd, char **envp);
-char			*display_prompt(void);
-char			*get_pwd(void);
-void			parse_cmd(char *str_cmd, t_command *cmd);
-bool			is_white_space(char c);
-char			*trim_str(char *str);
-char			*parse_env(char *str);
-void			exec_pwd(char *cmd);
-void			clean_table(char **tab);
-char			**split_with_delimiter(char *s, char c);
-// Debug.c
-void			log_printf(const char *format, ...);
-const char		*token_type_to_str(t_tokentype type);
-void			print_token_list(t_list *head);
-
-void			init_env(t_command *cmd);
-// void		update_env(t_command *cmd, char *old_pwd);
+// Utils.c
+char	**split_with_delimiter(char *s, char c);
 void			update_env(t_command *cmd, char **envp);
-bool			ft_iswhitespace(int c);
+char			**copy_env(char **envp, t_command *cmd);
+void			*safe_calloc(size_t nmemb, size_t size);
+void			clean_table(char **tab);
 void			print_in_color(char *color, char *msg);
+// Prompt.c
 void			exec_cmd(t_command cmd, char **envp);
-char			*display_prompt(void);
-char			*get_pwd(void);
-void			parse_cmd(char *str_cmd, t_command *cmd);
-bool			is_white_space(char c);
-char			*trim_str(char *str);
+// cd.c
 void			change_dir(char *str, t_command *cmd);
 char			*parse_env(char *str);
-void			exec_pwd(char *cmd);
-void			clean_table(char **tab);
-char			**split_with_delimiter(char *s, char c);
-char			**copy_env(char **envp, t_command *cmd);
+// Debug.c
+void			log_printf(const char *format, ...);
+void			print_token_list(t_list *head);
+// Pwd.c
+char			*get_pwd(void);
+void exec_pwd(char *cmd);
 
 #endif
