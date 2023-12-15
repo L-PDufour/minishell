@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/14 20:56:34 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 11:42:35 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,34 @@ bool	ft_iswhitespace(int c)
 }
 
 // TODO: not working
-// int	quotes_parser(const char *str, int c, int i)
-// {
-// 	int	j;
-// 	int	k;
-//
-// 	j = i;
-// 	k = i;
-// 	while (str[i] != '\0')
-// 	{
-// 		if (str[i] == c)
-// 		{
-// 			j = i + 1;
-// 			while (str[j] != '\0' && (!ft_iswhitespace(str[j])
-// 					&& !ft_strchr("<>|", str[j])))
-// 			{
-// 				j++;
-// 			}
-// 			if (c == '\0')
-// 			{
-// 				//log_printf("quote error\n");
-// 				break ;
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	//log_printf("%s", ft_substr(str, k, j));
-// 	return (i);
-// }
+// Je dois traiter les quotes en pair peu importe "'"USER"'" est egal a ' USER '
+int	quotes_parser(const char *str, int i, t_token *token, int quotes)
+{
+	int	j;
+
+	i++;
+	j = i;
+	while (str[i] != '\0' && str[i] != quotes)
+	{
+		if (quotes == DOUBLE_QUOTE && str[i] == '$')
+			log_printf("the expandables");
+		i++;
+	}
+	if (str[i] == '\0') // TODO: ERROR
+		log_printf("quotes_parser: quotes not found");
+	token->type = ALPHA_T;
+	token->value = ft_substr(str, j, i - j);
+	token->len = i - j;
+	return (i);
+}
 
 // TODO: Condenser le code et faire des sous-fonctions
-int	ft_isspecial(const char *str, int i, t_token *token)
+int	meta_token(const char *str, int i, t_token *token)
 {
 	if (str[i] == '\0')
 		return (i);
 	else if (str[i] == PIPE)
-	{
 		token->type = PIPE_T;
-		//log_printf("%c", (char)token->type);
-		i++;
-	}
 	else if (str[i] == REDIR_I)
 	{
 		token->type = REDIR_IN_T;
@@ -68,8 +56,6 @@ int	ft_isspecial(const char *str, int i, t_token *token)
 			token->type = HERE_DOC_T;
 			i++;
 		}
-		//log_printf("REDIR_I ");
-		i++;
 	}
 	else if (str[i] == REDIR_O)
 	{
@@ -79,65 +65,64 @@ int	ft_isspecial(const char *str, int i, t_token *token)
 			token->type = REDIR_AP_T;
 			i++;
 		}
-		//log_printf("REDIR_O ");
-		i++;
 	}
-	return (i);
+	return (i++);
 }
 
-// TODO: mettre len t_token et gerer les quotes
+// TODO: mettre len t_token et gerer les quotes si quotes mettre l'env necessaire tout de suite
 int	getToken(const char *str, int i, t_token *token)
 {
 	int	j;
 
-	if (ft_iswhitespace(str[i]))
-		i++;
-	if (ft_isalpha(str[i]) || str[i] == '-')
+	if (str[i] == '\0')
+		return (i);
+	else if (ft_strchr("<>|", str[i]))
+		i = meta_token(str, i, token);
+	else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
+		i = quotes_parser(str, i, token, str[i]);
+	else if (!ft_strchr("<>|", str[i]))
 	{
 		j = i;
-		while (str[i] != '\0' && ft_isalpha(str[i]) || str[i] == '-')
+		while (str[i] != '\0' && !ft_iswhitespace(str[i]) && !ft_strchr("<>|",
+				str[i]))
+		{
+			if (str[i] == '$') // TODO: EXPANDER
+				log_printf("the expandables");
 			i++;
+		}
 		token->value = ft_substr(str, j, i - j);
 		token->type = ALPHA_T;
-		//log_printf("%c", (char)token->type);
-		// //log_printf("WORD ");
+		token->len = i - j;
 	}
-	else if (ft_strchr("<>|", str[i]))
-		i = ft_isspecial(str, i, token);
-	// TODO: implement quotes_parser
-	// else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
-	// i = quotes_parser(str, str[i], i);
-	else
-		i++;
-	return (i);
+	return (i++);
 }
 
-// TODO: Je passe ma cmd,
+// TODO: Je passe ma cmd, Boucle a tester
 t_list	*tokenizer(const char *str, t_list *token_list)
 {
-	static int	i;
-	t_list		*tok_node;
-	t_token		*token;
+	int		i;
+	t_list	*tok_node;
+	t_token	*token;
+	int		len;
 
 	i = 0;
-	while (str[i] != '\0')
+	len = ft_strlen(str);
+	while (i < len)
 	{
 		token = safe_calloc(1, sizeof(t_token));
+		if (str[i] <= 32)
+			i++;
 		i = getToken(str, i, token);
 		if (token)
 		{
 			tok_node = ft_lstnew((t_token *)token);
 			ft_lstadd_back(&token_list, tok_node);
 		}
+		i++;
 	}
 	// HACK: TO TEST LINKED LIST
-	while (token_list)
-	{
-		log_printf("token = %c,", (char)((t_token *)token_list->content)->type);
-		if (((t_token *)token_list->content)->value)
-			log_printf("value =%s;", ((t_token *)token_list->content)->value);
-		token_list = token_list->next;
-	}
+	log_printf("tokenizer : ");
+	print_token_list(token_list);
 	log_printf("\n");
 	return (token_list);
 }

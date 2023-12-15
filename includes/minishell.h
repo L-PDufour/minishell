@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 20:24:17 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/15 09:49:25 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef enum e_tokentype
 	REDIR_OUT_T = 62,
 	REDIR_AP_T = 43,
 	PIPE_T = 124,
-  HERE_DOC_T = 45,
+	HERE_DOC_T = 45,
 }				t_tokentype;
 
 typedef struct s_token
@@ -85,6 +85,7 @@ typedef struct s_token
 typedef struct s_cmd
 {
 	char		**cmd_table;
+	int			expandable;
 	int			fd_input;
 	int			fd_output;
 	char		*outfile;
@@ -108,8 +109,9 @@ void			*safe_calloc(size_t nmemb, size_t size);
 // Lexer.c
 int				getToken(const char *str, int i, t_token *token);
 t_list			*tokenizer(const char *str, t_list *token_list);
-int				quotes_parser(const char *str, int c, int i);
-int				ft_isspecial(const char *str, int i, t_token *token);
+int				quotes_parser(const char *str, int i, t_token *token,
+					int quotes);
+int				meta_token(const char *str, int i, t_token *token);
 bool			ft_iswhitespace(int c);
 
 // Parser.c
