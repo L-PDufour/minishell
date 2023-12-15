@@ -6,16 +6,17 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/14 12:42:34 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/14 20:56:34 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_iswhitespace(int c) {
-  if (c == 32 || (c >= 9 && c <= 13))
-    return (true);
-  return (false);
+bool	ft_iswhitespace(int c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (true);
+	return (false);
 }
 
 // TODO: not working
@@ -38,13 +39,13 @@ bool ft_iswhitespace(int c) {
 // 			}
 // 			if (c == '\0')
 // 			{
-// 				log_printf("quote error\n");
+// 				//log_printf("quote error\n");
 // 				break ;
 // 			}
 // 		}
 // 		i++;
 // 	}
-// 	log_printf("%s", ft_substr(str, k, j));
+// 	//log_printf("%s", ft_substr(str, k, j));
 // 	return (i);
 // }
 
@@ -56,7 +57,7 @@ int	ft_isspecial(const char *str, int i, t_token *token)
 	else if (str[i] == PIPE)
 	{
 		token->type = PIPE_T;
-		log_printf("PIPE ");
+		//log_printf("%c", (char)token->type);
 		i++;
 	}
 	else if (str[i] == REDIR_I)
@@ -67,7 +68,7 @@ int	ft_isspecial(const char *str, int i, t_token *token)
 			token->type = HERE_DOC_T;
 			i++;
 		}
-		log_printf("REDIR_I ");
+		//log_printf("REDIR_I ");
 		i++;
 	}
 	else if (str[i] == REDIR_O)
@@ -75,10 +76,10 @@ int	ft_isspecial(const char *str, int i, t_token *token)
 		token->type = REDIR_OUT_T;
 		if (str[i + 1] == REDIR_O)
 		{
-			token->type = REDIR_AM_T;
+			token->type = REDIR_AP_T;
 			i++;
 		}
-		log_printf("REDIR_O ");
+		//log_printf("REDIR_O ");
 		i++;
 	}
 	return (i);
@@ -98,7 +99,8 @@ int	getToken(const char *str, int i, t_token *token)
 			i++;
 		token->value = ft_substr(str, j, i - j);
 		token->type = ALPHA_T;
-		log_printf("WORD ");
+		//log_printf("%c", (char)token->type);
+		// //log_printf("WORD ");
 	}
 	else if (ft_strchr("<>|", str[i]))
 		i = ft_isspecial(str, i, token);
@@ -129,10 +131,13 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 		}
 	}
 	// HACK: TO TEST LINKED LIST
-	// while (token_list)
-	// {
-	// 	printf("%s\n", ((t_token *)token_list->content)->value);
-	// 	token_list = token_list->next;
-	// }
+	while (token_list)
+	{
+		log_printf("token = %c,", (char)((t_token *)token_list->content)->type);
+		if (((t_token *)token_list->content)->value)
+			log_printf("value =%s;", ((t_token *)token_list->content)->value);
+		token_list = token_list->next;
+	}
+	log_printf("\n");
 	return (token_list);
 }
