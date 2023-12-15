@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 02:09:08 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:00:00 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,14 @@ void	exec_cmd(t_command cmd, char **envp)
 {
 	int		i;
 	char	*tmp;
+	int		idx;
+	char	*old;
 
 	i = 0;
 	if (!strcmp(cmd.name, "pwd"))
 		exec_pwd(cmd.option);
+	else if (!strcmp(cmd.name, "./minishell"))
+		open_and_handle_new_terminal(cmd);
 	else if (!strcmp(cmd.name, "cd"))
 		change_dir(cmd.option, &cmd);
 	else if (!strcmp(cmd.name, "exit"))
@@ -104,14 +108,14 @@ void	exec_cmd(t_command cmd, char **envp)
 	}
 	else if (!strcmp(cmd.name, "env"))
 	{
-		update_env(&cmd, envp);
-		cmd.env_copy = copy_env(envp, &cmd);
-		while (cmd.env_copy[i])
+		// update_env(&cmd, envp);
+		// cmd.env_copy = copy_env(envp, &cmd);
+		while (cmd.env[i])
 		{
-			printf("%s\n", cmd.env_copy[i]);
+			printf("%s\n", cmd.env[i]);
 			i++;
 		}
-		clean_table(cmd.env_copy);
+		// clean_table(cmd.env_copy);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 01:28:10 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/15 14:29:10 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void	change_dir(char *str, t_command *cmd)
 {
 	char	*home;
-	char **envp;
+	char	*current_pwd;
+	char	*tmp;
 
+	tmp = cmd->env[find_in_env("OLDPWD", cmd->env)];
+	current_pwd = get_pwd();
 	home = getenv("HOME");
 	if (!str || !strcmp(str, "") || !strcmp(str, "~"))
 		str = home;
 	else if (!strcmp(str, "-"))
-		str = getenv("OLDPWD");
+		str = ft_substr(tmp, 7, ft_strlen(tmp));
 	else
 	{
 		str = parse_env(str);
@@ -47,7 +50,11 @@ void	change_dir(char *str, t_command *cmd)
 		printf("\n");
 	}
 	else
-		update_env(cmd, envp);
+	{
+		cmd->env[find_in_env("PWD", cmd->env)] = ft_strjoin("PWD=", get_pwd());
+		cmd->env[find_in_env("OLDPWD", cmd->env)] = ft_strjoin("OLDPWD=",
+				current_pwd);
+	}
 }
 
 char	*parse_env(char *str)
@@ -63,7 +70,6 @@ char	*parse_env(char *str)
 	tmp = split_with_delimiter(str, '$');
 	if (!tmp)
 		return (str);
-	// renconstruire tmp (2eme validation du contenu du tableau tmp)
 	i = 0;
 	while (tmp[i])
 	{
@@ -85,3 +91,6 @@ char	*parse_env(char *str)
 	clean_table(tmp);
 	return (result);
 }
+
+
+//
