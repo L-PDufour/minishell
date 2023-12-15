@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 STR = ls -la
 tokenizer : 
 ls -la 
@@ -47,6 +48,8 @@ STR = cat < input.txt > output.txt
 tokenizer : 
 cat < input.txt > output.txt 
 Parser : 
+=======
+>>>>>>> 213bc1a51670bd69c17a54cbfd84be91c21ae852
 tokenizer : 
 Parser : 
 tokenizer : 

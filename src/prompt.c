@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/18 21:00:49 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/21 13:15:11 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ void	exec_cmd(t_command cmd, char **envp)
 	int		i;
 	int		idx;
 	char	*tmp;
+	char	*tmp;
+	int		idx;
 	char	*old;
 
 	i = 0;
@@ -161,5 +163,8 @@ void	exec_cmd(t_command cmd, char **envp)
 		// print_in_color(RED, "🚨command not found: ");
 		// print_in_color(RED, cmd.name);
 		// printf("\n");
+		print_in_color(RED, "🚨command not found: ");
+		print_in_color(RED, cmd.name);
+		printf("\n");
 	}
 }
