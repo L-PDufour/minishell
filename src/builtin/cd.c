@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/18 19:53:56 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/18 20:11:40 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,6 @@ char	*parse_env(char *str)
 	clean_table(tmp);
 	return (result);
 }
+
+
+//
