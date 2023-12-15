@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/17 14:04:21 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/21 19:07:15 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,39 @@ t_list	*parser(t_list *cmd_list, const t_list *token_list)
 		// tmp = tmp->next;
 	}
 	return (cmd_list);
+}
+
+char	*parse_env(char *str)
+{
+	char	**tmp;
+	char	*result;
+	int		i;
+	char	*env_value;
+	int		idx;
+
+	idx = 0;
+	result = "";
+	tmp = split_with_delimiter(str, '$');
+	if (!tmp)
+		return (str);
+	i = 0;
+	while (tmp[i])
+	{
+		if (tmp[i][0] != '$')
+			result = ft_strjoin(result, tmp[i]);
+		else
+		{
+			if (ft_strlen(tmp[i]) == 1)
+				result = ft_strjoin(result, tmp[i]);
+			else
+			{
+				env_value = getenv(ft_substr(tmp[i], 1, ft_strlen(tmp[i])));
+				if (env_value)
+					result = ft_strjoin(result, env_value);
+			}
+		}
+		i++;
+	}
+	clean_table(tmp);
+	return (result);
 }

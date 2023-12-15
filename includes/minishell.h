@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 16:22:38 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:00:52 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@
 # define BOLD_CYAN "1;96"
 # define BOLD_WHITE "1;97"
 
-/*#############################|| Structures and tokens
-	||#####################*/
+/*#############################|| Structures and tokens ||#####################*/
 typedef enum e_tokentype
 {
 	ALPHA_T = 97,
@@ -104,6 +103,6 @@ static char		*print_colored_message(const char *user, const char *path);
 void			exit_prg_at_error(char *str);
 void			free_token(void *token_ptr);
 void			free_cmd(void *cmd);
-void			clean_table(char **tab);
+void			clean_table(char **table);
 
 #endif
