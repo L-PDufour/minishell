@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 20:58:53 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/15 15:22:49 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void			parse_cmd(char *str_cmd, t_command *cmd);
 bool			is_white_space(char c);
 char			*trim_str(char *str);
 void			change_dir(char *str, t_command *cmd);
-char			*parse_env(char *str);
 void			exec_pwd(char *cmd);
 void			clean_table(char **tab);
 char			**split_with_delimiter(char *s, char c);
