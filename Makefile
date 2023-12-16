@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/14 20:25:55 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/16 08:25:13 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,13 @@ $(NAME): $(OBJ) $(LIBFT) $(READLINE_LIB)
 	@echo $(CUT) $(CUT) 
 	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)
 
-
-$(READLINE_LIB): $(READLINE_DIR)
-	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
-	cd $(READLINE_DIR) && ./configure && make
-	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(BOLD)$(GREEN)$(RESET)
+# 	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
+# 	@cd $(READLINE_DIR) && ./configure && make
+# 	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET)
 
 $(READLINE_DIR):
-	@echo $(BOLD)$(L_PURPLE) Downloading and extracting Readline 8.1...   💪💥 $(RESET)
 	@mkdir -p $(READLINE_DIR)
-	@curl -L $(READLINE_URL) | tar xz -C $(READLINE_DIR) --strip-components=1
+	@test -f $(READLINE_DIR)/libreadline.a || { curl -L $(READLINE_URL) | tar xz -C $(READLINE_DIR) --strip-components=1; }
 	@echo $(BOLD)$(GREEN) ✨ Readline 8.1 ✨ downloaded and extracted successfully. 💪💥 $(RESET)
 
 $(LIBFT):

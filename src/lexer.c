@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/15 14:56:42 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/16 14:38:11 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 	}
 	// HACK: TO TEST LINKED LIST
 	log_printf("tokenizer : ");
-	print_token_list(token_list);
 	log_printf("\n");
 	return (token_list);
 }

@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/15 12:41:06 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/16 14:38:05 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ char			*parse_env(char *str);
 // Debug.c
 void			log_printf(const char *format, ...);
 void			print_token_list(t_list *head);
+void	print_cmd_list(t_list *head);
 // Pwd.c
 char			*get_pwd(void);
 void exec_pwd(char *cmd);
