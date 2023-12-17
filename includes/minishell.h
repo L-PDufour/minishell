@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/16 14:38:05 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/16 19:19:48 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ t_list			*tokenizer(const char *str, t_list *token_list);
 t_list			*parser(t_list *cmd_list, const t_list *token_list);
 // Utils.c
 char	**split_with_delimiter(char *s, char c);
+char	*display_prompt(void);
+void	parse_cmd(char *str_cmd, t_command *cmd);
+char	*trim_str(char *str);
 void			update_env(t_command *cmd, char **envp);
 char			**copy_env(char **envp, t_command *cmd);
 void			*safe_calloc(size_t nmemb, size_t size);

@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/16 14:41:41 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/16 15:19:53 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	print_token_list(t_list *head)
 		current = current->next;
 	}
 }
-
 
 void print_cmd_list(t_list *head)
 {

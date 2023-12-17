@@ -6,13 +6,13 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/16 15:16:17 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/16 15:44:16 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_cmd *cmd_creation(t_list **head)
+t_cmd	*cmd_creation(t_list **head)
 {
 	int		i;
 	int		array_size;
@@ -23,6 +23,11 @@ t_cmd *cmd_creation(t_list **head)
 	i = 0;
 	array_size = 1;
 	cmd = safe_calloc(1, sizeof(t_cmd));
+	if (((t_token *)(*head)->content)->type == PIPE_T)
+	{
+		*head = (*head)->next;
+		tmp = *head;
+	}
 	if (((t_token *)(*head)->content)->type == ALPHA_T)
 	{
 		while (tmp && ((t_token *)tmp->content)->type == ALPHA_T)
@@ -31,7 +36,7 @@ t_cmd *cmd_creation(t_list **head)
 			tmp = tmp->next;
 		}
 		cmd->cmd_table = safe_calloc(array_size, sizeof(char *));
-    while (*head && ((t_token *)(*head)->content)->type == ALPHA_T)
+		while (*head && ((t_token *)(*head)->content)->type == ALPHA_T)
 		{
 			cmd->cmd_table[i] = ft_strdup(((t_token *)(*head)->content)->value);
 			i++;
@@ -105,17 +110,15 @@ t_list	*parser(t_list *cmd_list, const t_list *token_list)
 	t_cmd			*cmd;
 	static t_list	*tmp;
 
-	// MALLOC AND PIPE
 	log_printf("%s\n", "Parser : ");
 	token_parser(token_list);
 	tmp = (t_list *)token_list;
-
-while (tmp)
-{
-    cmd_node = ft_lstnew((t_cmd *)cmd_creation(&tmp));
-    if (cmd_node)
-        ft_lstadd_back(&cmd_list, cmd_node);
-    // tmp = tmp->next;
-}
+	while (tmp)
+	{
+		cmd_node = ft_lstnew((t_cmd *)cmd_creation(&tmp));
+		if (cmd_node)
+			ft_lstadd_back(&cmd_list, cmd_node);
+		// tmp = tmp->next;
+	}
 	return (cmd_list);
 }
