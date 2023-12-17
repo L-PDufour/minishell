@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/16 14:38:11 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/17 12:36:05 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,21 @@ static bool	ft_iswhitespace(int c)
 
 // TODO: not working
 // Je dois traiter les quotes en pair peu importe "'"USER"'" est egal a ' USER '
-static int	quotes_parser(const char *str, int i, t_token *token, int quotes)
+static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 {
 	int	j;
 
 	i++;
 	j = i;
-	while (str[i] != '\0' && str[i] != quotes)
-	{
-		if (quotes == DOUBLE_QUOTE && str[i] == '$') // TODO: EXPANDER
-    {
-      log_printf("the expandables");
-    }
+	while (str[i] != '\0' && str[i] != delimiter)
 		i++;
-	}
 	if (str[i] == '\0') // TODO: ERROR
 		log_printf("quotes_parser: quotes not found");
 	token->type = ALPHA_T;
-	token->value = ft_substr(str, j, i - j);
+	if (delimiter == DOUBLE_QUOTE)
+		token->value = parse_env(ft_substr(str, j, i  - j));
+	else
+		token->value = ft_substr(str, j, i - j);
 	token->len = i - j;
 	return (i);
 }
@@ -86,32 +83,27 @@ static int	getToken(const char *str, int i, t_token *token)
 	else if (!ft_strchr("<>|", str[i]))
 	{
 		j = i;
-		while (str[i] != '\0' && !ft_iswhitespace(str[i]) && !ft_strchr("<>|",
-				str[i]))
+		while (str[i] != '\0' && !ft_iswhitespace(str[i]) &&
+				!ft_strchr("<>|", str[i]))
 		{
-			if (str[i] == '$') // TODO: EXPANDER
-    {
-				log_printf("the expandables");
-    }
 			i++;
 		}
-		token->value = ft_substr(str, j, i - j);
+		token->value = parse_env(ft_substr(str, j, i - j));
 		token->type = ALPHA_T;
 		token->len = i - j;
 	}
 	return (i++);
 }
 
-// TODO: Je passe ma cmd, Boucle a tester
 t_list	*tokenizer(const char *str, t_list *token_list)
 {
 	int		i;
-	t_list	*tok_node;
-	t_token	*token;
 	int		len;
+	t_token	*token;
 
 	i = 0;
 	len = ft_strlen(str);
+	token = NULL;
 	while (i < len)
 	{
 		token = safe_calloc(1, sizeof(t_token));
@@ -120,14 +112,10 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 		i = getToken(str, i, token);
 		if (token)
 		{
-			tok_node = ft_lstnew((t_token *)token);
-			ft_lstadd_back(&token_list, tok_node);
-			// ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
+			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
 		}
 		i++;
 	}
-	// HACK: TO TEST LINKED LIST
-	log_printf("tokenizer : ");
-	log_printf("\n");
+	log_printf("tokenizer : \n"); // HACK: DEBUG
 	return (token_list);
 }

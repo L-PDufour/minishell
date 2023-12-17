@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/16 19:19:48 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/17 14:20:07 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ t_list			*tokenizer(const char *str, t_list *token_list);
 // Parser.c
 t_list			*parser(t_list *cmd_list, const t_list *token_list);
 // Utils.c
-char	**split_with_delimiter(char *s, char c);
-char	*display_prompt(void);
-void	parse_cmd(char *str_cmd, t_command *cmd);
-char	*trim_str(char *str);
+char			**split_with_delimiter(char *s, char c);
+char			*display_prompt(void);
+void			parse_cmd(char *str_cmd, t_command *cmd);
+char			*trim_str(char *str);
 void			update_env(t_command *cmd, char **envp);
 char			**copy_env(char **envp, t_command *cmd);
 void			*safe_calloc(size_t nmemb, size_t size);
@@ -113,10 +113,13 @@ void			change_dir(char *str, t_command *cmd);
 char			*parse_env(char *str);
 // Debug.c
 void			log_printf(const char *format, ...);
-void			print_token_list(t_list *head);
-void	print_cmd_list(t_list *head);
+void	tester_ms(char *str, t_list *token_list, t_list *cmd_list);
+void			print_cmd(void *content);
+void			print_token(void *content);
 // Pwd.c
 char			*get_pwd(void);
-void exec_pwd(char *cmd);
-
+void			exec_pwd(char *cmd);
+//l_free.c
+void	free_token(void *token_ptr);
+void	free_cmd(void *cmd);
 #endif

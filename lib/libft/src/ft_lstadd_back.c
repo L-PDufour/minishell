@@ -6,7 +6,7 @@
 /*   By: yothmani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:51:26 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/15 13:18:37 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/16 20:15:57 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last_elem;
 
+  last_elem = NULL;
 	if (!lst || !new)
 		return ;
 	new->previous = NULL;

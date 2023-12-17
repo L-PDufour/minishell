@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 01:28:10 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/17 12:43:16 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	change_dir(char *str, t_command *cmd)
 {
 	char	*home;
-	char **envp;
+	char	**envp;
 
 	home = getenv("HOME");
 	if (!str || !strcmp(str, "") || !strcmp(str, "~"))
@@ -83,5 +83,6 @@ char	*parse_env(char *str)
 		i++;
 	}
 	clean_table(tmp);
+	free(str); // HACK: Fix for leaks when called with ft_substring in getToken
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/16 15:44:16 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/17 14:04:21 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,18 @@ void	token_parser(const t_list *token_list)
 	tmp = token_list;
 	while (tmp)
 	{
-		current_type = ((t_token *)tmp->content)->type;
-		if (current_type == REDIR_IN_T || current_type == REDIR_OUT_T ||
-			current_type == REDIR_AP_T || current_type == HERE_DOC_T)
+		if (tmp->content)
 		{
-			check_syntax_error(tmp, REDIR_I);
-		}
-		else if (current_type == PIPE_T)
-		{
-			check_syntax_error(tmp, PIPE);
+			current_type = ((t_token *)tmp->content)->type;
+			if (current_type == REDIR_IN_T || current_type == REDIR_OUT_T ||
+				current_type == REDIR_AP_T || current_type == HERE_DOC_T)
+			{
+				check_syntax_error(tmp, REDIR_I);
+			}
+			else if (current_type == PIPE_T)
+			{
+				check_syntax_error(tmp, PIPE);
+			}
 		}
 		tmp = tmp->next;
 	}
@@ -117,7 +120,10 @@ t_list	*parser(t_list *cmd_list, const t_list *token_list)
 	{
 		cmd_node = ft_lstnew((t_cmd *)cmd_creation(&tmp));
 		if (cmd_node)
+		{
 			ft_lstadd_back(&cmd_list, cmd_node);
+			// free(cmd_node);
+		}
 		// tmp = tmp->next;
 	}
 	return (cmd_list);

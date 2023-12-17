@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/16 19:32:51 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/17 14:20:39 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ READLINE_URL		= ftp://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 INC					= -I$(INC_DIR) -I$(LIBFT_DIR) $(READLINE_INC)
 LIBS				= -lncurses
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/l_free.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
 $(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c\
 
 OBJ = $(SRC:.c=.o)
@@ -38,10 +38,10 @@ $(NAME): $(OBJ) $(LIBFT) $(READLINE_LIB)
 	@echo $(CUT) $(CUT) 
 	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)
 
-$(READLINE_LIB): $(READLINE_DIR)
-	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
-	@cd $(READLINE_DIR) && ./configure && make
-	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET)
+# $(READLINE_LIB): $(READLINE_DIR)
+# 	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
+# 	@cd $(READLINE_DIR) && ./configure && make
+# 	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET)
 
 $(READLINE_DIR):
 	@mkdir -p $(READLINE_DIR)
