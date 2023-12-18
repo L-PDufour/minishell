@@ -6,18 +6,11 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/17 12:36:05 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/18 10:24:17 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static bool	ft_iswhitespace(int c)
-{
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (true);
-	return (false);
-}
 
 // TODO: not working
 // Je dois traiter les quotes en pair peu importe "'"USER"'" est egal a ' USER '
@@ -30,10 +23,14 @@ static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 	while (str[i] != '\0' && str[i] != delimiter)
 		i++;
 	if (str[i] == '\0') // TODO: ERROR
-		log_printf("quotes_parser: quotes not found");
+	{
+		i = -1;
+		printf("Missing quotes\n");
+	}
 	token->type = ALPHA_T;
 	if (delimiter == DOUBLE_QUOTE)
-		token->value = parse_env(ft_substr(str, j, i  - j));
+		token->value = parse_env(ft_substr(str, j, (i - j)));
+	//TODO: Occasione un leaks sur mon pc
 	else
 		token->value = ft_substr(str, j, i - j);
 	token->len = i - j;
@@ -70,10 +67,12 @@ static int	meta_token(const char *str, int i, t_token *token)
 
 // TODO: mettre len t_token et gerer les quotes si quotes mettre l'env
 // necessaire tout de suite
-static int	getToken(const char *str, int i, t_token *token)
+static int	get_token(const char *str, int i, t_token *token)
 {
 	int	j;
+	int	flag;
 
+	flag = 0;
 	if (str[i] == '\0')
 		return (i);
 	else if (ft_strchr("<>|", str[i]))
@@ -83,12 +82,18 @@ static int	getToken(const char *str, int i, t_token *token)
 	else if (!ft_strchr("<>|", str[i]))
 	{
 		j = i;
-		while (str[i] != '\0' && !ft_iswhitespace(str[i]) &&
-				!ft_strchr("<>|", str[i]))
+		while (str[i] != '\0' && !is_white_space(str[i]) && !ft_strchr("<>|",
+				str[i]))
 		{
+			if (str[i] == '$')
+				flag = 1;
 			i++;
 		}
-		token->value = parse_env(ft_substr(str, j, i - j));
+		if (flag == 1)
+			token->value = parse_env(ft_substr(str, j, i - j));
+		//TODO: Occasione un leaks sur mon pc
+		else
+			token->value = ft_substr(str, j, i - j);
 		token->type = ALPHA_T;
 		token->len = i - j;
 	}
@@ -100,6 +105,7 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 	int		i;
 	int		len;
 	t_token	*token;
+	int		syntax_result;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -107,15 +113,19 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 	while (i < len)
 	{
 		token = safe_calloc(1, sizeof(t_token));
-		if (str[i] <= 32) // TODO: whitespace
+		if (is_white_space(str[i]))
 			i++;
-		i = getToken(str, i, token);
+		i = get_token(str, i, token);
+		if (i == -1)
+			lexer_error(130, token_list, print_token);
 		if (token)
-		{
 			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
-		}
 		i++;
 	}
-	log_printf("tokenizer : \n"); // HACK: DEBUG
+	syntax_result = syntax_parser(token_list);
+	printf("syntax %i : \n", syntax_result); // HACK: DEBUG
+	log_printf("tokenizer : \n");            // HACK: DEBUG
+	if (syntax_result == -1)
+		lexer_error(2, token_list, print_token);
 	return (token_list);
 }

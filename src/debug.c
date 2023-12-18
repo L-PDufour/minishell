@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/17 14:25:42 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/18 09:45:18 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	print_token(void *content)
 
 	token = (t_token *)content;
 	if (token->value)
-		log_printf("%s ", token->value);
+		log_printf("(%s)", token->value);
 	else
-		log_printf("%c ", (char)token->type);
+		log_printf("(%c) ", (char)token->type);
 }
 
 void	print_cmd(void *content)

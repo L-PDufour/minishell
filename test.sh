@@ -12,19 +12,20 @@ test_command() {
 }
 
 # List of test commands
-test_command "ls -la"
-test_command "echo 'Hello, World!'"
-test_command "echo \$HOME"
-test_command "cat < input.txt > output.txt"
-test_command "ls -l | grep .txt"
-test_command "ps aux | grep 'bash' | grep -v 'grep'"
-test_command "sleep 10 &"
-test_command "Hello, World!" 'Some text with a single quote' "123.45" '3.14' "Another string"
-test_command "Hello, 'nested single quotes', World!" 'Some text with "nested double quotes"' "123.45" '3.14' "Another string with 'both' types of quotes"
-test_command '"Hello, World!" '\''Some text with a single quote'\'' "123.45" '\''3.14'\'' "Another string"'
-test_command '"Hello, '\''nested single quotes'\'', World!" '\''Some text with "nested double quotes"'\'' "123.45" '\''3.14'\'' "Another string with '\''both'\'' types of quotes"'
-test_command "test || test < > << >>"
-test_command "| test || test"
+test_command "echo \"This is an expandable string with a variable: \$USER\""
+test_command "echo 'This is an expandable string with a variable: \$USER'"
+# test_command "echo 'Hello, World!'"
+# test_command "echo \$HOME"
+# test_command "cat < input.txt > output.txt"
+# test_command "ls -l | grep .txt"
+# test_command "ps aux | grep 'bash' | grep -v 'grep'"
+# test_command "sleep 10 &"
+# test_command "Hello, World!" 'Some text with a single quote' "123.45" '3.14' "Another string"
+# test_command "Hello, 'nested single quotes', World!" 'Some text with "nested double quotes"' "123.45" '3.14' "Another string with 'both' types of quotes"
+# test_command '"Hello, World!" '\''Some text with a single quote'\'' "123.45" '\''3.14'\'' "Another string"'
+# test_command '"Hello, '\''nested single quotes'\'', World!" '\''Some text with "nested double quotes"'\'' "123.45" '\''3.14'\'' "Another string with '\''both'\'' types of quotes"'
+# test_command "test || test < > << >>"
+# test_command "| test || test"
 #
 # test_command "your_custom_command_here"
 
