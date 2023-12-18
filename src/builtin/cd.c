@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/17 12:43:16 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/18 14:50:46 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ char	*parse_env(char *str)
 		i++;
 	}
 	clean_table(tmp);
-	free(str); // HACK: Fix for leaks when called with ft_substring in getToken
+	// free(str); // HACK: Fix for leaks when called with ft_substring in getToken
 	return (result);
 }

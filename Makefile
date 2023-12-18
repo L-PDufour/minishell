@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/17 14:20:39 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/18 14:49:41 by yothmani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,22 @@ $(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c\
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: install $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(READLINE_LIB)
 	@$(CC) $(CFLAGS) -o $@ $^ $(LIBS) $(INC)
 	@echo $(CUT) $(CUT) 
-	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)
+	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)	
 
-# $(READLINE_LIB): $(READLINE_DIR)
-# 	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
-# 	@cd $(READLINE_DIR) && ./configure && make
-# 	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET)
+$(READLINE_LIB): $(READLINE_DIR)
+	@if [ ! -f "$@" ]; then \
+		echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT); \
+		cd $(READLINE_DIR) && ./configure && make; \
+		echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET); \
+	else \
+		echo $(BOLD)$(PINK)"Readline 8.1 library already exists, skipping build."$(RESET); \
+	fi
+
 
 $(READLINE_DIR):
 	@mkdir -p $(READLINE_DIR)
@@ -55,6 +60,10 @@ $(LIBFT):
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INC)
 	@echo "Compiled $<"
 
+readline-8.1_EXISTS := $(wildcard lib/readline-8.1)
+
+install: $(READLINE_LIB)
+	
 norm:
 	@echo $(BOLD)$(PINK)" Mandatory part!"$(MINT)
 	@norminette $(SRC) $(INC_DIR)
