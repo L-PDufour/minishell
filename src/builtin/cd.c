@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/20 10:35:28 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 19:00:56 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	*parse_env(char *str)
 		i++;
 	}
 	clean_table(tmp);
-	free(str);
 	return (result);
 }
 // TODO: free str si progbleme
