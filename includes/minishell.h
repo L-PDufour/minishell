@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/18 10:23:07 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/18 16:33:07 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_token
 	t_tokentype	type;
 	char		*value;
 	int			len;
+  int append;
 }				t_token;
 
 typedef struct s_cmd

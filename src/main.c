@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/17 15:16:41 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/18 15:45:33 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free(cmd_str);
 	ft_lstclear(&token_list, free_token);
-	ft_lstclear(&cmd_list, free_cmd);
+	// ft_lstclear(&cmd_list, free_cmd);
 	return (0);
 }

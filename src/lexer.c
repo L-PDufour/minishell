@@ -6,14 +6,14 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/18 10:24:17 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/18 20:16:27 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// TODO: not working
-// Je dois traiter les quotes en pair peu importe "'"USER"'" est egal a ' USER '
+// TODO: "l""s" "-"l"a"
+
 static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 {
 	int	j;
@@ -34,6 +34,8 @@ static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 	else
 		token->value = ft_substr(str, j, i - j);
 	token->len = i - j;
+	// if (str[i + 1] == SINGLE_QUOTE || str[i + 1] == DOUBLE_QUOTE)
+	// return (quotes_parser(str, j, token, str[i]));
 	return (i);
 }
 
@@ -97,7 +99,7 @@ static int	get_token(const char *str, int i, t_token *token)
 		token->type = ALPHA_T;
 		token->len = i - j;
 	}
-	return (i++);
+	return (i);
 }
 
 t_list	*tokenizer(const char *str, t_list *token_list)
@@ -116,10 +118,22 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 		if (is_white_space(str[i]))
 			i++;
 		i = get_token(str, i, token);
+		// if (str[i] >= 33)
+			// token->append = 1;
 		if (i == -1)
 			lexer_error(130, token_list, print_token);
-		if (token)
-			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
+		if (token_list && token->append == 1 && token->type == ALPHA_T)
+		{
+			((t_token *)token_list->content)->value = ft_strjoin((((t_token *)token_list->content)->value),
+																	token->value);
+			free(token);
+		}
+		else
+		{
+			if (token)
+				ft_lstadd_back(&token_list,
+								ft_lstnew((t_token *)token));
+		}
 		i++;
 	}
 	syntax_result = syntax_parser(token_list);
