@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/18 16:33:07 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/20 10:23:16 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void			exec_cmd(t_command cmd, char **envp);
 // cd.c
 void			change_dir(char *str, t_command *cmd);
 char			*parse_env(char *str);
+char	*parse_env_token(char *str);
 // Debug.c
 void			log_printf(const char *format, ...);
 void			tester_ms(char *str, t_list *token_list, t_list *cmd_list);
