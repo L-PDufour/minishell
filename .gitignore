@@ -1,0 +1,4 @@
+*.o
+.vscode
+.DS_Store
+lib/readline-8.1
