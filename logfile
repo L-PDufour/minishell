@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 STR = ls -la
 tokenizer : 
 ls -la 
@@ -31,11 +30,11 @@ Pipe FDs: 0 (read) / 0 (write)
 
 STR = echo $HOME
 tokenizer : 
-echo /Users/joe_jam 
+echo /Users/yothmani 
 Parser : 
 Command Table:
   echo
-  /Users/joe_jam
+  /Users/yothmani
 Expandable: 0
 Input File: N/A
 Output File: N/A
@@ -47,24 +46,6 @@ Pipe FDs: 0 (read) / 0 (write)
 STR = cat < input.txt > output.txt
 tokenizer : 
 cat < input.txt > output.txt 
-Parser : 
-=======
->>>>>>> 213bc1a51670bd69c17a54cbfd84be91c21ae852
-tokenizer : 
-Parser : 
-tokenizer : 
-Parser : 
-tokenizer : 
-Parser : 
-tokenizer : 
-Parser : 
-tokenizer : 
-Parser : 
-tokenizer : 
-Parser : 
-tokenizer : 
-Parser : 
-tokenizer : 
 Parser : 
 tokenizer : 
 Parser : 

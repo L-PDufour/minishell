@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/18 20:12:34 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/21 15:37:57 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static bool	ft_iswhitespace(int c)
-{
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (true);
-	return (false);
-}
-
-// TODO: not working
-// Je dois traiter les quotes en pair peu importe "'"USER"'" est egal a ' USER '
-static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
-{
-	int	j;
-
-	i++;
-	j = i;
-	while (str[i] != '\0' && str[i] != delimiter)
-		i++;
-	if (str[i] == '\0') // TODO: ERROR
-		log_printf("quotes_parser: quotes not found");
-	token->type = ALPHA_T;
-	if (delimiter == DOUBLE_QUOTE)
-		token->value = parse_env(ft_substr(str, j, i  - j));
-	else
-		token->value = ft_substr(str, j, i - j);
-	token->len = i - j;
-	return (i);
-}
 
 // TODO: Condenser le code et faire des sous-fonctions
 static int	meta_token(const char *str, int i, t_token *token)
@@ -83,7 +55,7 @@ static int	getToken(const char *str, int i, t_token *token)
 	else if (!ft_strchr("<>|", str[i]))
 	{
 		j = i;
-		while (str[i] != '\0' && !ft_iswhitespace(str[i]) &&
+		while (str[i] != '\0' && !is_white_space(str[i]) &&
 				!ft_strchr("<>|", str[i]))
 		{
 			i++;
@@ -119,5 +91,5 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 	log_printf("tokenizer : \n"); // HACK: DEBUG
 	return (token_list);
 }
-    //TODO:
-	//Test the double quotes' function 
+//TODO:
+//Test the double quotes' function
