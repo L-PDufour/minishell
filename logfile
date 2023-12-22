@@ -570,3 +570,1621 @@ Input FD: 0
 Output FD: 0
 Pipe FDs: 0 (read) / 0 (write)
 END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 
+Parser : 
+
+END OF LOG
+STR = daf
+Parser : 
+(daf)
+Command Table:
+  daf
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = df
+Parser : 
+(df)
+Command Table:
+  df
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = c
+Parser : 
+(c)
+Command Table:
+  c
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 
+Parser : 
+
+END OF LOG
+STR = 
+Parser : 
+
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 
+Parser : 
+
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 
+Parser : 
+
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1
+Parser : 
+(1)
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile
+Parser : 
+(<)(infile)
+Command Table:
+
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = > infile
+Parser : 
+
+STR = < infile
+Parser : 
+(<)(infile)
+Command Table:
+
+STR = < infile
+Parser : 
+(<)(infile)
+Command Table:
+
+STR = < fin
+Parser : 
+(<)(fin)
+Command Table:
+Expandable: 0
+Input File: fin
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < fin < fin
+Parser : 
+(<)(fin)(<)(fin)
+Command Table:
+Expandable: 0
+Input File: fin
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: fin
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls ls ls ls
+Parser : 
+(ls)(ls)(ls)(ls)
+Command Table:
+  ls
+  ls
+  ls
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < 1 < 2 < 3
+Parser : 
+(<)(1)(<)(2)(<)(3)
+Command Table:
+Expandable: 0
+Input File: 1
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 2
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 3
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < fin < fin
+Parser : 
+
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile ls
+Parser : 
+
+STR = ls < infile
+Parser : 
+
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile ls
+Parser : 
+
+STR = ls
+Parser : 
+
+STR = ls
+Parser : 
+
+STR = ls
+Parser : 
+
+STR = ls
+Parser : 
+
+STR = ls
+Parser : 
+
+STR = ls
+Parser : 
+
+STR = < infile
+Parser : 
+
+STR = ls
+(ls)Parser : 
+
+STR = ls
+(ls)Parser : 
+
+STR = ls
+(ls)Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile
+(<)(infile)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  infile
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile ls
+(<)(infile)(ls)
+Parser : 
+
+Command Table:
+  ls
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  infile
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile < infile
+(<)(infile)(<)(infile)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  infile
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  infile
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < 1 < 2 < 3 < 4
+(<)(1)(<)(2)(<)(3)(<)(4)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  1
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  2
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  3
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 4
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  4
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = lkks
+(lkks)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+(ls)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+STR = ls
+(ls)
+Parser : 
+
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+(ls)
+Parser : 
+
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls lslsls
+(ls)(lslsls)
+Parser : 
+
+Command Table:
+  ls
+  lslsls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  lslsls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = lslsls | lslsls | lslsls
+(lslsls)(|)(lslsls)(|)(lslsls)
+Parser : 
+
+Command Table:
+  lslsls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  lslsls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  lslsls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = 1 | 2 | 3
+(1)(|)(2)(|)(3)
+Parser : 
+
+Command Table:
+  1
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  2
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  3
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < infile 
+(<)(infile)( )
+Parser : 
+
+STR = < infile
+(<)(infile)
+Parser : 
+
+STR = < infile
+(<)(infile)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  infile
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < 1 < 2 < 3 < 5
+(<)(1)(<)(2)(<)(3)(<)(5)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  1
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  2
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  3
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 5
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  5
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < 1 < 3 
+(<)(1)(<)(3)( )
+Parser : 
+
+STR = < infile
+(<)(infile)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: infile
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  infile
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = < 1 < 3
+(<)(1)(<)(3)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: 3
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  1
+Expandable: 0
+Input File: 3
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: 3
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  3
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1
+(<)(1)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2 ks
+(<)(1)(<)(2)(ks)
+Parser : 
+
+STR = lls
+(lls)
+Parser : 
+
+STR = lcad
+(lcad)
+Parser : 
+
+STR = <1 
+(<)(1)( )
+Parser : 
+
+STR = < infile
+(<)(infile)
+Parser : 
+
+STR = < infile
+(<)(infile)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = cat logfile 
+(cat)(logfile)( )
+Parser : 
+
+STR = < 1 < 3
+(<)(1)(<)(3)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+STR = <1 <2
+(<)(1)(<)(2)
+Parser : 
+
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
