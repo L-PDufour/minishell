@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/21 20:03:22 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/21 20:41:41 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,24 @@ int	main(int argc, char **argv, char **envp)
 			return (0);
 		}
 		cmd_str = display_prompt();
-		log_printf("STR = %s\n", cmd_str);
-		// cmd_list = parser(cmd_list, token_list);
-		cmd_str = trim_str(cmd_str);
+		log_printf("\nSTR = %s\n", cmd_str);
 		token_list = tokenizer(cmd_str, token_list);
+		cmd_list = parser(cmd_list, token_list);
+		cmd_str = trim_str(cmd_str);
 		ft_lstiter(token_list, &print_token);
-		// add_history(cmd_str);
-		// if (strcmp(cmd_str, ""))
-		// {
-		// 	parse_cmd(cmd_str, &cmd);
-		// 	exec_cmd(cmd, envp);
-		// }
+		log_printf("\n");
+		ft_lstiter(cmd_list, &print_cmd);
+		log_printf("END OF LOG", cmd_str);
+		add_history(cmd_str);
+		if (strcmp(cmd_str, ""))
+		{
+			parse_cmd(cmd_str, &cmd);
+			exec_cmd(cmd, envp);
+		}
+		free(cmd_str);
+		ft_lstclear(&token_list, free_token);
+		ft_lstclear(&cmd_list, free_cmd);
 	}
-	free(cmd_str);
-	ft_lstclear(&token_list, free_token);
-	ft_lstclear(&cmd_list, free_cmd);
 	return (0);
 }
 
-// void	tester_ms(char *str, t_list *token_list, t_list *cmd_list)
-// {
-// 	log_printf("STR = %s\n", str);
-// 	token_list = tokenizer(str, token_list);
-// 	ft_lstiter(token_list, &print_token);
-// 	// cmd_list = parser(cmd_list, token_list);
-// 	ft_lstiter(cmd_list, &print_cmd);
-// 	// log_printf("\n");
-// 	ft_lstclear(&token_list, free_token);
-// 	// ft_lstclear(&cmd_list, free_cmd);
-// 	log_printf("\n");
-// }

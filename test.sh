@@ -25,7 +25,7 @@ test_command "echo 'Line 9 with special characters: \\< > | \$USER'"
 test_command "echo \"Line 10 with 'quotes' and special characters: \\< > | \$USER\"" # trouble
 test_command "'e''c''h''o' 'This is a line with spaces and \$USER'"
 test_command "ls|wc"
-test_command "echo bonjour'>'outfile"
+test_command "echo bonjour'>'outfile"tes
 
 # You can add more test commands as needed
 

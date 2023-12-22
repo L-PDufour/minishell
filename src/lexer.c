@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/21 20:23:33 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/21 20:38:58 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 	{
 		token = safe_calloc(1, sizeof(t_token));
 		i = get_token(str, i, token);
-		// printf("%c\n", token->type);
-		// printf("%d\n", token->append);
 		if (i == -1)
 		{
 			printf("%s\n", "erreur");

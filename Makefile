@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/18 10:04:23 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/22 08:34:40 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ $(NAME): $(OBJ) $(LIBFT) $(READLINE_LIB)
 	@echo $(CUT) $(CUT) 
 	@echo $(BOLD)$(L_PURPLE) Notre minishell est plus mignon qu’un vrai shell  💪💥 $(RESET)
 
-# $(READLINE_LIB): $(READLINE_DIR)
-# 	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
-# 	@cd $(READLINE_DIR) && ./configure && make
-# 	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET)
+$(READLINE_LIB): $(READLINE_DIR)
+	@echo $(BOLD)$(PINK)"Building Readline 8.1 library..."$(MINT)
+	@cd $(READLINE_DIR) && ./configure && make
+	@echo $(BOLD)$(GREEN)"Readline library built successfully"$(RESET)
 
 $(READLINE_DIR):
 	@mkdir -p $(READLINE_DIR)

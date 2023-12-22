@@ -1,0 +1,572 @@
+STR = ls | wc
+Parser : 
+(ls)(|)(wc)Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  wc
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+STR = ls|wc
+Parser : 
+(ls)(|)(wc)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+Command Table:
+  wc
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOGSTR = '
+
+STR = 'e''c''h''o'
+Parser : 
+(echo)
+Command Table:
+  echo
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = echo 'Hello, Minishell!'
+Parser : 
+(echo)(Hello, Minishell!)
+Command Table:
+  echo
+  Hello, Minishell!
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = ls
+Parser : 
+(ls)
+Command Table:
+  ls
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
+STR = exit
+Parser : 
+(exit)
+Command Table:
+  exit
+Expandable: 0
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Pipe FDs: 0 (read) / 0 (write)
+END OF LOG
