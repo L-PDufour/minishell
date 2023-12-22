@@ -7,26 +7,25 @@ rm -f logfile
 # Test cases
 test_command() {
 	echo "Executing: $1"
-	./minishell "$1"
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell "$1"
 	echo "=============================="
 }
 
 # List of test commands
-test_command "ls -la"
-test_command "echo 'Hello, World!'"
-test_command "echo \$HOME"
-test_command "cat < input.txt > output.txt"
-test_command "ls -l | grep .txt"
-test_command "ps aux | grep 'bash' | grep -v 'grep'"
-test_command "sleep 10 &"
-test_command "Hello, World!" 'Some text with a single quote' "123.45" '3.14' "Another string"
-test_command "Hello, 'nested single quotes', World!" 'Some text with "nested double quotes"' "123.45" '3.14' "Another string with 'both' types of quotes"
-test_command '"Hello, World!" '\''Some text with a single quote'\'' "123.45" '\''3.14'\'' "Another string"'
-test_command '"Hello, '\''nested single quotes'\'', World!" '\''Some text with "nested double quotes"'\'' "123.45" '\''3.14'\'' "Another string with '\''both'\'' types of quotes"'
-test_command "test || test < > << >>"
-test_command "| test || test"
-#
-# test_command "your_custom_command_here"
+test_command "echo \"This is an expandable string with a variable: \$USER\"" # trouble
+test_command "echo \"This is line 1 with a variable: \$USER\""               # trouble
+test_command "echo 'This is line 2 with a variable: \$USER'"
+test_command "command1 arg1 | command2 arg2"
+test_command "command1 arg1 > output.txt"
+test_command "command1 arg1 < input.txt"
+test_command "command1 arg1 >> output.txt"                                     # trouble
+test_command "command1 arg1 << HERE_DOC_CONTENT Some content HERE_DOC_CONTENT" # trouble
+test_command "echo \"Line 8 with special characters: \\< > | \$USER\""         # trouble
+test_command "echo 'Line 9 with special characters: \\< > | \$USER'"
+test_command "echo \"Line 10 with 'quotes' and special characters: \\< > | \$USER\"" # trouble
+test_command "'e''c''h''o' 'This is a line with spaces and \$USER'"
+test_command "ls|wc"
+test_command "echo bonjour'>'outfile"tes
 
 # You can add more test commands as needed
 

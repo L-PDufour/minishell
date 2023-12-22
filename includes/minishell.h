@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/17 14:20:07 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/20 10:23:16 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_token
 	t_tokentype	type;
 	char		*value;
 	int			len;
+  int append;
 }				t_token;
 
 typedef struct s_cmd
@@ -98,6 +99,7 @@ t_list			*tokenizer(const char *str, t_list *token_list);
 t_list			*parser(t_list *cmd_list, const t_list *token_list);
 // Utils.c
 char			**split_with_delimiter(char *s, char c);
+bool			is_white_space(char c);
 char			*display_prompt(void);
 void			parse_cmd(char *str_cmd, t_command *cmd);
 char			*trim_str(char *str);
@@ -111,15 +113,20 @@ void			exec_cmd(t_command cmd, char **envp);
 // cd.c
 void			change_dir(char *str, t_command *cmd);
 char			*parse_env(char *str);
+char	*parse_env_token(char *str);
 // Debug.c
 void			log_printf(const char *format, ...);
-void	tester_ms(char *str, t_list *token_list, t_list *cmd_list);
+void			tester_ms(char *str, t_list *token_list, t_list *cmd_list);
 void			print_cmd(void *content);
 void			print_token(void *content);
 // Pwd.c
 char			*get_pwd(void);
 void			exec_pwd(char *cmd);
 //l_free.c
-void	free_token(void *token_ptr);
-void	free_cmd(void *cmd);
+void			free_token(void *token_ptr);
+void			free_cmd(void *cmd);
+// Syntax.c
+int	syntax_parser(const t_list *token_list);
+// l_error.c
+void lexer_error(int c, t_list *head, void (*del)(void *));
 #endif
