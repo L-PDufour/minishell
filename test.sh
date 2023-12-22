@@ -12,7 +12,7 @@ test_command() {
 }
 
 # List of test commands
-test_command "echo \"This is an expandable string with a variable: \$USER\"" # trouble
+test_command "echo \"This is an expandable string with a variable: \$USER\"" # trouble
 test_command "echo \"This is line 1 with a variable: \$USER\""               # trouble
 test_command "echo 'This is line 2 with a variable: \$USER'"
 test_command "command1 arg1 | command2 arg2"

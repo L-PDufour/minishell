@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/20 20:10:29 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/21 20:25:14 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	tester_ms(char *str, t_list *token_list, t_list *cmd_list)
 	log_printf("\n");
 	token_list = tokenizer(str, token_list);
 	ft_lstiter(token_list, &print_token);
-	// cmd_list = parser(cmd_list, token_list);
+	cmd_list = parser(cmd_list, token_list);
 	ft_lstiter(cmd_list, &print_cmd);
-	// log_printf("\n");
+	log_printf("\n");
 	ft_lstclear(&token_list, free_token);
-	// ft_lstclear(&cmd_list, free_cmd);
+	ft_lstclear(&cmd_list, free_cmd);
 	log_printf("\n");
 }
