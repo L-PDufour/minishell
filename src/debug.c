@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/21 20:25:14 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 12:38:15 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	print_token(void *content)
 
 	token = (t_token *)content;
 	if (token->value)
-  {
+	{
 		log_printf("(%s)", token->value);
-    // log_printf("(%i)", token->append);
-  }
+		// log_printf("(%i)", token->append);
+	}
 	else
 		log_printf("(%c)", (char)token->type);
 }
@@ -49,9 +49,12 @@ void	print_cmd(void *content)
 
 	cmd = (t_cmd *)content;
 	log_printf("Command Table:\n");
-	for (int i = 0; cmd->cmd_table[i] != NULL; ++i)
+	if (cmd->cmd_table)
 	{
-		log_printf("  %s\n", cmd->cmd_table[i]);
+		for (int i = 0; cmd->cmd_table[i] != NULL; ++i)
+		{
+			log_printf("  %s\n", cmd->cmd_table[i]);
+		}
 	}
 	log_printf("Expandable: %d\n", cmd->expandable);
 	log_printf("Input File: %s\n", cmd->infile ? cmd->infile : "N/A");

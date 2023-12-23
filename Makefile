@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/22 09:25:23 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/22 19:12:09 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,7 @@ READLINE_URL		= ftp://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 INC					= -I$(INC_DIR) -I$(LIBFT_DIR) $(READLINE_INC)
 LIBS				= -lncurses
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/l_error.c $(SRC_DIR)/syntax.c $(SRC_DIR)/l_free.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
-$(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c\
+SRC = $(shell find ./src -iname "*.c")
 
 OBJ = $(SRC:.c=.o)
 

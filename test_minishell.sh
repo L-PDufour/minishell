@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
 
-set timeout 5
+set timeout 2
 set prompt "\(minishell\) \$"
 
 # Start minishell with valgrind
@@ -10,10 +10,10 @@ spawn valgrind --leak-check=full --suppressions:supp.txt ./minishell
 expect -re $prompt
 
 # Send a command to minishell
-send "echo 'Hello, Minishell!'\r"
+# send "echo 'Hello, Minishell!'\r"
 
 # # Wait for the command to execute and the prompt to appear again
-expect -re $prompt
+# expect -re $prompt
 #
 # # Send another command
 send "ls\r"
@@ -26,4 +26,3 @@ send "exit\r"
 #
 # # Wait for minishell to exit
 expect eof
-

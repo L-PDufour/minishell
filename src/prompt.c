@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/14 02:09:08 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:52:38 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static char	*print_colored_message(const char *user, const char *path)
 
 /**
  * in case i want to use the old prompt
-		// print_in_color(BOLD_YELLOW, "┌─[");
-	// print_in_color(BOLD_YELLOW, getenv("USER"));
-	// print_in_color(BOLD_YELLOW, "] - ");
-	// print_in_color(GREEN, path);
-	// print_in_color(BOLD_YELLOW, " \n│");
-	// print_in_color(BOLD_YELLOW, "\n└──────────> ");
-	// print_in_color(BOLD_BLUE, "🔥Ready... 🔥 ");
+                // print_in_color(BOLD_YELLOW, "┌─[");
+        // print_in_color(BOLD_YELLOW, getenv("USER"));
+        // print_in_color(BOLD_YELLOW, "] - ");
+        // print_in_color(GREEN, path);
+        // print_in_color(BOLD_YELLOW, " \n│");
+        // print_in_color(BOLD_YELLOW, "\n└──────────> ");
+        // print_in_color(BOLD_BLUE, "🔥Ready... 🔥 ");
 */
 
 char	*display_prompt(void)
@@ -44,9 +44,14 @@ char	*display_prompt(void)
 	char	*read_cmd;
 	char	*msg;
 
+  path = NULL;
+  read_cmd = NULL;
+  msg = NULL;
 	path = get_pwd();
 	msg = print_colored_message(getenv("USER"), path);
 	read_cmd = readline(msg);
+  free(msg);
+  free(path);
 	return (read_cmd);
 }
 
