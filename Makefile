@@ -6,7 +6,7 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/22 19:01:49 by ldufour          ###   ########.fr        #
+#    Updated: 2023/12/22 19:12:09 by ldufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ $(READLINE_LIB): $(READLINE_DIR)
 	else \
 		echo $(BOLD)$(PINK)"Readline 8.1 library already exists, skipping build."$(RESET); \
 	fi
-
 
 $(READLINE_DIR):
 	@mkdir -p $(READLINE_DIR)
