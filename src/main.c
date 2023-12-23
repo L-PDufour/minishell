@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/22 13:42:03 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 20:29:29 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_command		cmd;
-	static t_list	*token_list;
-	static t_list	*cmd_list;
-	char			*cmd_str;
+	t_command	cmd;
+	t_list		*token_list;
+	t_list		*cmd_list;
+	char		*cmd_str;
 
-  cmd_str = NULL;
+	cmd.env=envp;
+	token_list = NULL;
+	cmd_list = NULL;
 	while (true)
 	{
+		// HACK: à laisser c'est le point d'insertion pour les test
 		if (argc == 2)
 		{
 			tester_ms(argv[1], token_list, cmd_list);
