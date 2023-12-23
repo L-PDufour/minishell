@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 18:56:45 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/22 21:07:28 by ldufour          ###   ########.fr       */
+/*   Created: 2023/12/21 16:03:20 by yothmani          #+#    #+#             */
+/*   Updated: 2023/12/22 15:13:51 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef EXECUTION_H
+# define EXECUTION_H
+# include "minishell.h"
 
-char	*get_pwd(void)
-{
-	char	*path;
-
-	path = getcwd(NULL, 0);
-	return (path);
-}
-
-int	exec_pwd(char *cmd)
-{
-	if (!ft_strcmp(cmd, ""))
-		printf("%s\n", get_pwd());
-	else
-		print_in_color(RED, "🚨pwd: too many arguments\n");
-	return(0);
-}
+void	exec_cmd(t_command cmd, char **envp);
+int		exec_builtin(t_command cmd, char **envp);
+int		exec_pwd(char *cmd);
+int		exec_env(t_command cmd);
+int		exec_echo(t_command cmd);
+void	exec_non_builtin(t_command cmd, char **envp);
+#endif

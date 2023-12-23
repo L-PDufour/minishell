@@ -6,12 +6,11 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/21 20:38:58 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 20:58:10 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <stdio.h>
 
 static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 {

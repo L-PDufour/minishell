@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quote_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/14 20:25:14 by joe_jam           #+#    #+#             */
+/*   Updated: 2023/12/21 15:38:27 by yothmani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/minishell.h"
+
+int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
+{
+	int	j;
+
+	i++;
+	j = i;
+	while (str[i] != '\0' && str[i] != delimiter)
+		i++;
+	if (str[i] == '\0') // TODO: ERROR
+		log_printf("quotes_parser: quotes not found");
+	token->type = ALPHA_T;
+	if (delimiter == DOUBLE_QUOTE)
+		token->value = parse_env(ft_substr(str, j, i - j));
+	else
+		token->value = ft_substr(str, j, i - j);
+	token->len = i - j;
+	return (i);
+}
+//TODO:
+/* VALIDATION */
+// delimiter = ' ou "
+// if you find a delimiter increment the counter until you find the same delimiter
+
+//check if the next char is a \ backslash (if its a backslash skip it and
+// keep incrementing and looking for the same delimiter
+// if the closing delimiter is encoutered return 0 esle 1
+
+/* PARSING */
+/* 1-if the first delimiter found is ' then  extract the string until next delimiter
+ without the delimiter and write it as it is
+ 
+* 2-if the first delimiter found is " then  extract the string until next delimiter
+ without the delimiter and pass it to parse env
+
+
+
+
+
+*/
+
+//TODO:
+/**
+ * regarder la focnction quotes parser
+ * tester la focnction quotes parser
+ * integrer la fonction parse env avec "lexer.c"
+ * 
+ * 
+ * 
+ * 
+ * 
+ * **/
