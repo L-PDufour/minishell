@@ -5,76 +5,171 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/22 20:28:17 by ldufour          ###   ########.fr       */
+/*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
+/*   Updated: 2023/12/22 20:43:10 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <stdio.h>
 
-void	log_printf(const char *format, ...)
+static int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 {
-	FILE	*logFile;
-	va_list	args;
+	int	j;
 
-	logFile = fopen("logfile", "a");
-	if (logFile == NULL)
+	j = i;
+	while (str[i] != '\0' && str[i] != delimiter)
+		i++;
+	if (str[i] == '\0') // TODO: ERROR
 	{
-		fprintf(stderr, "Error opening log file!\n");
-		return ;
+		printf("Missing quotes\n");
+		return (-1);
 	}
-	va_start(args, format);
-	vfprintf(logFile, format, args);
-	va_end(args);
-	fclose(logFile);
+	token->type = ALPHA_T;
+	// TODO: En commentaire le temps de regler les leaks
+	// if (delimiter == DOUBLE_QUOTE)
+	// 	token->value = parse_env_token(ft_substr(str, j, (i - j)));
+	// else
+	token->value = ft_substr(str, j, i - j);
+	token->len = i - j;
+	if (str[i + 1] >= 33 && !ft_strchr("<>|", str[i + 1]))
+		token->append = 1;
+	return (++i);
 }
 
-void	print_token(void *content)
+// TODO: Condenser le code et faire des sous-fonctions
+static int	meta_token(const char *str, int i, t_token *token)
 {
-	t_token	*token;
-
-	token = (t_token *)content;
-	if (token->value)
+	if (str[i] == '\0')
+		return (i);
+	else if (str[i] == PIPE)
 	{
-		log_printf("(%s)", token->value);
-		// log_printf("(%i)", token->append);
+		token->type = PIPE_T;
+		return (++i);
 	}
-	else
-		log_printf("(%c)", (char)token->type);
-}
-
-void	print_cmd(void *content)
-{
-	t_cmd	*cmd;
-
-	cmd = (t_cmd *)content;
-	log_printf("Command Table:\n");
-	if (cmd->cmd_table)
+	else if (str[i] == REDIR_I)
 	{
-		for (int i = 0; cmd->cmd_table[i] != NULL; ++i)
+		if (str[i + 1] == REDIR_I)
 		{
-			log_printf("  %s\n", cmd->cmd_table[i]);
+			token->type = HERE_DOC_T;
+			return (2 + i);
 		}
+		token->type = REDIR_IN_T;
+		return (++i);
 	}
-	log_printf("Expandable: %d\n", cmd->expandable);
-	log_printf("Input File: %s\n", cmd->infile ? cmd->infile : "N/A");
-	log_printf("Output File: %s\n", cmd->outfile ? cmd->outfile : "N/A");
-	log_printf("Input FD: %d\n", cmd->fd_input);
-	log_printf("Output FD: %d\n", cmd->fd_output);
-	log_printf("Pipe FDs: %d (read) / %d (write)\n", cmd->pipe[0],
-			cmd->pipe[1]);
+	else if (str[i] == REDIR_O)
+	{
+		if (str[i + 1] == REDIR_O)
+		{
+			token->type = REDIR_AP_T;
+			return (2 + i);
+		}
+		token->type = REDIR_OUT_T;
+		return (++i);
+	}
+	return (++i);
 }
 
-void	tester_ms(char *str, t_list *token_list, t_list *cmd_list)
+static int	alpha_token(const char *str, int i, t_token *token)
 {
-	log_printf("STR = %s\n", str);
-	log_printf("\n");
-	token_list = tokenizer(str, token_list);
-	ft_lstiter(token_list, &print_token);
-	cmd_list = parser(cmd_list, token_list);
-	ft_lstiter(cmd_list, &print_cmd);
-	log_printf("\n");
-	ft_lstclear(&token_list, free_token);
-	ft_lstclear(&cmd_list, free_cmd);
-	log_printf("\n");
+	int	j;
+	int	flag;
+
+	flag = 0;
+	j = i;
+	while (str[i] != '\0' && !is_white_space(str[i]) &&
+			!ft_strchr("'\"<>|", str[i]))
+	{
+		if (str[i] == '$')
+			flag = 1;
+		i++;
+	}
+	// if (flag == 1)
+	// token->value = parse_env_token(ft_substr(str, j, i - j));
+	// else
+	token->value = ft_substr(str, j, i - j);
+	token->type = ALPHA_T;
+	token->len = i - j;
+	if (str[i] >= 33 && !ft_strchr("<>|", str[i]))
+		token->append = 1;
+	return (i);
+}
+
+static int	get_token(const char *str, int i, t_token *token)
+{
+	int	j;
+
+	if (is_white_space(str[i]))
+	{
+		while (is_white_space(str[i]))
+			i++;
+	}
+	if (str[i] == '\0')
+		return (i);
+	if (ft_strchr("<>|", str[i]))
+		return (meta_token(str, i, token));
+	else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
+		return (quotes_parser(str, i + 1, token, str[i]));
+	else
+		return (alpha_token(str, i, token));
+}
+
+t_list	*tokenizer(const char *str, t_list *token_list)
+{
+	int		i;
+	int		len;
+	t_token	*token;
+	char	*copy;
+	char	*temp;
+
+	i = 0;
+	len = ft_strlen(str);
+	token = NULL;
+	copy = NULL;
+	while (i < len)
+	{
+		token = safe_calloc(1, sizeof(t_token));
+		i = get_token(str, i, token);
+		if (i == -1)
+		{
+			printf("%s\n", "erreur");
+			lexer_error(130, token_list, print_token);
+			free(token);
+			break ;
+		}
+		if (token->type == ALPHA_T)
+		{
+			if (token->append == 1)
+			{
+				if (copy)
+				{
+					temp = ft_strjoin(copy, token->value);
+					free(copy);
+					copy = temp;
+				}
+				else
+				{
+					copy = ft_strdup(token->value);
+				}
+				free(token->value);
+				free(token);
+				token = NULL;
+			}
+			else if (token->append == 0 && copy)
+			{
+				temp = ft_strjoin(copy, token->value);
+				free(copy);
+				free(token->value);
+				token->value = temp;
+				copy = NULL;
+			}
+		}
+		if (token)
+			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
+	}
+	free(copy);
+	i = syntax_parser(token_list);
+	if (i == -1)
+		lexer_error(2, token_list, print_token);
+	return (token_list);
 }

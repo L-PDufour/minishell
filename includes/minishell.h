@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/22 20:23:59 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 20:40:44 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_command
 	char		*option2;
 	char		*cmd_str;
 	char		**env_copy;
-	char		**env;
 	char		*old_pwd;
 	char		*pwd;
 }				t_command;
@@ -100,6 +99,7 @@ t_list			*tokenizer(const char *str, t_list *token_list);
 t_list			*parser(t_list *cmd_list, const t_list *token_list);
 // Utils.c
 char			**split_with_delimiter(char *s, char c);
+bool			is_white_space(char c);
 char			*display_prompt(void);
 void			parse_cmd(char *str_cmd, t_command *cmd);
 char			*trim_str(char *str);
@@ -108,8 +108,6 @@ char			**copy_env(char **envp, t_command *cmd);
 void			*safe_calloc(size_t nmemb, size_t size);
 void			clean_table(char **tab);
 void			print_in_color(char *color, char *msg);
-int	find_in_env(char *key, char **envp);
-void	open_and_handle_new_terminal(t_command cmd);
 // Prompt.c
 void			exec_cmd(t_command cmd, char **envp);
 // cd.c
@@ -119,9 +117,6 @@ char	*parse_env_token(char *str);
 // Debug.c
 void			log_printf(const char *format, ...);
 void			tester_ms(char *str, t_list *token_list, t_list *cmd_list);
-// Debug.c
-void			log_printf(const char *format, ...);
-void	tester_ms(char *str, t_list *token_list, t_list *cmd_list);
 void			print_cmd(void *content);
 void			print_token(void *content);
 // Pwd.c
@@ -134,6 +129,4 @@ void			free_cmd(void *cmd);
 int	syntax_parser(const t_list *token_list);
 // l_error.c
 void lexer_error(int c, t_list *head, void (*del)(void *));
-void	free_token(void *token_ptr);
-void	free_cmd(void *cmd);
 #endif

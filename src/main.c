@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/22 20:36:54 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 20:44:12 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv, char **envp)
 	t_list		*cmd_list;
 	char		*cmd_str;
 
-	cmd.env=envp;
 	token_list = NULL;
 	cmd_list = NULL;
 	while (true)
