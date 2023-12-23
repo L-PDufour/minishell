@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:11:27 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 20:42:06 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/22 15:07:01 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,17 @@ int	exec_builtin(t_command cmd, char **envp)
 	char	*tmp;
 
 	i = 0;
-	if (!strcmp(cmd.name, "pwd"))
-	{
-		exec_pwd(cmd.option);
-		return (0);
-	}
-	else if (!strcmp(cmd.name, "./minishell"))
-	{
-		open_and_handle_new_terminal(cmd);
-		return (0);
-	}
-	else if (!strcmp(cmd.name, "cd"))
-	{
-		change_dir(cmd.option, &cmd);
-		return (0);
-	}
-	else if (!strcmp(cmd.name, "exit"))
+	if (!ft_strcmp(cmd.name, "pwd"))
+		return(exec_pwd(cmd.option));
+	else if (!ft_strcmp(cmd.name, "./minishell"))
+		return(open_and_handle_new_terminal(cmd));
+	else if (!ft_strcmp(cmd.name, "cd"))
+		return (change_dir(cmd.option, &cmd), 0);
+	else if (!ft_strcmp(cmd.name, "exit"))
 		return(exec_exit(cmd));
-	else if (!strcmp(cmd.name, "echo"))
+	else if (!ft_strcmp(cmd.name, "echo"))
 		return (exec_echo(cmd));
-	else if (!strcmp(cmd.name, "env"))
+	else if (!ft_strcmp(cmd.name, "env"))
 		return (exec_env(cmd));
 	return (1);
 }

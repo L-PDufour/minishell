@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 19:07:02 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/22 14:45:57 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	find_in_env(char *key, char **envp)
 	return (-1);
 }
 
-void	open_and_handle_new_terminal(t_command cmd)
+int	open_and_handle_new_terminal(t_command cmd)
 {
 	int		idx;
 	char	*old;
@@ -86,6 +86,7 @@ void	open_and_handle_new_terminal(t_command cmd)
 	old = ft_substr(cmd.env[idx], 6, ft_strlen(cmd.env[idx]));
 	cmd.env[idx] = ft_strjoin("SHLVL=", ft_itoa(ft_atoi(old) + 1));
 	execve("minishell", NULL, cmd.env);
+	return(0);
 }
 
 int	exec_env(t_command cmd)

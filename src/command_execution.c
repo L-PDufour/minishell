@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:20:32 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/22 14:27:04 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/22 15:14:29 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ static char	*get_cmd_path(char *cmd, char **envp)
 	return (NULL);
 }
 
+void	exec_non_builtin(t_command cmd, char **envp)
+{
+	char	**tmp;
+	char	*cmd_path;
+
+	tmp = ft_split(cmd.cmd_str, ' ');
+	cmd_path = get_cmd_path(tmp[0], envp);
+	if (!cmd_path || execve(cmd_path, tmp, cmd.env) == -1)
+	{
+		clean_table(tmp);
+		print_in_color(RED, "🚨command not found:  ");
+		print_in_color(RED, cmd.name);
+		printf("\n");
+	}
+}
+
 void	exec_cmd(t_command cmd, char **envp)
 {
 	int		i;
@@ -53,26 +69,11 @@ void	exec_cmd(t_command cmd, char **envp)
 	pid = fork();
 	if (pid == -1)
 		printf(" fork failed\n");
-	if (pid ==  0)
+	if (pid == 0)
 	{
-
 		cmd.pid = pid;
 		if (exec_builtin(cmd, cmd.env))
-		{
-			tmp = ft_split(cmd.cmd_str, ' ');
-			cmd_path = get_cmd_path(tmp[0], envp);
-			if (!cmd_path || execve(cmd_path, tmp, cmd.env) == -1)
-			{
-				clean_table(tmp);
-				print_in_color(RED, "🚨command not found:  ");
-				print_in_color(RED, cmd.name);
-				printf("\n");
-			}
-		}
+			exec_non_builtin(cmd, cmd.env);
 	}
 	waitpid(pid, NULL, 0);
-	
-
-	printf("pid  :===>%i\n", pid);
-	// return (0);
 }

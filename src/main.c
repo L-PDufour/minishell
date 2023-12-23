@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/22 21:05:02 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/22 21:07:01 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv, char **envp)
 			cmd_list = parser(cmd_list, token_list);
 			cmd_str = trim_str(cmd_str);
 			add_history(cmd_str);
-			if (strcmp(cmd_str, ""))
+			if (ft_strcmp(cmd_str, ""))
 			{
 				parse_cmd(cmd_str, &cmd);
 				exec_cmd(cmd, envp);
