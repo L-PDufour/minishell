@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_free.c                                           :+:      :+:    :+:   */
+/*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:18:08 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/17 14:20:09 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/21 15:39:51 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,25 @@ void	free_cmd(void *cmd)
 	free(typed_cmd->outfile);
 	free(typed_cmd->infile);
 	free(typed_cmd);
+}
+
+void	clean_table(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	exit_prg_at_error(char *str)
+{
+	printf("Error\n");
+	if (str)
+		printf("%s\n", str);
+	exit(EXIT_FAILURE);
 }

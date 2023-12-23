@@ -6,7 +6,11 @@
 #    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/12/22 20:17:29 by ldufour          ###   ########.fr        #
+=======
+#    Updated: 2023/12/21 15:42:23 by yothmani         ###   ########.fr        #
+>>>>>>> f5390e4 (refactoring and norms)
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +30,8 @@ READLINE_URL		= ftp://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 INC					= -I$(INC_DIR) -I$(LIBFT_DIR) $(READLINE_INC)
 LIBS				= -lncurses
 
-SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/l_free.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c\
-$(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c\
+SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c $(SRC_DIR)/free_and_exit.c\
+$(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c $(SRC_DIR)/builtin/builtin_execution.c $(SRC_DIR)/env_utils.c $(SRC_DIR)/command_execution.c $(SRC_DIR)/quote_handler.c\
 
 OBJ = $(SRC:.c=.o)
 
