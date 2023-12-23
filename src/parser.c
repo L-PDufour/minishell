@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/23 14:40:20 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/23 18:09:22 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_cmd	*cmd_creation(t_list **head)
     t_cmd	*cmd;
     
     cmd = safe_calloc(1, sizeof(t_cmd));
-    printf("Processing token type: %d\n", ((t_token *)(*head)->content)->type);
+    // printf("Processing token type: %d\n", ((t_token *)(*head)->content)->type);
     
     if (((t_token *)(*head)->content)->type == PIPE_T)
     {
