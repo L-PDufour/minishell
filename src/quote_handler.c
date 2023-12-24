@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:25:14 by joe_jam           #+#    #+#             */
-/*   Updated: 2023/12/22 21:21:44 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/29 20:14:29 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	quotes_parser(const char *str, int i, t_token *token, int delimiter)
 	}
 	token->type = ALPHA_T;
 	// TODO: En commentaire le temps de regler les leaks
-	// if (delimiter == DOUBLE_QUOTE)
-	// 	token->value = parse_env_token(ft_substr(str, j, (i - j)));
-	// else
-	token->value = ft_substr(str, j, i - j);
+	if (delimiter == DOUBLE_QUOTE)
+		token->value = parse_env(ft_substr(str, j, (i - j)));
+	else
+		token->value = ft_substr(str, j, i - j);
 	token->len = i - j;
 	if (str[i + 1] >= 33 && !ft_strchr("<>|", str[i + 1]))
 		token->append = 1;
