@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/23 18:09:22 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/29 13:43:25 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cmd	*command_table(t_list **head, t_cmd *cmd)
 		tmp = tmp->next;
 	}
 	cmd->cmd_table = safe_calloc(array_size, sizeof(char *));
-	tmp = *head; 
+	tmp = *head;
 	while (tmp && ((t_token *)tmp->content)->type == ALPHA_T)
 	{
 		cmd->cmd_table[i] = ft_strdup(((t_token *)tmp->content)->value);
@@ -41,41 +41,37 @@ t_cmd	*command_table(t_list **head, t_cmd *cmd)
 
 t_cmd	*cmd_creation(t_list **head)
 {
-    t_cmd	*cmd;
-    
-    cmd = safe_calloc(1, sizeof(t_cmd));
-    // printf("Processing token type: %d\n", ((t_token *)(*head)->content)->type);
-    
-    if (((t_token *)(*head)->content)->type == PIPE_T)
-    {
-        *head = (*head)->next;
-    }
+	t_cmd	*cmd;
 
-    if (((t_token *)(*head)->content)->type == ALPHA_T)
-    {
-        cmd = command_table(head, cmd);
-        if (*head)
-        {
-            *head = (*head)->next;
-        }
-    }
-    return cmd;
+	cmd = safe_calloc(1, sizeof(t_cmd));
+	if (((t_token *)(*head)->content)->type == PIPE_T)
+	{
+		*head = (*head)->next;
+	}
+	if (((t_token *)(*head)->content)->type == ALPHA_T)
+	{
+		cmd = command_table(head, cmd);
+		if (*head)
+		{
+			*head = (*head)->next;
+		}
+	}
+	return (cmd);
 }
 
 t_list	*parser(t_list *cmd_list, const t_list *token_list)
 {
-    t_list	*cmd_node;
-    t_cmd	*cmd;
+	t_list	*cmd_node;
+	t_cmd	*cmd;
+	t_list	*tmp_token;
 
-    log_printf("\n%s\n", "Parser : ");
-    t_list *tmp_token = (t_list *)token_list;
-
-    while (tmp_token)
-    {
-        cmd_node = ft_lstnew((t_cmd *)cmd_creation(&tmp_token));
-        if (cmd_node)
-            ft_lstadd_back(&cmd_list, cmd_node);
-    }
-
-    return cmd_list;
+	log_printf("\n%s\n", "Parser : ");
+	tmp_token = (t_list *)token_list;
+	while (tmp_token)
+	{
+		cmd_node = ft_lstnew((t_cmd *)cmd_creation(&tmp_token));
+		if (cmd_node)
+			ft_lstadd_back(&cmd_list, cmd_node);
+	}
+	return (cmd_list);
 }
