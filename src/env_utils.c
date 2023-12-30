@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/22 21:32:40 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/29 20:47:49 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ char	*parse_env(char *str)
 	char	*result;
 	int		i;
 	char	*env_value;
-	int		idx;
 
-	idx = 0;
 	result = "";
 	tmp = split_with_delimiter(str, '$');
 	if (!tmp)

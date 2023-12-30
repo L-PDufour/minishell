@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:44:44 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/29 13:43:49 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/29 16:49:59 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,44 +45,29 @@ char	**envp_path_creation_leon(char **envp)
 
 void	exec_leon(t_list *cmd_list)
 {
-  t_cmd *cmd;
+	t_cmd	*cmd;
 
-  cmd = cmd_list->content;
-
+	cmd = cmd_list->content;
 	if (cmd && cmd->cmd_table)
 	{
-    log_printf("Executing: %s\n", cmd->cmd_table[0]);
+		log_printf("Executing: %s\n", cmd->cmd_table[0]);
 		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
 		perror("execve");
 	}
 }
 
-int path_verification(char **envp_path, t_cmd *cmd) {
-    if (cmd == NULL || cmd->cmd_table[0] == NULL) {
-        return 1;
-    }
+void	exec_leon(t_list *cmd_list)
+{
+	t_cmd	*cmd;
 
-    int i = 0;
-    while (envp_path[i] != NULL) {
-        if (envp_path[i] != NULL) {
-            char *str = ft_strjoin(envp_path[i], cmd->cmd_table[0]);
-            if (str == NULL) {
-                return 1;
-            }
-            if (access(str, F_OK | X_OK) == 0) {
-                // Update cmd->cmd_table[0] with the full path
-                free(cmd->cmd_table[0]);
-                cmd->cmd_table[0] = str;
-                return 0;
-            }
-            free(str);
-        }
-        i++;
-    }
-
-    return 1; // No valid executable found in any path
+	cmd = cmd_list->content;
+	if (cmd && cmd->cmd_table)
+	{
+		log_printf("Executing: %s\n", cmd->cmd_table[0]);
+		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
+		perror("execve");
+	}
 }
-
 void	update_cmd_list(t_list *cmd_list, char **envp)
 {
 	char	**envp_path;
@@ -117,11 +102,10 @@ void	update_cmd_list(t_list *cmd_list, char **envp)
 int	**pipes_creation(int lst_size)
 {
 	int	i;
-	int	j;
 	int	**pipes;
 
 	i = 0;
-	pipes = (int **)safe_calloc(lst_size, sizeof(int *));
+	pipes = (int **)safe_calloc(lst_size + 1, sizeof(int *));
 	while (i < lst_size)
 	{
 		pipes[i] = (int *)safe_calloc(2, sizeof(int));
@@ -132,6 +116,7 @@ int	**pipes_creation(int lst_size)
 		}
 		i++;
 	}
+	pipes[i] = NULL;
 	return (pipes);
 }
 
@@ -171,6 +156,19 @@ void	process_exec(int i, int lst_size, int **pipes, t_list *cmd_list)
 	exit(EXIT_SUCCESS);
 }
 
+void	free_array(void **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i] != NULL)
+	{
+		free(content[i]);
+		i++;
+	}
+	free(content);
+}
+
 void	process_fork(t_list *cmd_list, int lst_size)
 {
 	pid_t	*pid;
@@ -179,7 +177,7 @@ void	process_fork(t_list *cmd_list, int lst_size)
 	int		**pipes;
 
 	pid = (pid_t *)safe_calloc(lst_size, sizeof(pid_t));
-	pipes = pipes_creation(lst_size - 1);
+	pipes = pipes_creation(lst_size);
 	i = -1;
 	while (++i < lst_size && cmd_list)
 	{
@@ -199,5 +197,5 @@ void	process_fork(t_list *cmd_list, int lst_size)
 	while (++i < lst_size)
 		waitpid(pid[i], &status, 0);
 	free(pid);
-  free(pipes);
+	free_array((void **)pipes);
 }
