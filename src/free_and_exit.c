@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:18:08 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/22 21:26:25 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:32:31 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,7 @@ void	free_cmd(void *cmd)
 		return ;
 	typed_cmd = (t_cmd *)cmd;
 	if (typed_cmd->cmd_table)
-	{
-		i = 0;
-		while (typed_cmd->cmd_table[i] != NULL)
-		{
-			free(typed_cmd->cmd_table[i]);
-			i++;
-		}
-		free(typed_cmd->cmd_table);
-	}
+		free_array((void **)typed_cmd->cmd_table);
 	free(typed_cmd->outfile);
 	free(typed_cmd->infile);
 	free(typed_cmd);

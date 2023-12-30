@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/29 13:43:25 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:39:42 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_cmd	*command_table(t_list **head, t_cmd *cmd)
 	t_list	*tmp;
 
 	tmp = *head;
-	array_size = 1;
+	array_size = 0;
 	i = 0;
 	while (tmp && ((t_token *)tmp->content)->type == ALPHA_T)
 	{
 		array_size++;
 		tmp = tmp->next;
 	}
-	cmd->cmd_table = safe_calloc(array_size, sizeof(char *));
+	cmd->cmd_table = (char **)safe_calloc(array_size + 1, sizeof(char *));
 	tmp = *head;
 	while (tmp && ((t_token *)tmp->content)->type == ALPHA_T)
 	{
@@ -45,16 +45,12 @@ t_cmd	*cmd_creation(t_list **head)
 
 	cmd = safe_calloc(1, sizeof(t_cmd));
 	if (((t_token *)(*head)->content)->type == PIPE_T)
-	{
 		*head = (*head)->next;
-	}
 	if (((t_token *)(*head)->content)->type == ALPHA_T)
 	{
 		cmd = command_table(head, cmd);
 		if (*head)
-		{
 			*head = (*head)->next;
-		}
 	}
 	return (cmd);
 }

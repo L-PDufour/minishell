@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/29 13:42:52 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/30 13:43:28 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ int	main(int argc, char **argv, char **envp)
 		ft_lstclear(&cmd_list, free_cmd);
 		free(cmd_str);
 	}
+	ft_lstclear(&token_list, free_token);
+	ft_lstclear(&cmd_list, free_cmd);
+	free(cmd_str);
 	log_printf("\n");
 	log_printf("END OF LOG", cmd_str);
 	return (0);
 }
-
-
