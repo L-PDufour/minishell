@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:44:44 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/29 16:49:59 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/29 20:59:36 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,6 @@ void	exec_leon(t_list *cmd_list)
 	}
 }
 
-void	exec_leon(t_list *cmd_list)
-{
-	t_cmd	*cmd;
-
-	cmd = cmd_list->content;
-	if (cmd && cmd->cmd_table)
-	{
-		log_printf("Executing: %s\n", cmd->cmd_table[0]);
-		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
-		perror("execve");
-	}
-}
 void	update_cmd_list(t_list *cmd_list, char **envp)
 {
 	char	**envp_path;
