@@ -56,39 +56,18 @@ void	exec_leon(t_list *cmd_list)
 	}
 }
 
-int	path_verification(char **envp_path, t_cmd *cmd)
+void	exec_leon(t_list *cmd_list)
 {
-	int		i;
-	char	*str;
+	t_cmd	*cmd;
 
-	if (cmd == NULL || cmd->cmd_table[0] == NULL)
+	cmd = cmd_list->content;
+	if (cmd && cmd->cmd_table)
 	{
-		return (1);
+		log_printf("Executing: %s\n", cmd->cmd_table[0]);
+		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
+		perror("execve");
 	}
-	i = 0;
-	while (envp_path[i] != NULL)
-	{
-		if (envp_path[i] != NULL)
-		{
-			str = ft_strjoin(envp_path[i], cmd->cmd_table[0]);
-			if (str == NULL)
-			{
-				return (1);
-			}
-			if (access(str, F_OK | X_OK) == 0)
-			{
-				// Update cmd->cmd_table[0] with the full path
-				free(cmd->cmd_table[0]);
-				cmd->cmd_table[0] = str;
-				return (0);
-			}
-			free(str);
-		}
-		i++;
-	}
-	return (1); // No valid executable found in any path
 }
-
 void	update_cmd_list(t_list *cmd_list, char **envp)
 {
 	char	**envp_path;
