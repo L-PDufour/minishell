@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:44:44 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/30 13:39:10 by ldufour          ###   ########.fr       */
+/*   Updated: 2023/12/30 17:21:49 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,60 @@ char	**envp_path_creation_leon(char **envp)
 	return (envp_path);
 }
 
+int	path_verification(char **envp_path, t_cmd *cmd)
+{
+	int		i;
+	char	*str;
+
+	if (cmd == NULL || cmd->cmd_table[0] == NULL)
+	{
+		return (1);
+	}
+	i = 0;
+	while (envp_path[i] != NULL)
+	{
+		if (envp_path[i] != NULL)
+		{
+			str = ft_strjoin(envp_path[i], cmd->cmd_table[0]);
+			if (str == NULL)
+			{
+				return (1);
+			}
+			if (access(str, F_OK | X_OK) == 0)
+			{
+				// Update cmd->cmd_table[0] with the full path
+				free(cmd->cmd_table[0]);
+				cmd->cmd_table[0] = str;
+				return (0);
+			}
+			free(str);
+		}
+		i++;
+	}
+	return (1); // No valid executable found in any path
+}
+
+// int	path_verification(char **envp_path, t_cmd *cmd)
+// {
+// 	int		i;
+// 	char	*str;
+//
+// 	i = 0;
+// 	while (envp_path[i] != NULL)
+// 	{
+// 		str = ft_strjoin(envp_path[i], cmd->cmd_table[0]);
+// 		if (access(str, F_OK | X_OK) == 0)
+// 		{
+// 			cmd->cmd_table[0] = ft_strdup(str);
+// 			free(str);
+// 			return (0);
+// 		}
+// 		free(str);
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
 void	exec_leon(t_list *cmd_list)
 {
 	t_cmd	*cmd;
@@ -54,27 +108,6 @@ void	exec_leon(t_list *cmd_list)
 		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
 		perror("execve");
 	}
-}
-
-int	path_verification(char **envp_path, t_cmd *cmd)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (envp_path[i] != NULL)
-	{
-		str = ft_strjoin(envp_path[i], cmd->cmd_table[0]);
-		if (access(str, F_OK | X_OK) == 0)
-		{
-			cmd->cmd_table[0] = ft_strdup(str);
-			free(str);
-			return (0);
-		}
-		free(str);
-		i++;
-	}
-	return (1);
 }
 
 void	update_cmd_list(t_list *cmd_list, char **envp)
