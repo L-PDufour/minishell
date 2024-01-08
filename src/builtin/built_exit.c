@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 19:50:09 by joe_jam           #+#    #+#             */
-/*   Updated: 2023/12/22 17:04:58 by yothmani         ###   ########.fr       */
+/*   Updated: 2023/12/22 14:26:08 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exec_exit(t_command cmd)
 {
 	// sig_t				sig;
 	// struct sigaction	sact;
- 
+
 	// sigemptyset(&sact.sa_mask);
 	// sact.sa_flags = 0;
 	// sact.sa_handler = SIG_IGN;

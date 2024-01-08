@@ -6,7 +6,7 @@
 #    By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2023/12/23 14:52:43 by ldufour          ###   ########.fr        #
+#    Updated: 2024/01/08 16:36:06 by joe_jam          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ LIBS				= -lncurses
 
 
 SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/parser.c $(SRC_DIR)/prompt.c $(SRC_DIR)/builtin/pwd.c $(SRC_DIR)/free_and_exit.c\
-$(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c $(SRC_DIR)/builtin/builtin_execution.c $(SRC_DIR)/env_utils.c $(SRC_DIR)/command_execution.c $(SRC_DIR)/quote_handler.c $(SRC_DIR)/l_error.c $(SRC_DIR)/leon_bouette.c\
+$(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c $(SRC_DIR)/builtin_execution.c $(SRC_DIR)/env_utils.c $(SRC_DIR)/command_execution.c $(SRC_DIR)/quote_handler.c $(SRC_DIR)/l_error.c $(SRC_DIR)/leon_bouette.c\
+ $(SRC_DIR)/builtin/echo.c  $(SRC_DIR)/builtin/env.c  \
+$(SRC_DIR)/builtin/built_exit.c  $(SRC_DIR)/fun.c\
+
 
 OBJ = $(SRC:.c=.o)
 
