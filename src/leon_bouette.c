@@ -6,11 +6,12 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:44:44 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/30 17:21:49 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/08 20:14:25 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
+#include <unistd.h>
 
 char	**envp_path_creation_leon(char **envp)
 {
@@ -76,25 +77,12 @@ int	path_verification(char **envp_path, t_cmd *cmd)
 	return (1); // No valid executable found in any path
 }
 
-// int	path_verification(char **envp_path, t_cmd *cmd)
+// void	file_creation_bonus(char **argv, t_pipex *pipex, int argc)
 // {
-// 	int		i;
-// 	char	*str;
-//
-// 	i = 0;
-// 	while (envp_path[i] != NULL)
-// 	{
-// 		str = ft_strjoin(envp_path[i], cmd->cmd_table[0]);
-// 		if (access(str, F_OK | X_OK) == 0)
-// 		{
-// 			cmd->cmd_table[0] = ft_strdup(str);
-// 			free(str);
-// 			return (0);
-// 		}
-// 		free(str);
-// 		i++;
-// 	}
-// 	return (1);
+// 	pipex->infile = open(argv[1], O_RDONLY);
+// 	pipex->outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
+// 	exit_pipex(pipex->infile, "Error with infile", pipex);
+// 	exit_pipex(pipex->outfile, "Error with outfile", pipex);
 // }
 
 void	exec_leon(t_list *cmd_list)
@@ -105,6 +93,17 @@ void	exec_leon(t_list *cmd_list)
 	if (cmd && cmd->cmd_table)
 	{
 		log_printf("Executing: %s\n", cmd->cmd_table[0]);
+		if (cmd->infile)
+		{
+			cmd->fd_input = open(cmd->infile, O_RDONLY);
+      dup2(cmd->fd_input, STDIN_FILENO);
+		}
+		if (cmd->outfile)
+		{
+			cmd->fd_output = open(cmd->outfile, O_CREAT | O_RDWR | O_TRUNC,
+					0644);
+      dup2(cmd->fd_output, STDOUT_FILENO);
+		}
 		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
 		perror("execve");
 	}
