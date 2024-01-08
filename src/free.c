@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_exit.c                                    :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:18:08 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/21 15:39:51 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:46:59 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ void	free_cmd(void *cmd)
 	free(typed_cmd);
 }
 
-void	clean_table(char **tab)
+void	clean_table(char **table)
 {
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (table[i])
 	{
-		free(tab[i]);
+		free(table[i]);
 		i++;
 	}
-	free(tab);
+	free(table);
 }
 
 void	exit_prg_at_error(char *str)
