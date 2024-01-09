@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/22 21:22:35 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/09 08:34:06 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ bool			is_white_space(char c);
 int				ft_strcmp(char *s1, char *s2);
 /*#############################|| debug.c ||##############################*/
 void			log_printf(const char *format, ...);
-void			tester_ms(char *str, t_list *token_list, t_list *cmd_list);
 void			print_cmd(void *content);
 void			print_token(void *content);
 
