@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/29 20:26:16 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/09 09:12:56 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static int	meta_token(const char *str, int i, t_token *token)
 
 static int	alpha_token(const char *str, int i, t_token *token)
 {
-	int	j;
-	int	flag;
-  char *copy;
+	int		j;
+	int		flag;
+	char	*copy;
 
 	flag = 0;
 	j = i;
@@ -61,11 +61,11 @@ static int	alpha_token(const char *str, int i, t_token *token)
 		i++;
 	}
 	if (flag == 1)
-  {
-    copy = ft_substr(str, j, i - j);
+	{
+		copy = ft_substr(str, j, i - j);
 		token->value = parse_env(copy);
-    free(copy);
-  }
+		free(copy);
+	}
 	else
 		token->value = ft_substr(str, j, i - j);
 	token->type = ALPHA_T;
@@ -144,8 +144,10 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 				copy = NULL;
 			}
 		}
-		if (token)
+		if (token->type)
 			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
+		else
+			free(token);
 	}
 	free(copy);
 	// i = syntax_parser(token_list);

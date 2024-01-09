@@ -6,11 +6,12 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/08 19:44:03 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/09 08:45:15 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <readline/history.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -65,7 +66,8 @@ int	main(int argc, char **argv, char **envp)
 		token_list = NULL;
 		cmd_list = NULL;
 		cmd_str = display_prompt();
-		log_printf("\nSTR = %s\n", cmd_str);
+		add_history(cmd_str);
+    log_printf("\nSTR = %s\n", cmd_str);
 		token_list = tokenizer(cmd_str, token_list);
 		ft_lstiter(token_list, &print_token);
 		cmd_list = parser(cmd_list, token_list);
@@ -80,7 +82,6 @@ int	main(int argc, char **argv, char **envp)
 	ft_lstclear(&token_list, free_token);
 	ft_lstclear(&cmd_list, free_cmd);
 	free(cmd_str);
-	log_printf("\n");
-	log_printf("END OF LOG", cmd_str);
+	log_printf("END OF LOG");
 	return (0);
 }

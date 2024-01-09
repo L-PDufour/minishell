@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:40 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/08 13:39:06 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/09 09:32:28 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,27 @@ t_cmd	*command_redirection(t_list **head, t_cmd *cmd)
 		tmp = tmp->next;
 		if (tmp && ((t_token *)(tmp)->content)->type == ALPHA_T)
 		{
+      cmd->amend = false;
+      if (cmd->outfile)
+        free(cmd->outfile);
 			cmd->outfile = ft_strdup(((t_token *)(tmp)->content)->value);
 			*head = tmp;
 			if (tmp)
 				*head = tmp->next;
 		}
 	}
-	return (cmd);
+	if (tmp && ((t_token *)(tmp)->content)->type == REDIR_AP_T)
+	{
+		tmp = tmp->next;
+		if (tmp && ((t_token *)(tmp)->content)->type == ALPHA_T)
+		{
+      cmd->amend = true;
+			cmd->outfile = ft_strdup(((t_token *)(tmp)->content)->value);
+			*head = tmp;
+			if (tmp)
+				*head = tmp->next;
+		}
+	}return (cmd);
 }
 
 t_cmd	*cmd_creation(t_list **head)
@@ -98,7 +112,6 @@ t_cmd	*cmd_creation(t_list **head)
 	return (cmd_creation(head));
 }
 
-// Je retourne une commande mais je dois attendre de trouver un pipe ou la fin
 t_list	*parser(t_list *cmd_list, const t_list *token_list)
 {
 	t_list	*cmd_node;
