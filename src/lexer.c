@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/09 09:12:56 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/09 20:07:16 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	alpha_token(const char *str, int i, t_token *token)
 	token->type = ALPHA_T;
 	token->len = i - j;
 	if (str[i] >= 33 && !ft_strchr("<>|", str[i]))
-		token->append = 1;
+		token->append = true;
 	return (i);
 }
 
@@ -94,57 +94,63 @@ static int	get_token(const char *str, int i, t_token *token)
 		return (alpha_token(str, i, token));
 }
 
+void	temp_error(int i, t_list *token_list, t_token *token)
+{
+	if (i == -1)
+	{
+		printf("%s\n", "erreur");
+		lexer_error(130, token_list, print_token);
+		free(token);
+	}
+}
+
+char	*token_amend(t_token *token, char *copy)
+{
+	char	*temp;
+
+	if (token->type == ALPHA_T && token->append == true)
+	{
+		if (copy)
+		{
+			temp = ft_strjoin(copy, token->value);
+			free(copy);
+      free(token->value);
+			return (temp);
+		}
+		else
+		{
+      temp = ft_strdup(token->value);
+      free(token->value);
+			return (temp);
+		}
+	}
+	else if (token->type == ALPHA_T && token->append == false && copy)
+	{
+		temp = token->value;
+		token->value = ft_strjoin(copy, token->value);
+		free(temp);
+		free(copy);
+	}
+	return (NULL);
+}
+
 t_list	*tokenizer(const char *str, t_list *token_list)
 {
 	int		i;
-	int		len;
 	t_token	*token;
 	char	*copy;
-	char	*temp;
 
 	i = 0;
-	len = ft_strlen(str);
-	token = NULL;
 	copy = NULL;
-	while (i < len)
+	while (i < ft_strlen(str))
 	{
 		token = safe_calloc(1, sizeof(t_token));
 		i = get_token(str, i, token);
-		if (i == -1)
-		{
-			printf("%s\n", "erreur");
-			lexer_error(130, token_list, print_token);
-			free(token);
-			break ;
-		}
-		if (token->type == ALPHA_T)
-		{
-			if (token->append == 1)
-			{
-				if (copy)
-				{
-					temp = ft_strjoin(copy, token->value);
-					free(copy);
-					copy = temp;
-				}
-				else
-				{
-					copy = ft_strdup(token->value);
-				}
-				free(token->value);
-				free(token);
-				token = NULL;
-			}
-			else if (token->append == 0 && copy)
-			{
-				temp = ft_strjoin(copy, token->value);
-				free(copy);
-				free(token->value);
-				token->value = temp;
-				copy = NULL;
-			}
-		}
-		if (token->type)
+		temp_error(i, token_list, token);
+		copy = token_amend(token, copy);
+		if (copy && token->type == ALPHA_T && token->append == true)
+			token->value = copy;
+		if (token && token->type && token->append == false)
 			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
 		else
 			free(token);
