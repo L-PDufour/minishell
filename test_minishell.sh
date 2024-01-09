@@ -16,7 +16,7 @@ expect -re $prompt
 # expect -re $prompt
 #
 # # Send another command
-send "ls\r"
+send "< 1 ls > 2 | < 3 wc >4"
 #
 # # Wait for the command to execute and the prompt to appear again
 expect -re $prompt
