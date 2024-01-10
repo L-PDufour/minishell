@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/09 08:35:17 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/10 10:16:40 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,4 @@ void	print_cmd(void *content)
 	}
 	log_printf("Input File: %s\n", cmd->infile ? cmd->infile : "N/A");
 	log_printf("Output File: %s\n", cmd->outfile ? cmd->outfile : "N/A");
-	log_printf("Input FD: %d\n", cmd->fd_input);
-	log_printf("Output FD: %d\n", cmd->fd_output);
 }
