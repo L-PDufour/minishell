@@ -1,17 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leon_bouette.c                                     :+:      :+:    :+:   */
+/*   exec_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 19:44:44 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/09 10:34:51 by ldufour          ###   ########.fr       */
+/*   Created: 2024/01/10 12:25:20 by ldufour           #+#    #+#             */
+/*   Updated: 2024/01/10 15:14:33 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parse.h"
-#include <unistd.h>
+#include "../includes/minishell.h"
+
+void	free_array(void **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i] != NULL)
+	{
+		free(content[i]);
+		i++;
+	}
+	free(content);
+}
 
 char	**envp_path_creation_leon(char **envp)
 {
@@ -76,39 +88,6 @@ int	path_verification(char **envp_path, t_cmd *cmd)
 	}
 	return (1); // No valid executable found in any path
 }
-
-void	exec_redirection(t_cmd *cmd)
-{
-	if (cmd->infile)
-	{
-		cmd->fd_input = open(cmd->infile, O_RDONLY);
-		dup2(cmd->fd_input, STDIN_FILENO);
-	}
-	if (cmd->outfile)
-	{
-		if (cmd->amend == true)
-			cmd->fd_output = open(cmd->outfile, O_CREAT | O_RDWR | O_APPEND);
-		else
-			cmd->fd_output = open(cmd->outfile, O_CREAT | O_RDWR | O_TRUNC,
-					0644);
-		dup2(cmd->fd_output, STDOUT_FILENO);
-	}
-}
-
-void	exec_leon(t_list *cmd_list)
-{
-	t_cmd	*cmd;
-
-	cmd = cmd_list->content;
-	if (cmd && cmd->cmd_table)
-	{
-		log_printf("Executing: %s\n", cmd->cmd_table[0]);
-		exec_redirection(cmd);
-		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
-		perror("execve");
-	}
-}
-
 void	update_cmd_list(t_list *cmd_list, char **envp)
 {
 	char	**envp_path;
@@ -140,25 +119,35 @@ void	update_cmd_list(t_list *cmd_list, char **envp)
 	free(envp_path);
 }
 
-int	**pipes_creation(int lst_size)
+void	exec_redirection(t_cmd *cmd)
 {
-	int	i;
-	int	**pipes;
-
-	i = 0;
-	pipes = (int **)safe_calloc(lst_size + 1, sizeof(int *));
-	while (i < lst_size)
+	if (cmd->infile)
 	{
-		pipes[i] = (int *)safe_calloc(2, sizeof(int));
-		if (pipe(pipes[i]) == -1)
-		{
-			perror("pipe");
-			exit(EXIT_FAILURE);
-		}
-		i++;
+		cmd->fd_input = open(cmd->infile, O_RDONLY);
+		dup2(cmd->fd_input, STDIN_FILENO);
 	}
-	pipes[i] = NULL;
-	return (pipes);
+	if (cmd->outfile)
+	{
+		if (cmd->amend == true)
+			cmd->fd_output = open(cmd->outfile, O_CREAT | O_RDWR | O_APPEND);
+		else
+			cmd->fd_output = open(cmd->outfile, O_CREAT | O_RDWR | O_TRUNC,
+					0644);
+		dup2(cmd->fd_output, STDOUT_FILENO);
+	}
+}
+void	exec_leon(t_list *cmd_list)
+{
+	t_cmd	*cmd;
+
+	cmd = cmd_list->content;
+	if (cmd && cmd->cmd_table)
+	{
+		log_printf("Executing: %s\n", cmd->cmd_table[0]);
+		exec_redirection(cmd);
+		execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
+		perror("execve");
+	}
 }
 
 void	close_pipes(int lst_size, int **pipes)
@@ -173,6 +162,7 @@ void	close_pipes(int lst_size, int **pipes)
 		j++;
 	}
 }
+
 void	process_exec(int i, int lst_size, int **pipes, t_list *cmd_list)
 {
 	if (lst_size == 1)
@@ -197,17 +187,25 @@ void	process_exec(int i, int lst_size, int **pipes, t_list *cmd_list)
 	exit(EXIT_SUCCESS);
 }
 
-void	free_array(void **content)
+int	**pipes_creation(int lst_size)
 {
 	int	i;
+	int	**pipes;
 
 	i = 0;
-	while (content[i] != NULL)
+	pipes = (int **)safe_calloc(lst_size + 1, sizeof(int *));
+	while (i < lst_size)
 	{
-		free(content[i]);
+		pipes[i] = (int *)safe_calloc(2, sizeof(int));
+		if (pipe(pipes[i]) == -1)
+		{
+			perror("pipe");
+			exit(EXIT_FAILURE);
+		}
 		i++;
 	}
-	free(content);
+	pipes[i] = NULL;
+	return (pipes);
 }
 
 void	process_fork(t_list *cmd_list, int lst_size)

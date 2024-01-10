@@ -21,5 +21,8 @@ expect -re $prompt
 send "\'e\'c\"h\"o allo \t \r"
 expect -re $prompt
 
+send "echo \\\"Hello, World!\\\" | tr 'A-Z' 'a-z' | rev >> 1.tst \r"
+expect -re $prompt
+
 send "exit\r"
 expect eof
