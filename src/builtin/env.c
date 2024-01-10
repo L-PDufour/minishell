@@ -6,62 +6,11 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 19:07:02 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/08 16:37:59 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static int	ft_count_words(char const *s, char c)
-{
-	int	count;
-
-	count = 0;
-	while (*s)
-	{
-		if (*s != c)
-		{
-			count++;
-			while (*s != c && *s)
-				s++;
-		}
-		else
-			s++;
-	}
-	return (count);
-}
-
-char	**split_with_delimiter(char *s, char c)
-{
-	char	**result;
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	result = calloc(ft_count_words(s, c) + 3, (sizeof(char *)));
-	if (!result)
-		return (NULL);
-	while (s[j])
-	{
-		if (s[j] != c)
-			j++;
-		else
-		{
-			if (i != j)
-			{
-				result[k] = ft_substr(s, i, j - i);
-				k++;
-			}
-			i = j;
-			j++;
-		}
-	}
-	result[k] = ft_substr(s, i, j - i);
-	return (result);
-}
 
 int	find_in_env(char *key, char **envp)
 {

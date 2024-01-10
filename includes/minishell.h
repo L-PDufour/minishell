@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 21:00:52 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/10 09:23:27 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define BOLD_CYAN "1;96"
 # define BOLD_WHITE "1;97"
 
-/*#############################|| Structures and tokens ||#####################*/
+/*#############|| Structures and tokens ||################*/
 typedef enum e_tokentype
 {
 	ALPHA_T = 97,
@@ -72,12 +72,12 @@ typedef struct s_token
 {
 	t_tokentype	type;
 	char		*value;
-	int			len;
+	bool			append;
 }				t_token;
 
 /*#############################|| lexer.c ||##############################*/
 t_list			*tokenizer(const char *str, t_list *token_list);
-
+void	temp_error(int i, t_list *token_list, t_token *token);
 /*#############################|| quote_handler.c ||######################*/
 int				quotes_parser(const char *str, int i, t_token *token,
 					int delimiter);
@@ -87,10 +87,9 @@ char			*trim_str(char *str);
 void			*safe_calloc(size_t nmemb, size_t size);
 void			print_in_color(char *color, char *msg);
 bool			is_white_space(char c);
-
+int				ft_strcmp(char *s1, char *s2);
 /*#############################|| debug.c ||##############################*/
 void			log_printf(const char *format, ...);
-void			tester_ms(char *str, t_list *token_list, t_list *cmd_list);
 void			print_cmd(void *content);
 void			print_token(void *content);
 

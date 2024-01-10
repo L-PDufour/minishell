@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:18:08 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/08 15:46:59 by joe_jam          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:32:31 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,23 @@ void	free_cmd(void *cmd)
 		return ;
 	typed_cmd = (t_cmd *)cmd;
 	if (typed_cmd->cmd_table)
-	{
-		i = 0;
-		while (typed_cmd->cmd_table[i] != NULL)
-		{
-			free(typed_cmd->cmd_table[i]);
-			i++;
-		}
-		free(typed_cmd->cmd_table);
-	}
+		free_array((void **)typed_cmd->cmd_table);
 	free(typed_cmd->outfile);
 	free(typed_cmd->infile);
 	free(typed_cmd);
 }
 
-void	clean_table(char **table)
+void	clean_table(char **tab)
 {
 	int	i;
 
 	i = 0;
-	while (table[i])
+	while (tab[i])
 	{
-		free(table[i]);
+		free(tab[i]);
 		i++;
 	}
-	free(table);
+	free(tab);
 }
 
 void	exit_prg_at_error(char *str)
