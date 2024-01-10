@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/09 08:45:15 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/10 09:08:45 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv, char **envp)
 	t_list		*cmd_list;
 	char		*cmd_str;
 
-	int nb_process; // Assuming a pipeline of 3 commands
+	int nb_process; 
 	while (true)
 	{
 		token_list = NULL;

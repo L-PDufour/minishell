@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/09 16:09:59 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/10 09:23:27 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,12 @@ typedef struct s_token
 {
 	t_tokentype	type;
 	char		*value;
-	int			len;
 	bool			append;
 }				t_token;
 
 /*#############################|| lexer.c ||##############################*/
 t_list			*tokenizer(const char *str, t_list *token_list);
-
+void	temp_error(int i, t_list *token_list, t_token *token);
 /*#############################|| quote_handler.c ||######################*/
 int				quotes_parser(const char *str, int i, t_token *token,
 					int delimiter);
