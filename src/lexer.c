@@ -6,22 +6,18 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/09 20:07:16 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/10 09:24:40 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// TODO: Condenser le code et faire des sous-fonctions
 static int	meta_token(const char *str, int i, t_token *token)
 {
 	if (str[i] == '\0')
 		return (i);
 	else if (str[i] == PIPE)
-	{
 		token->type = PIPE_T;
-		return (++i);
-	}
 	else if (str[i] == REDIR_I)
 	{
 		if (str[i + 1] == REDIR_I)
@@ -30,7 +26,6 @@ static int	meta_token(const char *str, int i, t_token *token)
 			return (2 + i);
 		}
 		token->type = REDIR_IN_T;
-		return (++i);
 	}
 	else if (str[i] == REDIR_O)
 	{
@@ -40,7 +35,6 @@ static int	meta_token(const char *str, int i, t_token *token)
 			return (2 + i);
 		}
 		token->type = REDIR_OUT_T;
-		return (++i);
 	}
 	return (++i);
 }
@@ -53,8 +47,8 @@ static int	alpha_token(const char *str, int i, t_token *token)
 
 	flag = 0;
 	j = i;
-	while (str[i] != '\0' && !is_white_space(str[i]) &&
-			!ft_strchr("'\"<>|", str[i]))
+	while (str[i] != '\0' && !is_white_space(str[i]) && !ft_strchr("'\"<>|",
+			str[i]))
 	{
 		if (str[i] == '$')
 			flag = 1;
@@ -69,7 +63,6 @@ static int	alpha_token(const char *str, int i, t_token *token)
 	else
 		token->value = ft_substr(str, j, i - j);
 	token->type = ALPHA_T;
-	token->len = i - j;
 	if (str[i] >= 33 && !ft_strchr("<>|", str[i]))
 		token->append = true;
 	return (i);
@@ -94,16 +87,6 @@ static int	get_token(const char *str, int i, t_token *token)
 		return (alpha_token(str, i, token));
 }
 
-void	temp_error(int i, t_list *token_list, t_token *token)
-{
-	if (i == -1)
-	{
-		printf("%s\n", "erreur");
-		lexer_error(130, token_list, print_token);
-		free(token);
-	}
-}
-
 char	*token_amend(t_token *token, char *copy)
 {
 	char	*temp;
@@ -114,15 +97,14 @@ char	*token_amend(t_token *token, char *copy)
 		{
 			temp = ft_strjoin(copy, token->value);
 			free(copy);
-      free(token->value);
-			return (temp);
+			free(token->value);
 		}
 		else
 		{
-      temp = ft_strdup(token->value);
-      free(token->value);
-			return (temp);
+			temp = ft_strdup(token->value);
+			free(token->value);
 		}
+		return (temp);
 	}
 	else if (token->type == ALPHA_T && token->append == false && copy)
 	{
@@ -156,8 +138,5 @@ t_list	*tokenizer(const char *str, t_list *token_list)
 			free(token);
 	}
 	free(copy);
-	// i = syntax_parser(token_list);
-	if (i == -1)
-		lexer_error(2, token_list, print_token);
 	return (token_list);
 }
