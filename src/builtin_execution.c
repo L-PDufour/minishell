@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:11:27 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/08 16:32:18 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/10 17:03:33 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	exec_builtin(t_command cmd, char **envp)
 		return (0);
 	}
 	else if (!strcmp(cmd.name, "exit"))
-		return(exec_exit(cmd));
+		exec_exit(&cmd);
 	else if (!strcmp(cmd.name, "echo"))
 		return (exec_echo(cmd));
 	else if (!strcmp(cmd.name, "env"))

@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:20:32 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/22 14:27:04 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/10 16:44:21 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,5 @@ void	exec_cmd(t_command cmd, char **envp)
 		}
 	}
 	waitpid(pid, NULL, 0);
-	
 
-	printf("pid  :===>%i\n", pid);
-	// return (0);
 }

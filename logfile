@@ -1,0 +1,155 @@
+
+STR = ./minishell 
+(./minishell) 
+Parser : 
+Command Table:
+  ./minishell
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: ./minishell
+
+STR = exit
+(exit) 
+Parser : 
+Command Table:
+  exit
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: exit
+Executing: exit
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
