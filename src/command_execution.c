@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:20:32 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/10 16:44:21 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/11 13:04:43 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ void	exec_cmd(t_command cmd, char **envp)
 				print_in_color(RED, cmd.name);
 				printf("\n");
 			}
-		}
+			else
+				cmd.exit_status = 0;
+		}	
 	}
 	waitpid(pid, NULL, 0);
-
 }

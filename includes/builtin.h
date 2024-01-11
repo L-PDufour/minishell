@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:43:37 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/10 17:05:29 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:37:48 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ typedef struct s_command
 	char	**builtin;
 	char	*old_pwd;
 	char	*pwd;
+	int		exit_status;
 	pid_t	pid;
 }			t_command;
 
-void			exec_exit(t_command *cmd);
+void		exec_exit(t_command *cmd);
 void		parse_cmd(char *str_cmd, t_command *cmd);
 void		change_dir(char *str, t_command *cmd);
 char		*get_pwd(void);
 char		**split_with_delimiter(char *s, char c);
-void			open_and_handle_new_terminal(t_command cmd);
+void		open_and_handle_new_terminal(t_command cmd);
 int			find_in_env(char *key, char **envp);
-
+void		handle_exit_status(t_command cmd);
 #endif
