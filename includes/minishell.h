@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/10 15:15:23 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/11 11:36:51 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ typedef struct s_token
 {
 	t_tokentype	type;
 	char		*value;
-	bool			append;
+	bool		append;
 }				t_token;
 
 /*#############################|| lexer.c ||##############################*/
 t_list			*tokenizer(const char *str, t_list *token_list);
-void	temp_error(int i, t_list *token_list, t_token *token);
+void			temp_error(int i, t_list *token_list, t_token *token);
 /*#############################|| quote_handler.c ||######################*/
 int				quotes_parser(const char *str, int i, t_token *token,
 					int delimiter);
@@ -88,6 +88,7 @@ void			*safe_calloc(size_t nmemb, size_t size);
 void			print_in_color(char *color, char *msg);
 bool			is_white_space(char c);
 int				ft_strcmp(char *s1, char *s2);
+void			close_pipes(int lst_size, int **pipes);
 /*#############################|| debug.c ||##############################*/
 void			log_printf(const char *format, ...);
 void			print_cmd(void *content);
@@ -103,5 +104,10 @@ void			exit_prg_at_error(char *str);
 void			free_token(void *token_ptr);
 void			free_cmd(void *cmd);
 void			clean_table(char **table);
+void			free_array(void **content);
+
+int	**pipes_creation(int lst_size);
+void	main_exec(t_list *cmd_list, char **envp);
+void clean_process(t_list *token_list, t_list *cmd_list, char *cmd_str);
 
 #endif

@@ -6,11 +6,31 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:18:08 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/30 14:32:31 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/11 11:36:36 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void clean_process(t_list *token_list, t_list *cmd_list, char *cmd_str)
+{
+		ft_lstclear(&token_list, free_token);
+		ft_lstclear(&cmd_list, free_cmd);
+		free(cmd_str);
+}
+
+void	free_array(void **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i] != NULL)
+	{
+		free(content[i]);
+		i++;
+	}
+	free(content);
+}
 
 void	free_token(void *token_ptr)
 {

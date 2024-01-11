@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:00:23 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/10 09:23:29 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/11 10:25:42 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void token_parser(const t_list *token_list);
 t_list *parser(t_list *cmd_list, const t_list *token_list);
 void lexer_error(int c, t_list *head, void (*del)(void *));
 // TODO: Leon bouette
-char **envp_path_creation_leon(char **envp);
 void exec_leon(t_list *cmd_list);
-int path_verification(char **envp_path, t_cmd *cmd);
 void update_cmd_list(t_list *cmd_list, char **envp);
 void process_fork(t_list *cmd_list, int lst_size);
-void free_array(void **content);
 #endif
