@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 21:02:54 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:45:10 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	change_dir(char *str, t_command *cmd)
 		print_in_color(RED, "🚨cd: no such file or directory: ");
 		print_in_color(RED, str);
 		printf("\n");
-		cmd->exit_status = 127;
+		cmd->exit_status = 1;
 		return;
 	}
 	if (access(str, R_OK))
@@ -48,7 +48,7 @@ void	change_dir(char *str, t_command *cmd)
 	}
 	if (!str || !strcmp(str, " ") || chdir(str) != 0)
 	{
-		print_in_color(RED, "🚨cd: no such file or directory: ");
+		print_in_color(RED, "🚨cd: execution failed!");
 		print_in_color(RED, str);
 		printf("\n");
 		cmd->exit_status = 1;

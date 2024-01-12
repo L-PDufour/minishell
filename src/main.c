@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/11 20:31:02 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/12 13:44:22 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv, char **envp)
 // 		update_cmd_list(cmd_list, envp);
 // 		ft_lstiter(cmd_list, &print_cmd);
 // 		nb_process = ft_lstsize(cmd_list);
-// 		process_fork(cmd_list, nb_process);
+		// process_fork(cmd_list, nb_process);
 // 		ft_lstclear(&token_list, free_token);
 // 		ft_lstclear(&cmd_list, free_cmd);
 // 		free(cmd_str);

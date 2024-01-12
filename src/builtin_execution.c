@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:11:27 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 21:03:51 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:30:36 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,12 @@ int	exec_builtin(t_command cmd, char **envp)
 	}
 	else if (!strcmp(cmd.name, "exit"))
 		exec_exit(&cmd);
-	
 	else if (!strcmp(cmd.name, "echo"))
 		exec_echo(cmd);
 	else if (!strcmp(cmd.name, "env"))
 		exec_env(cmd);
 	else
 		return (1);
-
 	cmd.exit_status=0;
 	handle_exit_status(cmd);
 	return (0);
