@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:38:41 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/10 10:16:40 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/12 10:47:53 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,33 @@ void	print_token(void *content)
 		log_printf("(%c) ", (char)token->type);
 }
 
-void	print_cmd(void *content)
+void print_cmd(void *content)
 {
-	t_cmd	*cmd;
+    t_cmd *cmd;
 
-	cmd = (t_cmd *)content;
-	log_printf("Command Table:\n");
-	for (int i = 0; cmd->cmd_table[i] != NULL; ++i)
-	{
-		log_printf("  %s\n", cmd->cmd_table[i]);
-	}
-	log_printf("Input File: %s\n", cmd->infile ? cmd->infile : "N/A");
-	log_printf("Output File: %s\n", cmd->outfile ? cmd->outfile : "N/A");
+    cmd = (t_cmd *)content;
+
+    if (cmd == NULL) {
+        log_printf("Command is NULL\n");
+        return;
+    }
+
+    log_printf("Command Table:\n");
+
+    if (cmd->cmd_table == NULL) {
+        log_printf("  N/A\n");
+    } else {
+        for (int i = 0; cmd->cmd_table[i] != NULL; ++i)
+        {
+            if (cmd->cmd_table[i] != NULL) {
+                log_printf("  %s\n", cmd->cmd_table[i]);
+            } else {
+                log_printf("  (null)\n");  // or any other indicator for NULL values
+            }
+        }
+    }
+
+    log_printf("Input File: %s\n", cmd->infile ? cmd->infile : "N/A");
+    log_printf("Output File: %s\n", cmd->outfile ? cmd->outfile : "N/A");
 }
+

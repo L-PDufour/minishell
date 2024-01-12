@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 11:36:51 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/12 10:29:20 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,11 @@ typedef struct s_token
 }				t_token;
 
 /*#############################|| lexer.c ||##############################*/
-t_list			*tokenizer(const char *str, t_list *token_list);
+int				tokenizer(const char *str, t_list **token_list);
 void			temp_error(int i, t_list *token_list, t_token *token);
 /*#############################|| quote_handler.c ||######################*/
 int				quotes_parser(const char *str, int i, t_token *token,
-					int delimiter);
-
+					int *status);
 /*#############################|| utils.c ||##############################*/
 char			*trim_str(char *str);
 void			*safe_calloc(size_t nmemb, size_t size);
@@ -106,8 +105,10 @@ void			free_cmd(void *cmd);
 void			clean_table(char **table);
 void			free_array(void **content);
 
-int	**pipes_creation(int lst_size);
-void	main_exec(t_list *cmd_list, char **envp);
-void clean_process(t_list *token_list, t_list *cmd_list, char *cmd_str);
+int				**pipes_creation(int lst_size);
+void			main_exec(t_list *cmd_list, char **envp);
+void			clean_process(t_list **token_list, t_list **cmd_list,
+					char *cmd_str);
+int				syntax_parser(const t_list *token_list);
 
 #endif

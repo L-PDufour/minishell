@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:37:22 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/10 09:24:40 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/12 10:10:17 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,7 @@ static int	alpha_token(const char *str, int i, t_token *token)
 	return (i);
 }
 
-static int	get_token(const char *str, int i, t_token *token)
-{
-	int	j;
-
-	if (is_white_space(str[i]))
-	{
-		while (is_white_space(str[i]))
-			i++;
-	}
-	if (str[i] == '\0')
-		return (i);
-	if (ft_strchr("<>|", str[i]))
-		return (meta_token(str, i, token));
-	else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
-		return (quotes_parser(str, i + 1, token, str[i]));
-	else
-		return (alpha_token(str, i, token));
-}
-
-char	*token_amend(t_token *token, char *copy)
+static char	*token_amend(t_token *token, char *copy)
 {
 	char	*temp;
 
@@ -116,27 +97,49 @@ char	*token_amend(t_token *token, char *copy)
 	return (NULL);
 }
 
-t_list	*tokenizer(const char *str, t_list *token_list)
+static int	get_token(const char *str, int i, t_token *token, int *status)
+{
+	int	j;
+
+	if (is_white_space(str[i]))
+	{
+		while (is_white_space(str[i]))
+			i++;
+	}
+	if (str[i] == '\0')
+		return (i);
+	if (ft_strchr("<>|", str[i]))
+		return (meta_token(str, i, token));
+	else if (str[i] == DOUBLE_QUOTE || str[i] == SINGLE_QUOTE)
+		return (quotes_parser(str, i,  token, status));
+	else
+		return (alpha_token(str, i, token));
+}
+
+int	tokenizer(const char *str, t_list **token_list)
 {
 	int		i;
+	int		status;
 	t_token	*token;
 	char	*copy;
 
 	i = 0;
+	status = 0;
 	copy = NULL;
-	while (i < ft_strlen(str))
+	while (i < ft_strlen(str) && status == 0)
 	{
 		token = safe_calloc(1, sizeof(t_token));
-		i = get_token(str, i, token);
-		temp_error(i, token_list, token);
+		i = get_token(str, i, token, &status);
 		copy = token_amend(token, copy);
 		if (copy && token->type == ALPHA_T && token->append == true)
 			token->value = copy;
 		if (token && token->type && token->append == false)
-			ft_lstadd_back(&token_list, ft_lstnew((t_token *)token));
+			ft_lstadd_back(token_list, ft_lstnew((t_token *)token));
 		else
 			free(token);
 	}
 	free(copy);
-	return (token_list);
+  if (status == 0)
+     status = syntax_parser(*token_list); 
+	return (status);
 }

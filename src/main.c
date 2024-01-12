@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:37:27 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/11 11:38:00 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/12 09:23:47 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char **argv, char **envp)
 	t_list		*token_list;
 	t_list		*cmd_list;
 	char		*cmd_str;
+  int status;
 
 	while (true)
 	{
@@ -64,13 +65,16 @@ int	main(int argc, char **argv, char **envp)
 		cmd_str = display_prompt();
 		add_history(cmd_str);
 		log_printf("\nSTR = %s\n", cmd_str);
-		token_list = tokenizer(cmd_str, token_list);
+		status = tokenizer(cmd_str, &token_list);
+    if (status != 0)
+      break;
 		ft_lstiter(token_list, &print_token);
 		cmd_list = parser(cmd_list, token_list);
 		ft_lstiter(cmd_list, &print_cmd);
     main_exec(cmd_list, envp);
-    clean_process(token_list, cmd_list, cmd_str);
+    clean_process(&token_list, &cmd_list, cmd_str);
 	}
-  clean_process(token_list, cmd_list, cmd_str);
-	return (0);
+  log_printf("status : %i\n", status);
+  clean_process(&token_list, &cmd_list, cmd_str);
+	return (status);
 }

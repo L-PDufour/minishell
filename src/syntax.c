@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 08:29:08 by ldufour           #+#    #+#             */
-/*   Updated: 2023/12/18 10:22:58 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/12 10:36:22 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ int	syntax_parser(const t_list *token_list)
 		if (tmp->content)
 		{
 			current_type = ((t_token *)tmp->content)->type;
-			if (flag == 0 && (current_type == REDIR_IN_T
-					|| current_type == REDIR_OUT_T || current_type == REDIR_AP_T
-					|| current_type == HERE_DOC_T))
+			if (flag == 0 && (current_type != PIPE_T && current_type != ALPHA_T))
 				flag = check_syntax_error(tmp, REDIR_I);
 			else if (flag == 0 && current_type == PIPE_T)
 				flag = check_syntax_error(tmp, PIPE);

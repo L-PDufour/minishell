@@ -6,18 +6,19 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 14:18:08 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/11 11:36:36 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/12 08:41:30 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void clean_process(t_list *token_list, t_list *cmd_list, char *cmd_str)
+void clean_process(t_list **token_list, t_list **cmd_list, char *cmd_str)
 {
-		ft_lstclear(&token_list, free_token);
-		ft_lstclear(&cmd_list, free_cmd);
-		free(cmd_str);
+    ft_lstclear(token_list, free_token);
+    ft_lstclear(cmd_list, free_cmd);
+    free(cmd_str);
 }
+
 
 void	free_array(void **content)
 {
@@ -41,6 +42,7 @@ void	free_token(void *token_ptr)
 	token = (t_token *)token_ptr;
 	free(token->value);
 	free(token);
+  token_ptr = NULL;
 }
 
 void	free_cmd(void *cmd)
@@ -56,6 +58,7 @@ void	free_cmd(void *cmd)
 	free(typed_cmd->outfile);
 	free(typed_cmd->infile);
 	free(typed_cmd);
+  typed_cmd = NULL;
 }
 
 void	clean_table(char **tab)
