@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:11:27 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 16:38:19 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:03:51 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,30 @@ int	exec_builtin(t_command cmd, char **envp)
 {
 	int		i;
 	char	*tmp;
+	int		result;
 
 	i = 0;
 	if (!strcmp(cmd.name, "pwd"))
-	{
 		exec_pwd(cmd.option);
-		return (0);
-	}
 	else if (!strcmp(cmd.name, "./minishell"))
-	{
 		open_and_handle_new_terminal(cmd);
-		return (0);
-	}
 	else if (!strcmp(cmd.name, "cd"))
 	{
 		change_dir(cmd.option, &cmd);
-		return (0);
+		handle_exit_status(cmd);
+		return 0;
 	}
 	else if (!strcmp(cmd.name, "exit"))
-		{
-			exec_exit(&cmd);
-			return 0;
-		}
+		exec_exit(&cmd);
+	
 	else if (!strcmp(cmd.name, "echo"))
-		return (exec_echo(cmd));
+		exec_echo(cmd);
 	else if (!strcmp(cmd.name, "env"))
-		return (exec_env(cmd));
-	return (1);
+		exec_env(cmd);
+	else
+		return (1);
+
+	cmd.exit_status=0;
+	handle_exit_status(cmd);
+	return (0);
 }

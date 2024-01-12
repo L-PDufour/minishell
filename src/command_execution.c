@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:20:32 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 13:04:43 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:34:07 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,30 @@ void	exec_cmd(t_command cmd, char **envp)
 	pid = fork();
 	if (pid == -1)
 		printf(" fork failed\n");
-	if (pid ==  0)
+	if (pid == 0)
 	{
-
 		cmd.pid = pid;
 		if (exec_builtin(cmd, cmd.env))
 		{
 			tmp = ft_split(cmd.cmd_str, ' ');
 			cmd_path = get_cmd_path(tmp[0], envp);
-			if (!cmd_path || execve(cmd_path, tmp, cmd.env) == -1)
+
+			if (!cmd_path )
 			{
 				clean_table(tmp);
 				print_in_color(RED, "🚨command not found:  ");
 				print_in_color(RED, cmd.name);
 				printf("\n");
+				cmd.exit_status = 1;
+				handle_exit_status(cmd);
+				return ;
 			}
+			if ( execve(cmd_path, tmp, cmd.env) == -1)
+				cmd.exit_status = 1;
 			else
 				cmd.exit_status = 0;
-		}	
+			handle_exit_status(cmd);
+		}
 	}
 	waitpid(pid, NULL, 0);
 }

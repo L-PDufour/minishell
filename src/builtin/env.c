@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/08 16:37:59 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/11 20:43:55 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	find_in_env(char *key, char **envp)
 	int	i;
 
 	i = 0;
-	while (envp[i])
+	while (envp[i]!=NULL)
 	{
 		if (ft_strnstr(envp[i], key, ft_strlen(key)))
 			return (i);
@@ -37,7 +37,7 @@ void	open_and_handle_new_terminal(t_command cmd)
 	execve("minishell", NULL, cmd.env);
 }
 
-int	exec_env(t_command cmd)
+void exec_env(t_command cmd)
 {
 	int	i;
 
@@ -47,5 +47,5 @@ int	exec_env(t_command cmd)
 		printf("%s\n", cmd.env[i]);
 		i++;
 	}
-	return (0);
+	
 }

@@ -355,3 +355,320 @@ Parser :
 Parser : 
 
 Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+Parser : 
+
+STR = ls | echo bonjour
+(ls) (|) (echo) (bonjour) 
+Parser : 
+Command Table:
+  /bin/ls
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Command Table:
+  /bin/echo
+  bonjour
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/ls
+Executing: /bin/echo
+
+STR = ls
+(ls) 
+Parser : 
+Command Table:
+  /bin/ls
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/ls
+
+STR = slepp 
+(slepp) 
+Parser : 
+Command Table:
+  slepp
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: slepp
+Executing: slepp
+
+STR = slepp 2
+(slepp) (2) 
+Parser : 
+Command Table:
+  slepp
+  2
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: slepp
+Executing: slepp
+
+STR = ls
+(ls) 
+Parser : 
+Command Table:
+  /bin/ls
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/ls
+
+STR = ls -la
+(ls) (-la) 
+Parser : 
+Command Table:
+  /bin/ls
+  -la
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/ls
+
+STR = ls | ls -la
+(ls) (|) (ls) (-la) 
+Parser : 
+Command Table:
+  /bin/ls
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Command Table:
+  /bin/ls
+  -la
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/ls
+Executing: /bin/ls
+
+STR = echo bnjr
+(echo) (bnjr) 
+Parser : 
+Command Table:
+  /bin/echo
+  bnjr
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/echo
+
+STR = ./minishell 
+(./minishell) 
+Parser : 
+Command Table:
+  ./minishell
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: ./minishell
+
+STR = sleep 1 | sleep 2
+(sleep) (1) (|) (sleep) (2) 
+Parser : 
+Command Table:
+  /bin/sleep
+  1
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Command Table:
+  /bin/sleep
+  2
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/sleep
+Executing: /bin/sleep
+
+STR = sleep 3 | ls
+(sleep) (3) (|) (ls) 
+Parser : 
+Command Table:
+  /bin/sleep
+  3
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Command Table:
+  /bin/ls
+Input File: N/A
+Output File: N/A
+Input FD: 0
+Output FD: 0
+Executing: /bin/sleep
+Executing: /bin/ls

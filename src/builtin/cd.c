@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:39:16 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 13:53:26 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:02:54 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	change_dir(char *str, t_command *cmd)
 	char	*current_pwd;
 	char	*tmp;
 
+	cmd->exit_status = 0;
 	tmp = cmd->env[find_in_env("OLDPWD", cmd->env)];
 	current_pwd = get_pwd();
 	home = getenv("HOME");
@@ -27,7 +28,7 @@ void	change_dir(char *str, t_command *cmd)
 		str = ft_substr(tmp, 7, ft_strlen(tmp));
 	else
 	{
-		str = parse_env(str);
+		str = parse_env2(*cmd, str);
 		if (!str || !strcmp(str, ""))
 			str = home;
 	}
@@ -36,11 +37,13 @@ void	change_dir(char *str, t_command *cmd)
 		print_in_color(RED, "🚨cd: no such file or directory: ");
 		print_in_color(RED, str);
 		printf("\n");
-		return ;
+		cmd->exit_status = 127;
+		return;
 	}
 	if (access(str, R_OK))
 	{
 		print_in_color(RED, "🚨cd: Permission denied\n");
+		cmd->exit_status = 1;
 		return ;
 	}
 	if (!str || !strcmp(str, " ") || chdir(str) != 0)
@@ -48,6 +51,7 @@ void	change_dir(char *str, t_command *cmd)
 		print_in_color(RED, "🚨cd: no such file or directory: ");
 		print_in_color(RED, str);
 		printf("\n");
+		cmd->exit_status = 1;
 	}
 	else
 	{

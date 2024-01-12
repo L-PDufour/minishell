@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:43:37 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 16:37:48 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:02:31 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ char		**split_with_delimiter(char *s, char c);
 void		open_and_handle_new_terminal(t_command cmd);
 int			find_in_env(char *key, char **envp);
 void		handle_exit_status(t_command cmd);
+void	update_env(t_command *cmd, char *new_var);
 #endif
