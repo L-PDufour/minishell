@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/10 09:23:27 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/15 19:40:18 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
+
 
 /*#############################|| Characters ||#####################*/
 # define PIPE 124        // |
@@ -95,7 +97,7 @@ void			print_token(void *content);
 
 /*#############################|| Prompt.c ||############################*/
 char			*display_prompt(void);
-static char		*print_colored_message(const char *user, const char *path);
+// static char		*print_colored_message(const char *user, const char *path);
 
 /*#############################|| free_and_exit.c ||#####################*/
 
@@ -103,5 +105,9 @@ void			exit_prg_at_error(char *str);
 void			free_token(void *token_ptr);
 void			free_cmd(void *cmd);
 void			clean_table(char **table);
+
+/*#############################|| signals.c ||#####################*/
+
+void    init_signal_handlers(void);
 
 #endif

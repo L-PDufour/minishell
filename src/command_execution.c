@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:20:32 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/12 18:04:24 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:19:45 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	exec_cmd(t_command cmd, char **envp)
 
 	i = 0;
 	cmd.pid = pid;
-	if (exec_builtin(cmd, cmd.env))
-	// si cest pas un builtin rentre dedans la condition
+	if (exec_builtin(cmd, cmd.env)) // si cest pas un builtin rentre dedans la condition
 	{
 		pid = fork();
 		if (pid == -1)

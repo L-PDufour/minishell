@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+         #
+#    By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/09 01:24:00 by yothmani          #+#    #+#              #
-#    Updated: 2023/12/21 13:45:34 by yothmani         ###   ########.fr        #
+#    Updated: 2024/01/15 21:41:12 by joe_jam          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,7 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INC) 
-	@echo $(BOLD)$(GREEN) "Compiled $<"
-
+	@echo "\033[1;94m Compiled \033[1;35m$<\033[0m\r\c"
 norm :
 	@echo $(BOLD)$(PINK)"_____LIBFT NORMINETTE!_____"$(MINT)
 	@norminette $(SRC) $(INC_DIR)
