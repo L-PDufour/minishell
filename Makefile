@@ -6,7 +6,7 @@
 #    By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 08:17:58 by ldufour           #+#    #+#              #
-#    Updated: 2024/01/15 21:42:19 by joe_jam          ###   ########.fr        #
+#    Updated: 2024/01/17 13:14:43 by joe_jam          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = $(SRC_DIR)/main.c $(SRC_DIR)/debug.c $(SRC_DIR)/lexer.c $(SRC_DIR)/parser.
       $(SRC_DIR)/utils.c $(SRC_DIR)/builtin/cd.c $(SRC_DIR)/builtin_execution.c $(SRC_DIR)/env_utils.c $(SRC_DIR)/command_execution.c $(SRC_DIR)/l_error.c $(SRC_DIR)/leon_bouette.c\
       $(SRC_DIR)/builtin/echo.c  $(SRC_DIR)/builtin/env.c  \
       $(SRC_DIR)/builtin/built_exit.c  $(SRC_DIR)/lexer_utils.c $(SRC_DIR)/signals.c\
+	  $(SRC_DIR)/builtin/export.c\
 
 OBJ = $(SRC:.c=.o)
 

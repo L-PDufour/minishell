@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 20:43:55 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/16 16:49:48 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ void exec_env(t_command cmd)
 		i++;
 	}
 	
+}
+void	update_env(t_command *cmd, char *new_var)
+{
+	size_t	i;
+
+	i = 0;
+	while (cmd->env[i] != NULL)
+		i++;
+	cmd->env[i] = new_var;
+	i++;
+	cmd->env[i] = NULL;
 }

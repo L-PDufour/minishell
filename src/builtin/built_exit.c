@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 19:50:09 by joe_jam           #+#    #+#             */
-/*   Updated: 2024/01/12 14:12:45 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:49:35 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,6 @@ void	exec_exit(t_command *cmd)
 	cmd->exit_status = exit_value(cmd);
 	handle_exit_status(*cmd);
 	exit(cmd->exit_status);
-}
-
-void	update_env(t_command *cmd, char *new_var)
-{
-	size_t	i;
-
-	i = 0;
-	while (cmd->env[i] != NULL)
-		i++;
-	cmd->env[i] = new_var;
-	i++;
-	cmd->env[i] = NULL;
 }
 
 void	handle_exit_status(t_command cmd)

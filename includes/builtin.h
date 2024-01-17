@@ -6,7 +6,7 @@
 /*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:43:37 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 19:02:31 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/17 13:00:25 by joe_jam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_command
 	char	*old_pwd;
 	char	*pwd;
 	int		exit_status;
+	char	*export_value;
+	char	*export_key;
 	pid_t	pid;
 }			t_command;
 
@@ -41,5 +43,6 @@ char		**split_with_delimiter(char *s, char c);
 void		open_and_handle_new_terminal(t_command cmd);
 int			find_in_env(char *key, char **envp);
 void		handle_exit_status(t_command cmd);
-void	update_env(t_command *cmd, char *new_var);
+void		update_env(t_command *cmd, char *new_var);
+void		export_exec(t_command *cmd);
 #endif
