@@ -6,12 +6,13 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:00:23 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/18 13:30:37 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:39:46 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 #define PARSE_H
+#include "builtin.h"
 # include "minishell.h"
 # include <stdbool.h>
 typedef struct s_cmd {
@@ -22,6 +23,7 @@ typedef struct s_cmd {
   int fd_output;
   char *outfile;
   char *infile;
+  t_command *cmd;
 } t_cmd;
 
 char *parse_env(char *str);
