@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:00:23 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 10:25:42 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/18 13:30:37 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_cmd {
 } t_cmd;
 
 char *parse_env(char *str);
+char	*parse_env2(t_command cmd, char *str);
 void token_parser(const t_list *token_list);
 t_list *parser(t_list *cmd_list, const t_list *token_list);
 void lexer_error(int c, t_list *head, void (*del)(void *));

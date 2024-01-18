@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/11 11:36:51 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/18 13:35:23 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,9 @@ void			free_array(void **content);
 int	**pipes_creation(int lst_size);
 void	main_exec(t_list *cmd_list, char **envp);
 void clean_process(t_list *token_list, t_list *cmd_list, char *cmd_str);
+
+/*#############################|| signals.c ||#####################*/
+
+void    init_signal_handlers(void);
 
 #endif
