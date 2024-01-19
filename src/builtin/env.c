@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:51:44 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/16 16:49:48 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/17 19:26:57 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	find_in_env(char *key, char **envp)
 	int	i;
 
 	i = 0;
-	while (envp[i]!=NULL)
+	while (envp[i] != NULL)
 	{
 		if (ft_strnstr(envp[i], key, ft_strlen(key)))
 			return (i);
@@ -37,17 +37,23 @@ void	open_and_handle_new_terminal(t_command cmd)
 	execve("minishell", NULL, cmd.env);
 }
 
-void exec_env(t_command cmd)
+void	exec_env(t_command *cmd)
 {
 	int	i;
 
 	i = 0;
-	while (cmd.env[i])
+	cmd->exit_status = 0;
+	if(ft_strcmp(cmd->option, ""))
 	{
-		printf("%s\n", cmd.env[i]);
+		print_in_color(RED, "🚨env: too many arguments\n");
+		cmd->exit_status = 1;
+		return;
+	}
+	while (cmd->env[i])
+	{
+		printf("%s\n", cmd->env[i]);
 		i++;
 	}
-	
 }
 void	update_env(t_command *cmd, char *new_var)
 {

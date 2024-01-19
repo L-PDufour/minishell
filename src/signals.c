@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 18:27:43 by joe_jam           #+#    #+#             */
-/*   Updated: 2024/01/16 15:10:56 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/18 12:53:07 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void rl_replace_line (const char *text, int clear_undo);
+
 static void	handle_ctl_c(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	// rl_replace_line("", 0);
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }

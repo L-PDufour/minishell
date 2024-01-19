@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:11:27 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/17 13:31:31 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/17 18:52:26 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,24 @@ int	exec_builtin(t_command cmd, char **envp)
 		handle_exit_status(cmd);
 		return 0;
 	}
-	else if (!ft_strcmp(cmd.name, "exit"))
-		exec_exit(&cmd);
-	else if (!ft_strcmp(cmd.name, "echo"))
-		exec_echo(cmd);
-	else if (!ft_strcmp(cmd.name, "env"))
-		exec_env(cmd);
 	else if (!ft_strcmp(cmd.name, "export"))
 	{
 		export_exec(&cmd);
 		handle_exit_status(cmd);
 		return(0);	
 	}
+	else if (!ft_strcmp(cmd.name, "env"))
+		{
+			exec_env(&cmd);
+			handle_exit_status(cmd);
+			return(0);
+		}
+	else if (!ft_strcmp(cmd.name, "exit"))
+		exec_exit(&cmd);
+	else if (!ft_strcmp(cmd.name, "echo"))
+		exec_echo(cmd);
+	else if (!ft_strcmp(cmd.name, "unset"))
+		exec_unset(&cmd);
 	else
 		return (1);
 	cmd.exit_status=0;

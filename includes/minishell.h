@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joe_jam <joe_jam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/15 19:40:18 by joe_jam          ###   ########.fr       */
+/*   Updated: 2024/01/18 12:52:54 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../lib/libft/includes/libft.h"
 # include "builtin.h"
 # include "execution.h"
-# include "minishell.h"
+# include <readline/readline.h>
 # include "parse.h"
 # include <ctype.h>
 # include <errno.h>
@@ -24,7 +24,6 @@
 # include <limits.h>
 # include <math.h>
 # include <readline/history.h>
-# include <readline/readline.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdint.h>
