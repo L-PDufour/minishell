@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:18:40 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/18 13:35:23 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:57:08 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define MINISHELL_H
 
 # include "../lib/libft/includes/libft.h"
-# include "builtin.h"
-# include "execution.h"
-# include "minishell.h"
-# include "parse.h"
 # include <ctype.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -25,6 +21,7 @@
 # include <math.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdint.h>
@@ -75,12 +72,46 @@ typedef struct s_token
 	bool		append;
 }				t_token;
 
+typedef struct s_cmd
+{
+	char		**cmd_table;
+	bool		built_in;
+	bool		amend;
+	int			fd_input;
+	int			fd_output;
+	char		*outfile;
+	char		*infile;
+	char		*name;
+	char		*option;
+	char		*option2;
+	char		**env;
+	char		*cmd_str;
+	char		**env_copy;
+	char		**builtin;
+	char		*old_pwd;
+	char		*pwd;
+	int			exit_status;
+	char		*export_value;
+	char		*export_key;
+	pid_t		pid;
+}				t_cmd;
+
 /*#############################|| lexer.c ||##############################*/
 t_list			*tokenizer(const char *str, t_list *token_list);
 void			temp_error(int i, t_list *token_list, t_token *token);
-/*#############################|| quote_handler.c ||######################*/
 int				quotes_parser(const char *str, int i, t_token *token,
 					int delimiter);
+
+/*#############################|| lexer.c ||##############################*/
+char			*parse_env(char *str);
+char			*parse_env2(t_cmd cmd, char *str);
+void			token_parser(const t_list *token_list);
+t_list			*parser(t_list *cmd_list, const t_list *token_list);
+void			lexer_error(int c, t_list *head, void (*del)(void *));
+// TODO: Leon bouette
+void			exec_leon(t_list *cmd_list);
+void			update_cmd_list(t_list *cmd_list, char **envp);
+void			process_fork(t_list *cmd_list, int lst_size);
 
 /*#############################|| utils.c ||##############################*/
 char			*trim_str(char *str);
@@ -106,12 +137,32 @@ void			free_cmd(void *cmd);
 void			clean_table(char **table);
 void			free_array(void **content);
 
-int	**pipes_creation(int lst_size);
-void	main_exec(t_list *cmd_list, char **envp);
-void clean_process(t_list *token_list, t_list *cmd_list, char *cmd_str);
+int				**pipes_creation(int lst_size);
+void			main_exec(t_list *cmd_list, char **envp);
+void			clean_process(t_list *token_list, t_list *cmd_list,
+					char *cmd_str);
 
 /*#############################|| signals.c ||#####################*/
 
-void    init_signal_handlers(void);
+void			init_signal_handlers(void);
+
+/*#############################|| builtin.c ||#####################*/
+void			exec_cmd(t_cmd cmd, char **envp);
+int				exec_builtin(t_cmd *cmd, char **envp);
+void			exec_pwd(t_cmd *cmd);
+void			exec_env(t_cmd *cmd);
+void			exec_echo(t_cmd cmd);
+// void	exec_non_builtin(t_cmd cmd, char **envp);
+void			exec_exit(t_cmd *cmd);
+void			parse_cmd(char *str_cmd, t_cmd *cmd);
+void			change_dir(char *str, t_cmd *cmd);
+char			*get_pwd(void);
+char			**split_with_delimiter(char *s, char c);
+void			open_and_handle_new_terminal(t_cmd *cmd);
+int				find_in_env(char *key, char **envp);
+void			handle_exit_status(t_cmd cmd);
+void			update_env(t_cmd *cmd, char *new_var);
+void			export_exec(t_cmd *cmd);
+void			exec_unset(t_cmd *cmd);
 
 #endif

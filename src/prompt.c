@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:45:53 by yothmani          #+#    #+#             */
-/*   Updated: 2023/12/21 14:19:16 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:53:30 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char	*display_prompt(void)
 	char	*path;
 	char	*read_cmd;
 	char	*msg;
-
-	path = get_pwd();
-	msg = print_colored_message(getenv("USER"), path);
-	read_cmd = readline(msg);
+  // HACK: Laisser en commentaire. Cause des leaks  
+	// path = get_pwd();
+	// msg = print_colored_message(getenv("USER"), path);
+	read_cmd = readline("minishell>: ");
 	return (read_cmd);
 }

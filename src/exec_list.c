@@ -6,7 +6,7 @@
 /*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:25:20 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/18 14:47:13 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/20 10:11:08 by ldufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	exec_redirection(t_cmd *cmd)
  *   - Logs the command being executed.
  *   - Handles redirection for the command.
  *   - Checks if the command is a built-in command and executes it if so.
- *   - If not a built-in command, attempts to execute the external command using execve.
+ *   - If not a built-in command,
+	attempts to execute the external command using execve.
  *   - Prints an error message using perror if execve fails.
  */
 void	exec_leon(t_list *cmd_list)
@@ -52,12 +53,12 @@ void	exec_leon(t_list *cmd_list)
 	{
 		log_printf("Executing: %s\n", cmd->cmd_table[0]);
 		exec_redirection(cmd);
-    // check for built_in
-		if (!exec_builtin(cmd, cmd.env))
-    {
-		  execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
-		  perror("execve");
-    }
+		// check for built_in
+		// if (!exec_builtin(*cmd, cmd->env))
+		// {
+		// 	execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
+		// 	perror("execve");
+		// }
 	}
 }
 
@@ -87,7 +88,7 @@ void	process_exec(int i, int lst_size, int **pipes, t_list *cmd_list)
 // BUILT_IN
 void	process_fork(t_list *cmd_list, int lst_size)
 
-                  // Faire un bool si built in detecter pour skipper les affaires)
+// Faire un bool si built in detecter pour skipper les affaires)
 {
 	pid_t	*pid;
 	int		i;
@@ -122,9 +123,11 @@ void	main_exec(t_list *cmd_list, char **envp)
 {
 	int	nb_process;
 
+  t_cmd *cmd = ((t_cmd *)cmd_list->content);
 	nb_process = ft_lstsize(cmd_list);
-	update_cmd_list(cmd_list, envp);
-	process_fork(cmd_list, nb_process);
+	exec_builtin(cmd, envp);
+	// update_cmd_list(cmd_list, envp);
+	// process_fork(cmd_list, nb_process);
 }
 
 // Faire un bool si built in detecter pour skipper les affaires
