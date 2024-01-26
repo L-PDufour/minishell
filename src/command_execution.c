@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:20:32 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/18 13:36:05 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:48:48 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,37 @@ static char	*get_cmd_path(char *cmd, char **envp)
 	return (NULL);
 }
 
-void	exec_cmd(t_command cmd, char **envp)
-{
-	int		i;
-	char	*old;
-	char	**tmp;
-	char	*cmd_path;
-	pid_t	pid;
+// void	exec_cmd(t_command cmd, char **envp)
+// {
+// 	int		i;
+// 	char	*old;
+// 	char	**tmp;
+// 	char	*cmd_path;
+// 	pid_t	pid;
 
-	i = 0;
-	pid = fork();
-	if (pid == -1)
-		printf(" fork failed\n");
-	if (pid ==  0)
-	{
+// 	i = 0;
+// 	pid = fork();
+// 	if (pid == -1)
+// 		printf(" fork failed\n");
+// 	if (pid ==  0)
+// 	{
 
-		cmd.pid = pid;
-		if (exec_builtin(cmd, cmd.env))
-		{
-			tmp = ft_split(cmd.cmd_str, ' ');
-			cmd_path = get_cmd_path(tmp[0], envp);
-			if (!cmd_path || execve(cmd_path, tmp, cmd.env) == -1)
-			{
-				clean_table(tmp);
-				print_in_color(RED, "🚨command not found:  ");
-				print_in_color(RED, cmd.name);
-				printf("\n");
-			}
-		}
-	}
-	waitpid(pid, NULL, 0);
+// 		cmd.pid = pid;
+// 		if (exec_builtin(cmd, cmd.env))
+// 		{
+// 			tmp = ft_split(cmd.cmd_str, ' ');
+// 			cmd_path = get_cmd_path(tmp[0], envp);
+// 			if (!cmd_path || execve(cmd_path, tmp, cmd.env) == -1)
+// 			{
+// 				clean_table(tmp);
+// 				print_in_color(RED, "🚨command not found:  ");
+// 				print_in_color(RED, cmd.name);
+// 				printf("\n");
+// 			}
+// 		}
+// 	}
+// 	waitpid(pid, NULL, 0);
 	
 
-	// return (0);
-}
+// 	// return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:25:20 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/18 14:47:13 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:55:02 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	exec_leon(t_list *cmd_list)
 		log_printf("Executing: %s\n", cmd->cmd_table[0]);
 		exec_redirection(cmd);
     // check for built_in
-		if (!exec_builtin(cmd, cmd.env))
+		if (!exec_builtin(*cmd->cmd, cmd->cmd->env))
     {
 		  execve(cmd->cmd_table[0], cmd->cmd_table, NULL);
 		  perror("execve");
@@ -123,7 +123,7 @@ void	main_exec(t_list *cmd_list, char **envp)
 	int	nb_process;
 
 	nb_process = ft_lstsize(cmd_list);
-	update_cmd_list(cmd_list, envp);
+	update_cmd_list(cmd_list);
 	process_fork(cmd_list, nb_process);
 }
 

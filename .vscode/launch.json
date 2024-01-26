@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(lldb) Lancer",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceRoot}/./minishell",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "lldb"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/yothmani/Desktop/minishell/src",
+      "program": "/Users/yothmani/Desktop/minishell/src/build/Debug/outDebug"
+    }
+  ]
+}

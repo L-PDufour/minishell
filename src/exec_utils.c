@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldufour <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:08:54 by ldufour           #+#    #+#             */
-/*   Updated: 2024/01/18 14:39:46 by ldufour          ###   ########.fr       */
+/*   Updated: 2024/01/26 18:27:26 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ static int	path_verification(char **envp_path, t_cmd *cmd)
 	return (1);
 }
 // Ou Est-ce que command env est mis a jour ?
-void	update_cmd_list(t_list *cmd_list)
+void	update_cmd_list(t_list *cmd_list,char **envp)
 {
 	char	**envp_path;
 	t_cmd	*cmd;
 
-	envp_path = envp_path_creation_leon(envp)// Changer envp;
+	envp_path = envp_path_creation_leon(envp);// Changer envp;
 	while (cmd_list)
 	{
 		cmd = (t_cmd *)cmd_list->content;

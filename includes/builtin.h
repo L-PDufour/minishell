@@ -6,7 +6,7 @@
 /*   By: yothmani <yothmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:43:37 by yothmani          #+#    #+#             */
-/*   Updated: 2024/01/18 12:58:01 by yothmani         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:39:31 by yothmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ typedef struct s_command
 	char	*option2;
 	char	**env;
 	char	*cmd_str;
-	char	**env_copy;
-	char	**builtin;
 	char	*old_pwd;
 	char	*pwd;
 	int		exit_status;
-	char	*export_value;
-	char	*export_key;
 	pid_t	pid;
 }			t_command;
 
